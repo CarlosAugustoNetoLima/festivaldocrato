@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival Crato — Bilheteira</title>
+    <meta name="description" content="A 40.ª Feira de Artesanato e Gastronomia e o Festival do Crato regressam de 25 a 29 de agosto de 2026 para celebrar o artesanato, a gastronomia e a identidade cultural do Alto Alentejo.">
+    <meta property="og:title" content="40.ª FAG & Festival do Crato 2026">
+    <meta property="og:description" content="Feira de Artesanato e Gastronomia e Festival do Crato — 25 a 29 de Agosto de 2026">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Base -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+
+    <!-- CSS do Tema -->
+    <link rel="stylesheet" href="themes/crato/theme.css">
+
+    <!-- Toastify -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body data-page="tickets">
+
+    
+<header class="site-header" id="site-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <a href="index.html" class="header-logo" aria-label="Festival do Crato 2026">
+            <img src="themes/crato/img/logo.png" alt="Festival do Crato 2026" class="header-logo-img">
+        </a>
+
+        <!-- Nav Desktop -->
+        <nav class="header-nav" aria-label="Navegação principal">
+                            <a
+                    href="bilheteira.html"
+                    class="nav-link active"
+                    id="nav-tickets"
+                >
+                    Bilheteira                </a>
+                            <a
+                    href="sobre.html"
+                    class="nav-link "
+                    id="nav-about"
+                >
+                    Sobre o Festival                </a>
+                            <a
+                    href="como-chegar.html"
+                    class="nav-link "
+                    id="nav-directions"
+                >
+                    Como chegar                </a>
+                            <a
+                    href="campismo.html"
+                    class="nav-link "
+                    id="nav-camping"
+                >
+                    Campismo                </a>
+                            <a
+                    href="o-que-fazer.html"
+                    class="nav-link "
+                    id="nav-todo"
+                >
+                    O que fazer                </a>
+                            <a
+                    href="contactos.html"
+                    class="nav-link "
+                    id="nav-contacts"
+                >
+                    Contactos úteis                </a>
+                            <a
+                    href="noticias.html"
+                    class="nav-link "
+                    id="nav-news"
+                >
+                    Notícias                </a>
+                    </nav>
+
+        <!-- Actions -->
+        <div class="header-actions">
+            <!-- Search -->
+            <button class="header-search-btn" id="search-toggle" aria-label="Pesquisar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+            </button>
+
+                            <button class="cart-toggle" data-cart-open aria-label="Abrir carrinho" id="cart-open-btn">
+                    <svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
+                    <span class="cart-badge hidden" id="cart-badge">0</span>
+                </button>
+            
+            <button class="menu-toggle" id="menu-toggle" data-mobile-menu-toggle aria-label="Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="header-search-overlay" id="search-overlay" role="dialog" aria-label="Pesquisar">
+        <div class="header-search-container">
+            <button class="header-search-close" id="search-close" aria-label="Fechar pesquisa">&times;</button>
+            <form action="http://localhost:8000/pesquisa" method="GET" class="header-search-form">
+                <input type="search" name="q" placeholder="Pesquisar..." class="header-search-input" autocomplete="off">
+                <button type="submit" class="header-search-submit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu de navegação">
+    <nav class="mobile-nav">
+                    <a
+                href="bilheteira.html"
+                class="mobile-nav-link active"
+            >
+                Bilheteira            </a>
+                    <a
+                href="sobre.html"
+                class="mobile-nav-link "
+            >
+                Sobre o Festival            </a>
+                    <a
+                href="como-chegar.html"
+                class="mobile-nav-link "
+            >
+                Como chegar            </a>
+                    <a
+                href="campismo.html"
+                class="mobile-nav-link "
+            >
+                Campismo            </a>
+                    <a
+                href="o-que-fazer.html"
+                class="mobile-nav-link "
+            >
+                O que fazer            </a>
+                    <a
+                href="contactos.html"
+                class="mobile-nav-link "
+            >
+                Contactos úteis            </a>
+                    <a
+                href="noticias.html"
+                class="mobile-nav-link "
+            >
+                Notícias            </a>
+            </nav>
+</div>
+
+    <main class="main-content">
+
+                    <section class="page-hero page-hero--inner">
+                <div class="container">
+                    <h1 class="page-hero__title">Bilhetes</h1>
+                    <p class="page-hero__sub">Garante o teu lugar no Festival Crato 2026</p>
+                </div>
+            </section>
+            
+<section class="tickets section" id="bilhetes">
+    <div class="container">
+        <div style="text-align:center;margin-bottom:var(--s-2xl);">
+            <p class="section-label reveal">40.ª Edição</p>
+            <h2 class="section-title reveal">
+                Garante o teu <span>Lugar</span>
+            </h2>
+            <p style="color:var(--c-text-muted);margin-top:1rem;max-width:520px;margin-inline:auto;" class="reveal">
+                Não percas a oportunidade de viver a Feira de Artesanato e Gastronomia e o Festival do Crato 2026 — artesanato, gastronomia e música ao vivo no coração do Alto Alentejo.
+            </p>
+        </div>
+
+        <div class="tickets__grid">
+                                            <div
+                    class="ticket-card  reveal"
+                    data-ticket-id="concerto-solidario"
+                    data-ticket-name="Concerto Solidário"
+                    data-ticket-price="10"
+                    style="transition-delay:0s;"
+                >
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Concerto Solidário</h3>
+                    <p class="ticket-card__subtitle">25 Agosto · Terça-feira</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">10</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Concerto Solidário no Palco FAG. Sem descontos aplicáveis. O passe 4 dias não dá acesso a este concerto.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Concerto Solidário', 'crato-2026-solidario')"
+                        id="ticket-btn-concerto-solidario"
+                        data-add-cart="concerto-solidario"
+                    >
+                        Comprar Bilhete                    </button>
+                </div>
+                                            <div
+                    class="ticket-card  reveal"
+                    data-ticket-id="dia-26"
+                    data-ticket-name="Bilhete Dia 26"
+                    data-ticket-price="15"
+                    style="transition-delay:0.08s;"
+                >
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Bilhete Dia 26</h3>
+                    <p class="ticket-card__subtitle">26 Agosto · Quarta-feira</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">15</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Acesso ao Festival do Crato — 1.º dia. A partir de 1 de agosto: 20€.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Bilhete Dia 26', 'crato-2026-dia1')"
+                        id="ticket-btn-dia-26"
+                        data-add-cart="dia-26"
+                    >
+                        Comprar Bilhete                    </button>
+                </div>
+                                            <div
+                    class="ticket-card  reveal"
+                    data-ticket-id="dia-27"
+                    data-ticket-name="Bilhete Dia 27"
+                    data-ticket-price="15"
+                    style="transition-delay:0.16s;"
+                >
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Bilhete Dia 27</h3>
+                    <p class="ticket-card__subtitle">27 Agosto · Quinta-feira</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">15</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Acesso ao Festival do Crato — 2.º dia. A partir de 1 de agosto: 20€.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Bilhete Dia 27', 'crato-2026-dia2')"
+                        id="ticket-btn-dia-27"
+                        data-add-cart="dia-27"
+                    >
+                        Comprar Bilhete                    </button>
+                </div>
+                                            <div
+                    class="ticket-card  reveal"
+                    data-ticket-id="dia-28"
+                    data-ticket-name="Bilhete Dia 28"
+                    data-ticket-price="20"
+                    style="transition-delay:0.24s;"
+                >
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Bilhete Dia 28</h3>
+                    <p class="ticket-card__subtitle">28 Agosto · Sexta-feira</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">20</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Acesso ao Festival do Crato — 3.º dia. A partir de 1 de agosto: 25€.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Bilhete Dia 28', 'crato-2026-dia3')"
+                        id="ticket-btn-dia-28"
+                        data-add-cart="dia-28"
+                    >
+                        Comprar Bilhete                    </button>
+                </div>
+                                            <div
+                    class="ticket-card  reveal"
+                    data-ticket-id="dia-29"
+                    data-ticket-name="Bilhete Dia 29"
+                    data-ticket-price="20"
+                    style="transition-delay:0.32s;"
+                >
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Bilhete Dia 29</h3>
+                    <p class="ticket-card__subtitle">29 Agosto · Sábado</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">20</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Acesso ao Festival do Crato — dia final. A partir de 1 de agosto: 25€.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Bilhete Dia 29', 'crato-2026-dia4')"
+                        id="ticket-btn-dia-29"
+                        data-add-cart="dia-29"
+                    >
+                        Comprar Bilhete                    </button>
+                </div>
+                                            <div
+                    class="ticket-card highlight reveal"
+                    data-ticket-id="passe-4dias"
+                    data-ticket-name="Passe 4 Dias"
+                    data-ticket-price="45"
+                    style="transition-delay:0.4s;"
+                >
+                                            <span class="ticket-badge">Mais Popular</span>
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Passe 4 Dias</h3>
+                    <p class="ticket-card__subtitle">26–29 Agosto · Sem Campismo</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">45</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Acesso completo aos 4 dias do Festival do Crato 2026. A partir de 1 de agosto: 50€. Não inclui acesso ao Concerto Solidário nem ao campismo.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Passe 4 Dias', 'crato-2026-passe')"
+                        id="ticket-btn-passe-4dias"
+                        data-add-cart="passe-4dias"
+                    >
+                        Comprar Agora                    </button>
+                </div>
+                                            <div
+                    class="ticket-card  reveal"
+                    data-ticket-id="passe-4dias-campismo"
+                    data-ticket-name="Passe 4 Dias + Campismo"
+                    data-ticket-price="60"
+                    style="transition-delay:0.48s;"
+                >
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Passe 4 Dias + Campismo</h3>
+                    <p class="ticket-card__subtitle">26–29 Agosto · Com Campismo</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">60</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Acesso completo aos 4 dias do Festival do Crato 2026 com direito a campismo. A partir de 1 de agosto: 70€. Não inclui acesso ao Concerto Solidário.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Passe 4 Dias + Campismo', 'crato-2026-passe-campismo')"
+                        id="ticket-btn-passe-4dias-campismo"
+                        data-add-cart="passe-4dias-campismo"
+                    >
+                        Comprar Bilhete                    </button>
+                </div>
+                    </div>
+
+            </div>
+</section>
+
+        
+    </main>
+
+    
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-top">
+            <!-- Brand -->
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">
+                    <img src="themes/crato/img/logo.png" alt="Festival do Crato 2026" class="footer-logo-img">
+                </a>
+                <p class="footer-tagline">
+                    40.ª Feira de Artesanato e Gastronomia<br>
+                    &amp; Festival do Crato · 25–29 Agosto 2026
+                </p>
+                <div class="footer-social">
+                                            <a href="https://instagram.com/" class="footer-social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                                                                <a href="https://facebook.com/" class="footer-social-link" target="_blank" rel="noopener" aria-label="Facebook">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                        </a>
+                                                                <a href="https://twitter.com/" class="footer-social-link" target="_blank" rel="noopener" aria-label="Twitter / X">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+                        </a>
+                                                                <a href="https://youtube.com/" class="footer-social-link" target="_blank" rel="noopener" aria-label="YouTube">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                        </a>
+                                    </div>
+            </div>
+
+            <!-- Festival -->
+            <div>
+                <p class="footer-col-title">Evento</p>
+                <nav class="footer-links">
+                                            <a href="lineup.html" class="footer-link">
+                            Programação                        </a>
+                                            <a href="artistas.html" class="footer-link">
+                            Artistas                        </a>
+                                            <a href="bilhetes.html" class="footer-link">
+                            Bilhetes                        </a>
+                                            <a href="info.html" class="footer-link">
+                            Info                        </a>
+                                    </nav>
+            </div>
+
+            <!-- Bilhetes -->
+            <div>
+                <p class="footer-col-title">Bilhetes</p>
+                <nav class="footer-links">
+                    <a href="bilhetes.html" class="footer-link">Concerto Solidário · 25 Ago</a>
+                    <a href="bilhetes.html" class="footer-link">Bilhete Diário</a>
+                    <a href="bilhetes.html" class="footer-link">Passe 4 Dias</a>
+                    <a href="bilhetes.html" class="footer-link">Passe 4 Dias + Campismo</a>
+                </nav>
+            </div>
+
+            <!-- Contacto -->
+            <div>
+                <p class="footer-col-title">Contacto</p>
+                <nav class="footer-links">
+                    <a href="mailto:festivaldocrato@cm-crato.pt" class="footer-link">festivaldocrato@cm-crato.pt</a>
+                    <a href="tel:245990110" class="footer-link">245 990 110</a>
+                    <a href="info.html" class="footer-link">FAQ</a>
+                    <a href="info.html" class="footer-link">Como Chegar</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copyright">
+                &copy; 2026 Festival Crato · Município do Crato. Todos os direitos reservados.
+            </p>
+            <div class="footer-legal">
+                <a href="bilheteira.html#" class="footer-legal-link">Política de Privacidade</a>
+                <a href="bilheteira.html#" class="footer-legal-link">Política de Cookies</a>
+                <a href="bilheteira.html#" class="footer-legal-link">Termos e Condições</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- Modais -->
+            
+<div class="cart-modal-overlay" id="cart-modal" data-storage-key="crato_cart">
+    <div class="cart-modal-panel">
+        <!-- Header -->
+        <div class="cart-modal-header">
+            <h2 class="cart-modal-title">Carrinho</h2>
+            <button class="cart-modal-close" aria-label="Fechar Carrinho" data-cart-close>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Items -->
+        <div class="cart-modal-body">
+            <div id="cart-items-container" class="cart-items-container">
+                <!-- Items injectados via JS -->
+                <div class="cart-empty" id="cart-empty-state">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:1rem;opacity:0.3;">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
+                    <p>O teu carrinho está vazio.</p>
+                    <a href="bilhetes.html" class="btn btn-outline" style="margin-top:1rem;font-size:0.8rem;" data-cart-close>Ver Bilhetes</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer / Summary -->
+        <div class="cart-modal-footer">
+            <div class="cart-summary-row">
+                <span>Taxa de operação</span>
+                <span id="cart-fee-price">€ 1,50</span>
+            </div>
+            <div class="cart-summary-row cart-summary-total">
+                <span>Total</span>
+                <span id="cart-total-price">€ 0,00</span>
+            </div>
+            <button class="btn btn-primary cart-checkout-btn" id="cart-checkout-btn" style="width:100%;margin-top:1rem;" disabled>
+                Finalizar Compra
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+.cart-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.cart-modal-overlay.active { display: flex; animation: fadeIn 0.2s ease; }
+
+.cart-modal-panel {
+    background: #111;
+    border-left: 1px solid var(--c-border);
+    width: min(460px, 100vw);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(0); }
+}
+
+.cart-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.5rem 1rem;
+    border-bottom: 1px solid var(--c-border);
+}
+
+.cart-modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.cart-modal-close {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--c-bg-glass);
+    border: 1px solid var(--c-border);
+    color: var(--c-text-muted);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--t-fast);
+}
+.cart-modal-close:hover { color: var(--c-text); border-color: var(--c-brand); }
+
+.cart-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+.cart-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    text-align: center;
+    color: var(--c-text-muted);
+    font-size: 0.9rem;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--c-border);
+}
+
+.cart-item-info { flex: 1; }
+.cart-item-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+.cart-item-price { font-size: 0.85rem; color: var(--c-accent); }
+
+.cart-item-qty {
+    display: flex; align-items: center; gap: 0.5rem;
+}
+.cart-item-qty button {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--c-bg-3); border: 1px solid var(--c-border);
+    color: var(--c-text); cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--t-fast);
+}
+.cart-item-qty button:hover { border-color: var(--c-brand); color: var(--c-brand); }
+
+.cart-modal-footer {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--c-border);
+}
+
+.cart-summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--c-text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.cart-summary-total {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--c-border);
+}
+
+.cart-checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+</style>
+
+<script>
+(function () {
+    const overlay     = document.getElementById('cart-modal');
+    const checkoutBtn = document.getElementById('cart-checkout-btn');
+    const emptyState  = document.getElementById('cart-empty-state');
+    const itemsCont   = document.getElementById('cart-items-container');
+    const feeEl       = document.getElementById('cart-fee-price');
+    const totalEl     = document.getElementById('cart-total-price');
+    const storageKey  = 'crato_cart';
+    const opFee       = 1.5;
+    const currency    = '€';
+    const checkoutUrl = 'https://checkout.lebillet.eu/';
+
+    function getCart() {
+        try { return JSON.parse(localStorage.getItem(storageKey) || '[]'); }
+        catch (e) { return []; }
+    }
+
+    function saveCart(cart) {
+        localStorage.setItem(storageKey, JSON.stringify(cart));
+        document.dispatchEvent(new CustomEvent('cart:updated'));
+    }
+
+    function fmt(n) {
+        return currency + ' ' + n.toFixed(2).replace('.', ',');
+    }
+
+    function renderCart() {
+        const cart = getCart();
+        const hasItems = cart.length > 0;
+
+        checkoutBtn.disabled = !hasItems;
+
+        if (!hasItems) {
+            emptyState.style.display = 'flex';
+            itemsCont.querySelectorAll('.cart-item').forEach(e => e.remove());
+            if (feeEl) feeEl.textContent = fmt(0);
+            if (totalEl) totalEl.textContent = fmt(0);
+            return;
+        }
+
+        emptyState.style.display = 'none';
+        itemsCont.querySelectorAll('.cart-item').forEach(e => e.remove());
+
+        let subtotal = 0;
+        cart.forEach((item, idx) => {
+            subtotal += item.price * item.qty;
+            const el = document.createElement('div');
+            el.className = 'cart-item';
+            el.innerHTML = `
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">${fmt(item.price)}</div>
+                </div>
+                <div class="cart-item-qty">
+                    <button data-idx="${idx}" data-action="dec">−</button>
+                    <span>${item.qty}</span>
+                    <button data-idx="${idx}" data-action="inc">+</button>
+                </div>`;
+            itemsCont.appendChild(el);
+        });
+
+        const total = subtotal + opFee;
+        if (feeEl) feeEl.textContent = fmt(opFee);
+        if (totalEl) totalEl.textContent = fmt(total);
+    }
+
+    // Qty buttons
+    itemsCont.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-action]');
+        if (!btn) return;
+        const idx = parseInt(btn.dataset.idx);
+        const action = btn.dataset.action;
+        const cart = getCart();
+        if (!cart[idx]) return;
+        if (action === 'inc') { cart[idx].qty++; }
+        else if (action === 'dec') {
+            cart[idx].qty--;
+            if (cart[idx].qty <= 0) cart.splice(idx, 1);
+        }
+        saveCart(cart);
+        renderCart();
+    });
+
+    // Checkout
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            window.location.href = checkoutUrl;
+        });
+    }
+
+    // Open / close
+    document.querySelectorAll('[data-cart-open]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            renderCart();
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    document.querySelectorAll('[data-cart-close]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Expose globally for CartService compatibility
+    window.CartService = window.CartService || {};
+    window.CartService.addItem = function(item) {
+        const cart = getCart();
+        const existing = cart.find(i => i.id === item.id);
+        if (existing) { existing.qty += (item.qty || 1); }
+        else { cart.push({ ...item, qty: item.qty || 1 }); }
+        saveCart(cart);
+        renderCart();
+
+        // Badge update
+        const badge = document.getElementById('cart-badge');
+        if (badge) {
+            const total = cart.reduce((s, i) => s + i.qty, 0);
+            badge.textContent = total;
+            badge.classList.toggle('hidden', total === 0);
+        }
+
+        // Feedback toast if Toastify available
+        if (window.Toastify) {
+            Toastify({ text: '✓ Adicionado ao carrinho', duration: 2000, gravity: 'bottom', position: 'right',
+                style: { background: 'linear-gradient(135deg,#E8311A,#F5A623)', borderRadius: '8px', fontFamily: 'Inter, sans-serif' }
+            }).showToast();
+        }
+    };
+
+    window.CartService.init = function() {};
+
+    // Initial badge
+    const initialCart = getCart();
+    const badge = document.getElementById('cart-badge');
+    if (badge) {
+        const qty = initialCart.reduce((s, i) => s + i.qty, 0);
+        badge.textContent = qty;
+        badge.classList.toggle('hidden', qty === 0);
+    }
+
+    document.addEventListener('cart:updated', () => {
+        const cart = getCart();
+        const qty = cart.reduce((s, i) => s + i.qty, 0);
+        if (badge) { badge.textContent = qty; badge.classList.toggle('hidden', qty === 0); }
+    });
+})();
+</script>
+    
+            
+<div class="checkout-modal-backdrop" id="checkout-modal">
+    <div class="checkout-modal-container">
+        <div class="checkout-modal-overlay" onclick="CheckoutModal.close()"></div>
+
+        <div class="checkout-modal-dialog">
+            <div class="checkout-modal-header">
+                <span class="checkout-modal-title" id="checkout-modal-title"></span>
+                <button class="checkout-modal-close" onclick="CheckoutModal.close()">
+                    &times;
+                </button>
+            </div>
+
+            <div class="checkout-modal-body">
+                <iframe id="checkout-modal-iframe" class="checkout-modal-iframe"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+/**
+ * Checkout Modal Service
+ * Gerencia o modal de checkout em iframe
+ */
+const CheckoutModal = {
+    modalId: 'checkout-modal',
+    baseUrl: 'https://checkout.lebillet.eu/',
+
+    open(title, eventId) {
+        const modal = document.getElementById(this.modalId);
+        const modalTitle = document.getElementById(`${this.modalId}-title`);
+        const iframe = document.getElementById(`${this.modalId}-iframe`);
+
+        if (!modal || !iframe) return;
+
+        modalTitle.textContent = title || 'Checkout';
+        iframe.src = `${this.baseUrl}${eventId}`;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+
+    close() {
+        const modal = document.getElementById(this.modalId);
+        const iframe = document.getElementById(`${this.modalId}-iframe`);
+
+        if (!modal) return;
+
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+
+        if (iframe) {
+            iframe.src = '';
+        }
+    }
+};
+
+// Fechar com ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        CheckoutModal.close();
+    }
+});
+</script>
+    
+    <!-- Scripts -->
+    <script src="assets/js/cart-service.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="themes/crato/theme.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.CartService) {
+            CartService.init({
+                storageKey: 'crato_cart',
+                modalId: 'cart-modal',
+                operationFee: 1.5,
+                currency: '€',
+                currencyPosition: 'after',
+                checkoutUrl: 'https://checkout.lebillet.eu/'
+            });
+        }
+    });
+    </script>
+</body>
+</html>
