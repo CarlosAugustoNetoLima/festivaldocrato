@@ -98,10 +98,8 @@ $themeName   = Config::get('theme.name', 'default');
     <meta property="og:type" content="website">
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
     <!-- CSS Base -->
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/components.css">
@@ -121,8 +119,8 @@ $themeName   = Config::get('theme.name', 'default');
 
         <?php if ($activePage === 'home'): ?>
             <?= Component::render('Hero') ?>
-            <?= Component::render('News', ['news' => $news]) ?>
             <?= Component::render('Lineup', ['artists' => $artists]) ?>
+            <?= Component::render('News', ['news' => $news]) ?>
             <?= Component::render('Artists', ['artists' => $artists]) ?>
             <?= Component::render('Tickets', ['tickets' => $tickets, 'checkoutUrl' => $checkoutUrl]) ?>
             <?= Component::render('About') ?>

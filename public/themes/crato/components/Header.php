@@ -6,13 +6,25 @@ $siteName   = Config::get('site_name', 'Festival Crato');
 $cartEnabled = Config::get('components.cart', true);
 
 $navItems = [
-    ['id' => 'tickets',    'label' => 'Bilheteira',      'url' => '/bilheteira'],
-    ['id' => 'about',      'label' => 'Sobre o Festival', 'url' => '/sobre'],
-    ['id' => 'directions', 'label' => 'Como chegar',     'url' => '/como-chegar'],
-    ['id' => 'camping',    'label' => 'Campismo',        'url' => '/campismo'],
-    ['id' => 'todo',       'label' => 'O que fazer',     'url' => '/o-que-fazer'],
-    ['id' => 'contacts',   'label' => 'Contactos úteis', 'url' => '/contactos'],
-    ['id' => 'news',       'label' => 'Notícias',        'url' => '/noticias'],
+    ['id' => 'tickets',    'label' => 'BILHETEIRA',  'url' => '/bilheteira'],
+    ['id' => 'lineup',     'label' => 'LINE UP',     'url' => '/lineup'],
+    ['id' => 'about',      'label' => 'O FESTIVAL',  'url' => '#', 'submenu' => [
+        ['id' => 'news',       'label' => 'NOVIDADES',            'url' => '/noticias'],
+        ['id' => 'directions', 'label' => 'COMO CHEGAR',          'url' => '/como-chegar'],
+        ['id' => 'todo',       'label' => 'O QUE FAZER',          'url' => '/o-que-fazer'],
+        ['id' => 'history',    'label' => 'HISTÓRIA',             'url' => '/sobre'],
+        ['id' => 'sustainability','label'=> 'SUSTENTABILIDADE',   'url' => '/sobre#sustentabilidade'],
+        ['id' => 'accessibility','label' => 'ACESSIBILIDADE',     'url' => '/sobre#acessibilidade'],
+        ['id' => 'municipality','label' => 'O MUNICÍPIO DA VILA', 'url' => 'https://cm-crato.pt']
+    ]],
+    ['id' => 'camping',    'label' => 'CAMPISMO',    'url' => '/campismo'],
+    ['id' => 'info',       'label' => 'INFO',        'url' => '#', 'submenu' => [
+        ['id' => 'contacts',   'label' => 'Contactos O Festival', 'url' => '/contactos'],
+        ['id' => 'regulations','label' => 'Regulamento e Restrições', 'url' => '/contactos#regulamentos'],
+        ['id' => 'press',      'label' => 'Espaço Press',         'url' => '/contactos#press'],
+        ['id' => 'faq',        'label' => 'Perguntas Frequentes', 'url' => '/contactos#faq']
+    ]],
+    ['id' => 'store',      'label' => 'LOJA',        'url' => '/loja'],
 ];
 ?>
 
@@ -26,13 +38,28 @@ $navItems = [
         <!-- Nav Desktop -->
         <nav class="header-nav" aria-label="Navegação principal">
             <?php foreach ($navItems as $item): ?>
-                <a
-                    href="<?= htmlspecialchars($item['url']) ?>"
-                    class="nav-link <?= $activePage === $item['id'] ? 'active' : '' ?>"
-                    id="nav-<?= htmlspecialchars($item['id']) ?>"
-                >
-                    <?= htmlspecialchars($item['label']) ?>
-                </a>
+                <?php if (isset($item['submenu'])): ?>
+                    <div class="nav-dropdown">
+                        <a href="<?= htmlspecialchars($item['url']) ?>"
+                            class="nav-link dropdown-toggle <?= $activePage === $item['id'] ? 'active' : '' ?>">
+                            <?= htmlspecialchars($item['label']) ?>
+                            <span class="material-symbols-outlined chevron">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <?php foreach ($item['submenu'] as $sub): ?>
+                                <a href="<?= htmlspecialchars($sub['url']) ?>"
+                                    class="dropdown-item <?= $activePage === $sub['id'] ? 'active' : '' ?>">
+                                    <?= htmlspecialchars($sub['label']) ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <a href="<?= htmlspecialchars($item['url']) ?>"
+                        class="nav-link <?= $activePage === $item['id'] ? 'active' : '' ?>">
+                        <?= htmlspecialchars($item['label']) ?>
+                    </a>
+                <?php endif; ?>
             <?php endforeach; ?>
         </nav>
 
@@ -40,19 +67,12 @@ $navItems = [
         <div class="header-actions">
             <!-- Search -->
             <button class="header-search-btn" id="search-toggle" aria-label="Pesquisar">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="m21 21-4.35-4.35"/>
-                </svg>
+                <span class="material-symbols-outlined">search</span>
             </button>
 
             <?php if ($cartEnabled): ?>
                 <button class="cart-toggle" data-cart-open aria-label="Abrir carrinho" id="cart-open-btn">
-                    <svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-                        <line x1="3" y1="6" x2="21" y2="6"/>
-                        <path d="M16 10a4 4 0 01-8 0"/>
-                    </svg>
+                    <span class="material-symbols-outlined">shopping_bag</span>
                     <span class="cart-badge hidden" id="cart-badge">0</span>
                 </button>
             <?php endif; ?>
@@ -66,14 +86,13 @@ $navItems = [
     <!-- Search Overlay -->
     <div class="header-search-overlay" id="search-overlay" role="dialog" aria-label="Pesquisar">
         <div class="header-search-container">
-            <button class="header-search-close" id="search-close" aria-label="Fechar pesquisa">&times;</button>
+            <button class="header-search-close" id="search-close" aria-label="Fechar pesquisa">
+                <span class="material-symbols-outlined">close</span>
+            </button>
             <form action="/pesquisa" method="GET" class="header-search-form">
                 <input type="search" name="q" placeholder="Pesquisar..." class="header-search-input" autocomplete="off">
                 <button type="submit" class="header-search-submit">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="m21 21-4.35-4.35"/>
-                    </svg>
+                    <span class="material-symbols-outlined">search</span>
                 </button>
             </form>
         </div>
@@ -84,12 +103,29 @@ $navItems = [
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu de navegação">
     <nav class="mobile-nav">
         <?php foreach ($navItems as $item): ?>
-            <a
-                href="<?= htmlspecialchars($item['url']) ?>"
-                class="mobile-nav-link <?= $activePage === $item['id'] ? 'active' : '' ?>"
-            >
-                <?= htmlspecialchars($item['label']) ?>
-            </a>
+            <?php if (isset($item['submenu'])): ?>
+                <div class="mobile-nav-group">
+                    <button class="mobile-nav-toggle" data-mobile-dropdown aria-expanded="false">
+                        <?= htmlspecialchars($item['label']) ?>
+                        <span class="material-symbols-outlined toggle-icon">expand_more</span>
+                    </button>
+                    <div class="mobile-nav-sub-wrapper">
+                        <div class="mobile-nav-sub">
+                            <?php foreach ($item['submenu'] as $sub): ?>
+                                <a href="<?= htmlspecialchars($sub['url']) ?>"
+                                    class="mobile-nav-link sub <?= $activePage === $sub['id'] ? 'active' : '' ?>">
+                                    <?= htmlspecialchars($sub['label']) ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php else: ?>
+                <a href="<?= htmlspecialchars($item['url']) ?>"
+                    class="mobile-nav-link <?= $activePage === $item['id'] ? 'active' : '' ?>">
+                    <?= htmlspecialchars($item['label']) ?>
+                </a>
+            <?php endif; ?>
         <?php endforeach; ?>
     </nav>
 </div>
