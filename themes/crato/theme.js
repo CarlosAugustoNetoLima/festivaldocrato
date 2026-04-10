@@ -198,3 +198,54 @@
   });
 
 })();
+
+/* ========================================================
+   RESTORED SESSION JS PATCHES
+   ======================================================== */
+(function(){
+  document.querySelectorAll('[data-mobile-dropdown]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const wrapper = btn.nextElementSibling;
+      const isOpen = btn.classList.toggle('active');
+      btn.setAttribute('aria-expanded', isOpen);
+      if (isOpen) {
+        wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
+      } else {
+        wrapper.style.maxHeight = '0px';
+      }
+    });
+  });
+
+  const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach((el, i) => {
+    const row = Math.floor(i / 3);
+    const col = i % 3;
+    const delay = (row * 0.04) + (col * 0.02);
+    el.style.transitionDelay = `${delay}s`;
+    observer.observe(el);
+  });
+
+  document.querySelectorAll('.artists__grid, .tickets__grid, .news__grid').forEach(container => {
+    const items = container.children;
+    const containerObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          Array.from(items).forEach((item, i) => {
+            item.style.transitionDelay = `${i * 0.04}s`;
+            item.classList.add('visible');
+          });
+          containerObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px 50px 0px' });
+    containerObserver.observe(container);
+  });
+})();

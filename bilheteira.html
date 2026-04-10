@@ -10,10 +10,8 @@
     <meta property="og:type" content="website">
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
     <!-- CSS Base -->
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/components.css">
@@ -37,66 +35,78 @@
 
         <!-- Nav Desktop -->
         <nav class="header-nav" aria-label="Navegação principal">
-                            <a
-                    href="bilheteira.html"
-                    class="nav-link active"
-                    id="nav-tickets"
-                >
-                    Bilheteira                </a>
-                            <a
-                    href="sobre.html"
-                    class="nav-link "
-                    id="nav-about"
-                >
-                    Sobre o Festival                </a>
-                            <a
-                    href="como-chegar.html"
-                    class="nav-link "
-                    id="nav-directions"
-                >
-                    Como chegar                </a>
-                            <a
-                    href="campismo.html"
-                    class="nav-link "
-                    id="nav-camping"
-                >
-                    Campismo                </a>
-                            <a
-                    href="o-que-fazer.html"
-                    class="nav-link "
-                    id="nav-todo"
-                >
-                    O que fazer                </a>
-                            <a
-                    href="contactos.html"
-                    class="nav-link "
-                    id="nav-contacts"
-                >
-                    Contactos úteis                </a>
-                            <a
-                    href="noticias.html"
-                    class="nav-link "
-                    id="nav-news"
-                >
-                    Notícias                </a>
-                    </nav>
+                                                <a href="bilheteira.html"
+                        class="nav-link active">
+                        BILHETEIRA                    </a>
+                                                                <a href="lineup.html"
+                        class="nav-link ">
+                        LINE UP                    </a>
+                                                                <div class="nav-dropdown">
+                        <a href="#"
+                            class="nav-link dropdown-toggle ">
+                            O FESTIVAL                            <span class="material-symbols-outlined chevron">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                                                            <a href="noticias.html"
+                                    class="dropdown-item ">
+                                    NOVIDADES                                </a>
+                                                            <a href="como-chegar.html"
+                                    class="dropdown-item ">
+                                    COMO CHEGAR                                </a>
+                                                            <a href="o-que-fazer.html"
+                                    class="dropdown-item ">
+                                    O QUE FAZER                                </a>
+                                                            <a href="sobre.html"
+                                    class="dropdown-item ">
+                                    HISTÓRIA                                </a>
+                                                            <a href="sobre.html#sustentabilidade"
+                                    class="dropdown-item ">
+                                    SUSTENTABILIDADE                                </a>
+                                                            <a href="sobre.html#acessibilidade"
+                                    class="dropdown-item ">
+                                    ACESSIBILIDADE                                </a>
+                                                            <a href="https://cm-crato.pt"
+                                    class="dropdown-item ">
+                                    O MUNICÍPIO DA VILA                                </a>
+                                                    </div>
+                    </div>
+                                                                <a href="campismo.html"
+                        class="nav-link ">
+                        CAMPISMO                    </a>
+                                                                <div class="nav-dropdown">
+                        <a href="#"
+                            class="nav-link dropdown-toggle ">
+                            INFO                            <span class="material-symbols-outlined chevron">expand_more</span>
+                        </a>
+                        <div class="dropdown-menu">
+                                                            <a href="contactos.html"
+                                    class="dropdown-item ">
+                                    Contactos O Festival                                </a>
+                                                            <a href="contactos.html#regulamentos"
+                                    class="dropdown-item ">
+                                    Regulamento e Restrições                                </a>
+                                                            <a href="contactos.html#press"
+                                    class="dropdown-item ">
+                                    Espaço Press                                </a>
+                                                            <a href="contactos.html#faq"
+                                    class="dropdown-item ">
+                                    Perguntas Frequentes                                </a>
+                                                    </div>
+                    </div>
+                                                                <a href="/loja"
+                        class="nav-link ">
+                        LOJA                    </a>
+                                    </nav>
 
         <!-- Actions -->
         <div class="header-actions">
             <!-- Search -->
             <button class="header-search-btn" id="search-toggle" aria-label="Pesquisar">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="m21 21-4.35-4.35"/>
-                </svg>
+                <span class="material-symbols-outlined">search</span>
             </button>
 
                             <button class="cart-toggle" data-cart-open aria-label="Abrir carrinho" id="cart-open-btn">
-                    <svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-                        <line x1="3" y1="6" x2="21" y2="6"/>
-                        <path d="M16 10a4 4 0 01-8 0"/>
-                    </svg>
+                    <span class="material-symbols-outlined">shopping_bag</span>
                     <span class="cart-badge hidden" id="cart-badge">0</span>
                 </button>
             
@@ -109,14 +119,13 @@
     <!-- Search Overlay -->
     <div class="header-search-overlay" id="search-overlay" role="dialog" aria-label="Pesquisar">
         <div class="header-search-container">
-            <button class="header-search-close" id="search-close" aria-label="Fechar pesquisa">&times;</button>
-            <form action="http://localhost:8000/pesquisa" method="GET" class="header-search-form">
+            <button class="header-search-close" id="search-close" aria-label="Fechar pesquisa">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <form action="pesquisa.html" method="GET" class="header-search-form">
                 <input type="search" name="q" placeholder="Pesquisar..." class="header-search-input" autocomplete="off">
                 <button type="submit" class="header-search-submit">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="m21 21-4.35-4.35"/>
-                    </svg>
+                    <span class="material-symbols-outlined">search</span>
                 </button>
             </form>
         </div>
@@ -126,42 +135,70 @@
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu de navegação">
     <nav class="mobile-nav">
-                    <a
-                href="bilheteira.html"
-                class="mobile-nav-link active"
-            >
-                Bilheteira            </a>
-                    <a
-                href="sobre.html"
-                class="mobile-nav-link "
-            >
-                Sobre o Festival            </a>
-                    <a
-                href="como-chegar.html"
-                class="mobile-nav-link "
-            >
-                Como chegar            </a>
-                    <a
-                href="campismo.html"
-                class="mobile-nav-link "
-            >
-                Campismo            </a>
-                    <a
-                href="o-que-fazer.html"
-                class="mobile-nav-link "
-            >
-                O que fazer            </a>
-                    <a
-                href="contactos.html"
-                class="mobile-nav-link "
-            >
-                Contactos úteis            </a>
-                    <a
-                href="noticias.html"
-                class="mobile-nav-link "
-            >
-                Notícias            </a>
-            </nav>
+                                    <a href="bilheteira.html"
+                    class="mobile-nav-link active">
+                    BILHETEIRA                </a>
+                                                <a href="lineup.html"
+                    class="mobile-nav-link ">
+                    LINE UP                </a>
+                                                <div class="mobile-nav-group">
+                    <button class="mobile-nav-toggle" data-mobile-dropdown aria-expanded="false">
+                        O FESTIVAL                        <span class="material-symbols-outlined toggle-icon">expand_more</span>
+                    </button>
+                    <div class="mobile-nav-sub-wrapper">
+                        <div class="mobile-nav-sub">
+                                                            <a href="noticias.html"
+                                    class="mobile-nav-link sub ">
+                                    NOVIDADES                                </a>
+                                                            <a href="como-chegar.html"
+                                    class="mobile-nav-link sub ">
+                                    COMO CHEGAR                                </a>
+                                                            <a href="o-que-fazer.html"
+                                    class="mobile-nav-link sub ">
+                                    O QUE FAZER                                </a>
+                                                            <a href="sobre.html"
+                                    class="mobile-nav-link sub ">
+                                    HISTÓRIA                                </a>
+                                                            <a href="sobre.html#sustentabilidade"
+                                    class="mobile-nav-link sub ">
+                                    SUSTENTABILIDADE                                </a>
+                                                            <a href="sobre.html#acessibilidade"
+                                    class="mobile-nav-link sub ">
+                                    ACESSIBILIDADE                                </a>
+                                                            <a href="https://cm-crato.pt"
+                                    class="mobile-nav-link sub ">
+                                    O MUNICÍPIO DA VILA                                </a>
+                                                    </div>
+                    </div>
+                </div>
+                                                <a href="campismo.html"
+                    class="mobile-nav-link ">
+                    CAMPISMO                </a>
+                                                <div class="mobile-nav-group">
+                    <button class="mobile-nav-toggle" data-mobile-dropdown aria-expanded="false">
+                        INFO                        <span class="material-symbols-outlined toggle-icon">expand_more</span>
+                    </button>
+                    <div class="mobile-nav-sub-wrapper">
+                        <div class="mobile-nav-sub">
+                                                            <a href="contactos.html"
+                                    class="mobile-nav-link sub ">
+                                    Contactos O Festival                                </a>
+                                                            <a href="contactos.html#regulamentos"
+                                    class="mobile-nav-link sub ">
+                                    Regulamento e Restrições                                </a>
+                                                            <a href="contactos.html#press"
+                                    class="mobile-nav-link sub ">
+                                    Espaço Press                                </a>
+                                                            <a href="contactos.html#faq"
+                                    class="mobile-nav-link sub ">
+                                    Perguntas Frequentes                                </a>
+                                                    </div>
+                    </div>
+                </div>
+                                                <a href="/loja"
+                    class="mobile-nav-link ">
+                    LOJA                </a>
+                        </nav>
 </div>
 
     <main class="main-content">
@@ -187,146 +224,11 @@
 
         <div class="tickets__grid">
                                             <div
-                    class="ticket-card  reveal"
-                    data-ticket-id="concerto-solidario"
-                    data-ticket-name="Concerto Solidário"
-                    data-ticket-price="10"
-                    style="transition-delay:0s;"
-                >
-                    
-                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
-                    <h3 class="ticket-card__name">Concerto Solidário</h3>
-                    <p class="ticket-card__subtitle">25 Agosto · Terça-feira</p>
-
-                    <div class="ticket-card__price">
-                        <span class="ticket-card__price-value">10</span>
-                        <span class="ticket-card__price-currency">€</span>
-                    </div>
-
-                    <p class="ticket-card__desc">Concerto Solidário no Palco FAG. Sem descontos aplicáveis. O passe 4 dias não dá acesso a este concerto.</p>
-
-                    <button
-                        class="btn btn-outline ticket-card__btn"
-                        onclick="CheckoutModal.open('Concerto Solidário', 'crato-2026-solidario')"
-                        id="ticket-btn-concerto-solidario"
-                        data-add-cart="concerto-solidario"
-                    >
-                        Comprar Bilhete                    </button>
-                </div>
-                                            <div
-                    class="ticket-card  reveal"
-                    data-ticket-id="dia-26"
-                    data-ticket-name="Bilhete Dia 26"
-                    data-ticket-price="15"
-                    style="transition-delay:0.08s;"
-                >
-                    
-                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
-                    <h3 class="ticket-card__name">Bilhete Dia 26</h3>
-                    <p class="ticket-card__subtitle">26 Agosto · Quarta-feira</p>
-
-                    <div class="ticket-card__price">
-                        <span class="ticket-card__price-value">15</span>
-                        <span class="ticket-card__price-currency">€</span>
-                    </div>
-
-                    <p class="ticket-card__desc">Acesso ao Festival do Crato — 1.º dia. A partir de 1 de agosto: 20€.</p>
-
-                    <button
-                        class="btn btn-outline ticket-card__btn"
-                        onclick="CheckoutModal.open('Bilhete Dia 26', 'crato-2026-dia1')"
-                        id="ticket-btn-dia-26"
-                        data-add-cart="dia-26"
-                    >
-                        Comprar Bilhete                    </button>
-                </div>
-                                            <div
-                    class="ticket-card  reveal"
-                    data-ticket-id="dia-27"
-                    data-ticket-name="Bilhete Dia 27"
-                    data-ticket-price="15"
-                    style="transition-delay:0.16s;"
-                >
-                    
-                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
-                    <h3 class="ticket-card__name">Bilhete Dia 27</h3>
-                    <p class="ticket-card__subtitle">27 Agosto · Quinta-feira</p>
-
-                    <div class="ticket-card__price">
-                        <span class="ticket-card__price-value">15</span>
-                        <span class="ticket-card__price-currency">€</span>
-                    </div>
-
-                    <p class="ticket-card__desc">Acesso ao Festival do Crato — 2.º dia. A partir de 1 de agosto: 20€.</p>
-
-                    <button
-                        class="btn btn-outline ticket-card__btn"
-                        onclick="CheckoutModal.open('Bilhete Dia 27', 'crato-2026-dia2')"
-                        id="ticket-btn-dia-27"
-                        data-add-cart="dia-27"
-                    >
-                        Comprar Bilhete                    </button>
-                </div>
-                                            <div
-                    class="ticket-card  reveal"
-                    data-ticket-id="dia-28"
-                    data-ticket-name="Bilhete Dia 28"
-                    data-ticket-price="20"
-                    style="transition-delay:0.24s;"
-                >
-                    
-                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
-                    <h3 class="ticket-card__name">Bilhete Dia 28</h3>
-                    <p class="ticket-card__subtitle">28 Agosto · Sexta-feira</p>
-
-                    <div class="ticket-card__price">
-                        <span class="ticket-card__price-value">20</span>
-                        <span class="ticket-card__price-currency">€</span>
-                    </div>
-
-                    <p class="ticket-card__desc">Acesso ao Festival do Crato — 3.º dia. A partir de 1 de agosto: 25€.</p>
-
-                    <button
-                        class="btn btn-outline ticket-card__btn"
-                        onclick="CheckoutModal.open('Bilhete Dia 28', 'crato-2026-dia3')"
-                        id="ticket-btn-dia-28"
-                        data-add-cart="dia-28"
-                    >
-                        Comprar Bilhete                    </button>
-                </div>
-                                            <div
-                    class="ticket-card  reveal"
-                    data-ticket-id="dia-29"
-                    data-ticket-name="Bilhete Dia 29"
-                    data-ticket-price="20"
-                    style="transition-delay:0.32s;"
-                >
-                    
-                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
-                    <h3 class="ticket-card__name">Bilhete Dia 29</h3>
-                    <p class="ticket-card__subtitle">29 Agosto · Sábado</p>
-
-                    <div class="ticket-card__price">
-                        <span class="ticket-card__price-value">20</span>
-                        <span class="ticket-card__price-currency">€</span>
-                    </div>
-
-                    <p class="ticket-card__desc">Acesso ao Festival do Crato — dia final. A partir de 1 de agosto: 25€.</p>
-
-                    <button
-                        class="btn btn-outline ticket-card__btn"
-                        onclick="CheckoutModal.open('Bilhete Dia 29', 'crato-2026-dia4')"
-                        id="ticket-btn-dia-29"
-                        data-add-cart="dia-29"
-                    >
-                        Comprar Bilhete                    </button>
-                </div>
-                                            <div
                     class="ticket-card highlight reveal"
                     data-ticket-id="passe-4dias"
                     data-ticket-name="Passe 4 Dias"
                     data-ticket-price="45"
-                    style="transition-delay:0.4s;"
+                    style="transition-delay:0s;"
                 >
                                             <span class="ticket-badge">Mais Popular</span>
                     
@@ -354,7 +256,7 @@
                     data-ticket-id="passe-4dias-campismo"
                     data-ticket-name="Passe 4 Dias + Campismo"
                     data-ticket-price="60"
-                    style="transition-delay:0.48s;"
+                    style="transition-delay:0.08s;"
                 >
                     
                     <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
@@ -373,6 +275,141 @@
                         onclick="CheckoutModal.open('Passe 4 Dias + Campismo', 'crato-2026-passe-campismo')"
                         id="ticket-btn-passe-4dias-campismo"
                         data-add-cart="passe-4dias-campismo"
+                    >
+                        Comprar Bilhete                    </button>
+                </div>
+                                            <div
+                    class="ticket-card  reveal"
+                    data-ticket-id="dia-26"
+                    data-ticket-name="Bilhete Dia 26"
+                    data-ticket-price="15"
+                    style="transition-delay:0.16s;"
+                >
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Bilhete Dia 26</h3>
+                    <p class="ticket-card__subtitle">26 Agosto · Quarta-feira</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">15</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Acesso ao Festival do Crato — 1.º dia. A partir de 1 de agosto: 20€.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Bilhete Dia 26', 'crato-2026-dia1')"
+                        id="ticket-btn-dia-26"
+                        data-add-cart="dia-26"
+                    >
+                        Comprar Bilhete                    </button>
+                </div>
+                                            <div
+                    class="ticket-card  reveal"
+                    data-ticket-id="dia-27"
+                    data-ticket-name="Bilhete Dia 27"
+                    data-ticket-price="15"
+                    style="transition-delay:0.24s;"
+                >
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Bilhete Dia 27</h3>
+                    <p class="ticket-card__subtitle">27 Agosto · Quinta-feira</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">15</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Acesso ao Festival do Crato — 2.º dia. A partir de 1 de agosto: 20€.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Bilhete Dia 27', 'crato-2026-dia2')"
+                        id="ticket-btn-dia-27"
+                        data-add-cart="dia-27"
+                    >
+                        Comprar Bilhete                    </button>
+                </div>
+                                            <div
+                    class="ticket-card  reveal"
+                    data-ticket-id="dia-28"
+                    data-ticket-name="Bilhete Dia 28"
+                    data-ticket-price="20"
+                    style="transition-delay:0.32s;"
+                >
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Bilhete Dia 28</h3>
+                    <p class="ticket-card__subtitle">28 Agosto · Sexta-feira</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">20</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Acesso ao Festival do Crato — 3.º dia. A partir de 1 de agosto: 25€.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Bilhete Dia 28', 'crato-2026-dia3')"
+                        id="ticket-btn-dia-28"
+                        data-add-cart="dia-28"
+                    >
+                        Comprar Bilhete                    </button>
+                </div>
+                                            <div
+                    class="ticket-card  reveal"
+                    data-ticket-id="dia-29"
+                    data-ticket-name="Bilhete Dia 29"
+                    data-ticket-price="20"
+                    style="transition-delay:0.4s;"
+                >
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Bilhete Dia 29</h3>
+                    <p class="ticket-card__subtitle">29 Agosto · Sábado</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">20</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Acesso ao Festival do Crato — dia final. A partir de 1 de agosto: 25€.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Bilhete Dia 29', 'crato-2026-dia4')"
+                        id="ticket-btn-dia-29"
+                        data-add-cart="dia-29"
+                    >
+                        Comprar Bilhete                    </button>
+                </div>
+                                            <div
+                    class="ticket-card  reveal"
+                    data-ticket-id="concerto-solidario"
+                    data-ticket-name="Concerto Solidário"
+                    data-ticket-price="10"
+                    style="transition-delay:0.48s;"
+                >
+                    
+                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                    <h3 class="ticket-card__name">Concerto Solidário</h3>
+                    <p class="ticket-card__subtitle">25 Agosto · Terça-feira</p>
+
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value">10</span>
+                        <span class="ticket-card__price-currency">€</span>
+                    </div>
+
+                    <p class="ticket-card__desc">Concerto Solidário no Palco FAG. Sem descontos aplicáveis. O passe 4 dias não dá acesso a este concerto.</p>
+
+                    <button
+                        class="btn btn-outline ticket-card__btn"
+                        onclick="CheckoutModal.open('Concerto Solidário', 'crato-2026-solidario')"
+                        id="ticket-btn-concerto-solidario"
+                        data-add-cart="concerto-solidario"
                     >
                         Comprar Bilhete                    </button>
                 </div>
@@ -456,9 +493,9 @@
                 &copy; 2026 Festival Crato · Município do Crato. Todos os direitos reservados.
             </p>
             <div class="footer-legal">
-                <a href="bilheteira.html#" class="footer-legal-link">Política de Privacidade</a>
-                <a href="bilheteira.html#" class="footer-legal-link">Política de Cookies</a>
-                <a href="bilheteira.html#" class="footer-legal-link">Termos e Condições</a>
+                <a href="#" class="footer-legal-link">Política de Privacidade</a>
+                <a href="#" class="footer-legal-link">Política de Cookies</a>
+                <a href="#" class="footer-legal-link">Termos e Condições</a>
             </div>
         </div>
     </div>

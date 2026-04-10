@@ -1,0 +1,18 @@
+/**
+ * Tema Default - Lebillet Template
+ *
+ * Sobrescreva as variáveis CSS para customizar o visual.
+ * Este arquivo é carregado após o CSS base e componentes.
+ */
+
+:root {
+  /* Cores - Personalize aqui */
+  --color-primary: #000000;
+  --color-secondary: #ffffff;
+  --color-accent: #ff3366;
+
+  /* Tipografia */
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Adicione seus estilos customizados abaixo */
