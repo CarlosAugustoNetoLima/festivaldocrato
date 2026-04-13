@@ -5,7 +5,7 @@
 
 use App\Config\Config;
 use App\Helpers\Component;
-use App\Services\LebilletApiService;
+use App\Models\LebilletApiService;
 
 // Autoloader
 spl_autoload_register(function ($class) {

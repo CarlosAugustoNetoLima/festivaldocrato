@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Models;
 
 /**
  * Serviço de integração com a API Lebillet
