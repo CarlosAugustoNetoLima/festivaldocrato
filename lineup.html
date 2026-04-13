@@ -107,7 +107,7 @@
             <button
                 class="cart-toggle"
                 aria-label="Comprar bilhetes"
-                onclick="CheckoutModal.open('Passe 4 Dias', 'crato-2026-passe')"
+                onclick="CheckoutModal.open()"
             >
                 <span class="material-symbols-outlined">shopping_bag</span>
             </button>
@@ -493,67 +493,91 @@
     
             
 <div class="checkout-modal-backdrop" id="checkout-modal">
-    <div class="checkout-modal-container">
+    <div class="checkout-modal-container" id="checkout-modal-container">
         <div class="checkout-modal-overlay" onclick="CheckoutModal.close()"></div>
 
         <div class="checkout-modal-dialog">
+            <!-- Header -->
             <div class="checkout-modal-header">
-                <span class="checkout-modal-title" id="checkout-modal-title"></span>
-                <button class="checkout-modal-close" onclick="CheckoutModal.close()">
+                <span class="checkout-modal-title" id="checkout-modal-title">Carrinho</span>
+                <button class="checkout-modal-close" onclick="CheckoutModal.close()" aria-label="Fechar">
                     &times;
                 </button>
             </div>
 
-            <div class="checkout-modal-body">
-                <iframe id="checkout-modal-iframe" class="checkout-modal-iframe"></iframe>
+            <!-- Estado vazio -->
+            <div class="checkout-modal-empty" id="checkout-modal-empty">
+                <div class="checkout-modal-empty__icon">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                </div>
+                <p class="checkout-modal-empty__title">O teu carrinho está vazio</p>
+                <p class="checkout-modal-empty__sub">Escolhe os teus bilhetes ou produtos da loja para continuar.</p>
+                <div class="checkout-modal-empty__actions">
+                    <a href="bilheteira.html" class="btn btn-primary" onclick="CheckoutModal.close()">
+                        Ver Bilhetes
+                    </a>
+                    <a href="loja.html" class="btn btn-ghost" onclick="CheckoutModal.close()">
+                        Ver Loja
+                    </a>
+                </div>
+            </div>
+
+            <!-- Checkout via iframe -->
+            <div class="checkout-modal-body" id="checkout-modal-checkout" style="display:none;">
+                <iframe id="checkout-modal-iframe" class="checkout-modal-iframe" src="" title="Checkout"></iframe>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-/**
- * Checkout Modal Service
- * Gerencia o modal de checkout em iframe
- */
 const CheckoutModal = {
     modalId: 'checkout-modal',
-    baseUrl: 'https://checkout.lebillet.eu/',
+    baseUrl:  'https://checkout.lebillet.eu/',
 
     open(title, eventId) {
-        const modal = document.getElementById(this.modalId);
-        const modalTitle = document.getElementById(`${this.modalId}-title`);
-        const iframe = document.getElementById(`${this.modalId}-iframe`);
+        const modal      = document.getElementById(this.modalId);
+        const container  = document.getElementById(`${this.modalId}-container`);
+        const titleEl    = document.getElementById(`${this.modalId}-title`);
+        const emptyEl    = document.getElementById(`${this.modalId}-empty`);
+        const checkoutEl = document.getElementById(`${this.modalId}-checkout`);
+        const iframe     = document.getElementById(`${this.modalId}-iframe`);
 
-        if (!modal || !iframe) return;
+        if (!modal) return;
 
-        modalTitle.textContent = title || 'Checkout';
-        iframe.src = `${this.baseUrl}${eventId}`;
+        if (eventId) {
+            titleEl.textContent      = title || 'Checkout';
+            iframe.src               = `${this.baseUrl}${eventId}`;
+            emptyEl.style.display    = 'none';
+            checkoutEl.style.display = '';
+            container.classList.add('is-checkout');
+        } else {
+            titleEl.textContent      = 'Carrinho';
+            emptyEl.style.display    = '';
+            checkoutEl.style.display = 'none';
+            iframe.src               = '';
+            container.classList.remove('is-checkout');
+        }
 
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     },
 
     close() {
-        const modal = document.getElementById(this.modalId);
-        const iframe = document.getElementById(`${this.modalId}-iframe`);
+        const modal     = document.getElementById(this.modalId);
+        const iframe    = document.getElementById(`${this.modalId}-iframe`);
+        const container = document.getElementById(`${this.modalId}-container`);
 
         if (!modal) return;
-
         modal.classList.remove('active');
         document.body.style.overflow = '';
-
-        if (iframe) {
-            iframe.src = '';
-        }
+        if (iframe)    iframe.src = '';
+        if (container) container.classList.remove('is-checkout');
     }
 };
 
-// Fechar com ESC
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        CheckoutModal.close();
-    }
+    if (e.key === 'Escape') CheckoutModal.close();
 });
 </script>
     
