@@ -5,7 +5,6 @@
 
 use App\Config\Config;
 use App\Helpers\Component;
-use App\Models\LebilletApiService;
 
 // Autoloader
 spl_autoload_register(function ($class) {
@@ -26,10 +25,7 @@ spl_autoload_register(function ($class) {
 });
 
 // Carrega configurações
-Config::load(__DIR__ . '/../config/site.php');
-
-// Inicializa serviços
-$apiService = new LebilletApiService(Config::get('api', []));
+Config::load();
 
 // Roteamento
 $request = $_SERVER['REQUEST_URI'];
@@ -78,10 +74,8 @@ if (!empty($apiEvents)) {
 }
 */
 
-if ($pageConfig['show_events'] ?? false) {
-    $limit  = $pageConfig['events_limit'] ?? null;
-    $events = $apiService->getEvents($limit);
-}
+// API desativada — eventos mockados no config
+// Para ativar, implementar chamada cURL aqui
 
 $checkoutUrl = Config::get('api.checkout_url', 'https://checkout.lebillet.eu/');
 $pageTitle   = $pageConfig['title'] ?? ucfirst($activePage);

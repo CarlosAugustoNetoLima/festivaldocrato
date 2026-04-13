@@ -16,19 +16,21 @@ class Component
     /**
      * Renderiza um componente
      *
-     * @param string $componentName Nome do componente (ex: 'Header', 'CartModal')
+     * @param string $componentName Nome do componente (ex: 'Header', 'CheckoutModal')
      * @param array $props Propriedades a serem passadas para o componente
      * @return string HTML renderizado
      */
     public static function render(string $componentName, array $props = []): string
     {
         // Tenta carregar do tema primeiro
-        if (class_exists('App\Helpers\Theme')) {
-            $themeOutput = Theme::render($componentName, $props);
-            // Se Theme::render retornou algo diferente do default, usa ele
-            if (!str_starts_with($themeOutput, '<!-- Component')) {
-                return $themeOutput;
-            }
+        $themeName      = Config::get('theme.name', 'default');
+        $themeComponent = __DIR__ . '/../../public/themes/' . $themeName . '/components/' . $componentName . '.php';
+
+        if (file_exists($themeComponent)) {
+            extract($props);
+            ob_start();
+            require $themeComponent;
+            return ob_get_clean();
         }
 
         // Componente padrão

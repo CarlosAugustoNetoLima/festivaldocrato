@@ -18,7 +18,7 @@ class Config
      *
      * @param string $configFile Caminho para o arquivo de configuração
      */
-    public static function load(string $configFile = __DIR__ . '/../../config/site.php'): void
+    public static function load(string $configFile = __DIR__ . '/site.php'): void
     {
         if (!file_exists($configFile)) {
             throw new \RuntimeException("Config file not found: $configFile");
