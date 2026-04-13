@@ -56,9 +56,8 @@ if (!$showAll) {
 
                     <button
                         class="btn btn-outline ticket-card__btn"
-                        onclick="CheckoutModal.open('<?= htmlspecialchars(addslashes($ticket['name'] ?? '')) ?>', '<?= htmlspecialchars($eventId) ?>')"
+                        onclick="CheckoutModal.open('<?= htmlspecialchars(addslashes($ticket['name'] ?? '')) ?>', '<?= htmlspecialchars($eventId) ?>', <?= (float)$price ?>)"
                         id="ticket-btn-<?= htmlspecialchars($ticketId) ?>"
-                        data-add-cart="<?= htmlspecialchars($ticketId) ?>"
                     >
                         <?= $isHighlight ? 'Comprar Agora' : 'Comprar Bilhete' ?>
                     </button>

@@ -45,6 +45,7 @@ $pageConfig = Config::get("pages.$activePage", []);
 $artists    = Config::get('artists', []);
 $tickets    = Config::get('tickets', []);
 $news       = Config::get('news', []);
+$products   = Config::get('products', []);
 
 // API desativada por enquanto — usando dados mockados do config
 // Para ativar a API, descomente o bloco abaixo:
@@ -123,7 +124,14 @@ $themeName   = Config::get('theme.name', 'default');
             <?= Component::render('News', ['news' => $news]) ?>
             <?= Component::render('Artists', ['artists' => $artists]) ?>
             <?= Component::render('Tickets', ['tickets' => $tickets, 'checkoutUrl' => $checkoutUrl]) ?>
+            <?= Component::render('Store', ['products' => $products, 'checkoutUrl' => $checkoutUrl]) ?>
             <?= Component::render('About') ?>
+
+        <?php elseif ($activePage === 'store'): ?>
+            <?= Component::render('Collections', ['products' => $products, 'checkoutUrl' => $checkoutUrl]) ?>
+
+        <?php elseif ($activePage === 'product'): ?>
+            <?= Component::render('ProductDetail', ['checkoutUrl' => $checkoutUrl]) ?>
 
         <?php elseif ($activePage === 'artists'): ?>
             <section class="page-hero page-hero--inner">
@@ -255,32 +263,12 @@ $themeName   = Config::get('theme.name', 'default');
     <?= Component::renderIfEnabled('Footer', 'footer') ?>
 
     <!-- Modais -->
-    <?php if (Config::get('components.cart', true)): ?>
-        <?= Component::render('CartModal') ?>
-    <?php endif; ?>
-
     <?php if (Config::get('components.checkout', true)): ?>
         <?= Component::render('CheckoutModal', ['checkoutUrl' => $checkoutUrl]) ?>
     <?php endif; ?>
 
     <!-- Scripts -->
-    <script src="/assets/js/cart-service.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="/themes/<?= htmlspecialchars($themeName) ?>/theme.js"></script>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        if (window.CartService) {
-            CartService.init({
-                storageKey: '<?= Config::get('cart.storage_key', 'crato_cart') ?>',
-                modalId: 'cart-modal',
-                operationFee: <?= Config::get('cart.operation_fee', 1.50) ?>,
-                currency: '<?= Config::get('cart.currency', '€') ?>',
-                currencyPosition: '<?= Config::get('cart.currency_position', 'after') ?>',
-                checkoutUrl: '<?= htmlspecialchars($checkoutUrl) ?>'
-            });
-        }
-    });
-    </script>
 </body>
 </html>

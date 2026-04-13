@@ -26,14 +26,6 @@ return [
         'font_family'     => 'Inter, sans-serif',
     ],
 
-    // Carrinho
-    'cart' => [
-        'storage_key'      => 'crato_cart',
-        'operation_fee'    => 1.50,
-        'currency'         => '€',
-        'currency_position'=> 'after',
-    ],
-
     // Rotas — estrutura baseada no site oficial
     'routes' => [
         '/'              => 'home',
@@ -45,6 +37,8 @@ return [
         '/contactos'     => 'contacts',
         '/noticias'      => 'news',
         '/pesquisa'      => 'search',
+        '/loja'          => 'store',
+        '/produto'       => 'product',
         // Rotas antigas (redirect/legacy)
         '/artistas'      => 'artists',
         '/bilhetes'      => 'tickets',
@@ -110,15 +104,67 @@ return [
             'title'       => 'Style Guide',
             'show_events' => false,
         ],
+        'store' => [
+            'title'       => 'Loja',
+            'show_events' => false,
+        ],
+        'product' => [
+            'title'       => 'Produto',
+            'show_events' => false,
+        ],
     ],
 
     // Componentes habilitados
     'components' => [
         'header'         => true,
         'footer'         => true,
-        'cart'           => true,
+        'cart'           => false,
         'checkout'       => true,
         'events_section' => false,
+    ],
+
+    // Produtos da Loja
+    'products' => [
+        [
+            'id'          => 'tshirt-crato-2026',
+            'name'        => 'T-Shirt Festival Crato 2026',
+            'category'    => 'Vestuário',
+            'price'       => 20.00,
+            'description' => 'T-Shirt oficial do Festival do Crato 2026. 100% algodão orgânico.',
+            'image'       => '/themes/crato/img/logo.png',
+            'highlight'   => true,
+            'event_id'    => 'crato-store-tshirt',
+        ],
+        [
+            'id'          => 'bone-crato-2026',
+            'name'        => 'Boné Festival Crato 2026',
+            'category'    => 'Acessórios',
+            'price'       => 15.00,
+            'description' => 'Boné oficial do Festival do Crato 2026.',
+            'image'       => '/themes/crato/img/logo.png',
+            'highlight'   => false,
+            'event_id'    => 'crato-store-bone',
+        ],
+        [
+            'id'          => 'eco-bag-crato-2026',
+            'name'        => 'Eco Bag Festival Crato 2026',
+            'category'    => 'Acessórios',
+            'price'       => 10.00,
+            'description' => 'Saco reutilizável oficial do Festival do Crato 2026.',
+            'image'       => '/themes/crato/img/logo.png',
+            'highlight'   => false,
+            'event_id'    => 'crato-store-ecobag',
+        ],
+        [
+            'id'          => 'hoodie-crato-2026',
+            'name'        => 'Hoodie Festival Crato 2026',
+            'category'    => 'Vestuário',
+            'price'       => 40.00,
+            'description' => 'Hoodie oficial do Festival do Crato 2026. Edição limitada.',
+            'image'       => '/themes/crato/img/logo.png',
+            'highlight'   => false,
+            'event_id'    => 'crato-store-hoodie',
+        ],
     ],
 
     // Dados do festival

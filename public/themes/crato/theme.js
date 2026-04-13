@@ -147,44 +147,22 @@
     });
   }
 
-  /* ─── Cart Badge Update ─────────────────── */
-  const updateCartBadge = () => {
-    const badge = document.getElementById('cart-badge');
-    if (!badge) return;
-    try {
-      const key  = document.querySelector('[data-storage-key]')?.dataset.storageKey || 'crato_cart';
-      const cart = JSON.parse(localStorage.getItem(key) || '[]');
-      const qty  = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
-      badge.textContent = qty;
-      badge.classList.toggle('hidden', qty === 0);
-    } catch (e) {
-      badge.classList.add('hidden');
-    }
-  };
+  /* ─── Store — Category Tabs ─────────────── */
+  const storeTabs = document.querySelectorAll('.store-tab');
+  if (storeTabs.length) {
+    storeTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        storeTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
 
-  updateCartBadge();
-  window.addEventListener('storage', updateCartBadge);
-  document.addEventListener('cart:updated', updateCartBadge);
-
-  /* ─── Add to Cart (tickets) ─────────────── */
-  document.querySelectorAll('[data-add-cart]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const card = btn.closest('.ticket-card');
-      if (!card) return;
-
-      const item = {
-        id:    card.dataset.ticketId || btn.dataset.addCart,
-        name:  card.dataset.ticketName || 'Bilhete',
-        price: parseFloat(card.dataset.ticketPrice || 0),
-        qty:   1,
-      };
-
-      if (window.CartService) {
-        CartService.addItem(item);
-      }
+        const cat = tab.dataset.category;
+        document.querySelectorAll('#store-grid .store-card').forEach(card => {
+          const match = cat === 'Todos' || card.dataset.category === cat;
+          card.style.display = match ? '' : 'none';
+        });
+      });
     });
-  });
+  }
 
   /* ─── Smooth scroll to sections ─────────── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {

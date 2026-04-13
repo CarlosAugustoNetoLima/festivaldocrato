@@ -3,8 +3,6 @@ use App\Config\Config;
 
 $activePage = $activePage ?? 'home';
 $siteName   = Config::get('site_name', 'Festival Crato');
-$cartEnabled = Config::get('components.cart', true);
-
 $navItems = [
     ['id' => 'tickets',    'label' => 'BILHETEIRA',  'url' => '/bilheteira'],
     ['id' => 'lineup',     'label' => 'LINE UP',     'url' => '/lineup'],
@@ -70,12 +68,13 @@ $navItems = [
                 <span class="material-symbols-outlined">search</span>
             </button>
 
-            <?php if ($cartEnabled): ?>
-                <button class="cart-toggle" data-cart-open aria-label="Abrir carrinho" id="cart-open-btn">
-                    <span class="material-symbols-outlined">shopping_bag</span>
-                    <span class="cart-badge hidden" id="cart-badge">0</span>
-                </button>
-            <?php endif; ?>
+            <button
+                class="cart-toggle"
+                aria-label="Abrir carrinho"
+                onclick="CheckoutModal.open()"
+            >
+                <span class="material-symbols-outlined">shopping_bag</span>
+            </button>
 
             <button class="menu-toggle" id="menu-toggle" data-mobile-menu-toggle aria-label="Menu" aria-expanded="false">
                 <span></span><span></span><span></span>
