@@ -1,11 +1,8 @@
 <?php
-use App\Config\Config;
-
-$tickets     = $tickets ?? Config::get('tickets', []);
-$checkoutUrl = $checkoutUrl ?? Config::get('api.checkout_url', 'https://checkout.lebillet.eu/');
+$tickets     = $tickets ?? [];
+$checkoutUrl = $checkoutUrl ?? 'https://checkout.lebillet.eu/';
 $showAll     = $showAll ?? false;
 
-// On homepage show max 4 tickets
 if (!$showAll) {
     $tickets = array_slice($tickets, 0, 4);
 }
@@ -67,7 +64,7 @@ if (!$showAll) {
 
         <?php if (!$showAll): ?>
             <div style="text-align:center;margin-top:var(--s-2xl);">
-                <a href="/bilhetes" class="btn btn-ghost reveal">
+                <a href="/bilheteira" class="btn btn-ghost reveal">
                     Ver todos os bilhetes →
                 </a>
             </div>

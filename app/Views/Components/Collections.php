@@ -1,10 +1,7 @@
 <?php
-use App\Config\Config;
+$products    = $products ?? [];
+$checkoutUrl = $checkoutUrl ?? 'https://checkout.lebillet.eu/';
 
-$products    = $products ?? Config::get('products', []);
-$checkoutUrl = $checkoutUrl ?? Config::get('api.checkout_url', 'https://checkout.lebillet.eu/');
-
-// Build category list
 $categories = ['Todos'];
 foreach ($products as $p) {
     if (!empty($p['category']) && !in_array($p['category'], $categories)) {
@@ -20,7 +17,6 @@ foreach ($products as $p) {
             <h1 class="section-title">Merch <span>Festival do Crato</span></h1>
         </div>
 
-        <!-- Tabs de categoria -->
         <div class="store-collections__tabs" id="store-tabs">
             <?php foreach ($categories as $cat): ?>
                 <button
@@ -32,7 +28,6 @@ foreach ($products as $p) {
             <?php endforeach; ?>
         </div>
 
-        <!-- Grid de produtos -->
         <div class="store-collections__grid" id="store-grid">
             <?php foreach ($products as $i => $product): ?>
                 <a

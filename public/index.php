@@ -1,93 +1,250 @@
 <?php
-/**
- * Entry Point — Festival Crato
- */
-
-use App\Config\Config;
+// Entry point — Festival Crato
 use App\Helpers\Component;
 
 // Autoloader
 spl_autoload_register(function ($class) {
-    $prefix = 'App\\';
+    $prefix  = 'App\\';
     $baseDir = __DIR__ . '/../app/';
-
-    $len = strlen($prefix);
-    if (strncmp($prefix, $class, $len) !== 0) {
-        return;
-    }
-
-    $relativeClass = substr($class, $len);
-    $file = $baseDir . str_replace('\\', '/', $relativeClass) . '.php';
-
-    if (file_exists($file)) {
-        require $file;
-    }
+    $len     = strlen($prefix);
+    if (strncmp($prefix, $class, $len) !== 0) return;
+    $file = $baseDir . str_replace('\\', '/', substr($class, $len)) . '.php';
+    if (file_exists($file)) require $file;
 });
 
-// Carrega configurações
-Config::load();
+// ─────────────────────────────────────────────
+//  Site data (hardcoded — padrão yanns)
+// ─────────────────────────────────────────────
+$checkoutUrl = 'https://checkout.lebillet.eu/';
+$siteName    = 'Festival Crato';
+$themeName   = 'crato';
 
-// Roteamento
+$festival = [
+    'edition'             => '40.ª',
+    'date_start'          => '2026-08-25',
+    'date_end'            => '2026-08-29',
+    'date_festival_start' => '2026-08-26',
+    'date_campista'       => '2026-08-24',
+    'location'            => 'Crato, Alto Alentejo',
+    'venue'               => 'Vila do Crato',
+    'organizer'           => 'Município do Crato',
+    'description'         => 'A 40.ª Feira de Artesanato e Gastronomia e o Festival do Crato regressam de 25 a 29 de agosto de 2026.',
+    'mission'             => 'Promover e preservar o artesanato e a gastronomia enquanto valores culturais.',
+    'contact' => [
+        'email'   => 'fag@cm-crato.pt',
+        'phone'   => '245 990 110',
+        'address' => 'Praça do Município',
+        'zip'     => '7430-999 Crato',
+    ],
+    'social' => [
+        'instagram' => 'https://instagram.com/',
+        'facebook'  => 'https://facebook.com/',
+        'twitter'   => 'https://twitter.com/',
+        'youtube'   => 'https://youtube.com/',
+    ],
+];
+
+$tickets = [
+    [
+        'id'          => 'passe-4dias',
+        'name'        => 'Passe 4 Dias',
+        'subtitle'    => '26–29 Agosto · Sem Campismo',
+        'price'       => 45.00,
+        'description' => 'Acesso completo aos 4 dias do Festival do Crato 2026. A partir de 1 de agosto: 50€.',
+        'highlight'   => true,
+        'event_id'    => 'crato-2026-passe',
+    ],
+    [
+        'id'          => 'passe-4dias-campismo',
+        'name'        => 'Passe 4 Dias + Campismo',
+        'subtitle'    => '26–29 Agosto · Com Campismo',
+        'price'       => 60.00,
+        'description' => 'Acesso completo aos 4 dias com campismo. A partir de 1 de agosto: 70€.',
+        'highlight'   => false,
+        'event_id'    => 'crato-2026-passe-campismo',
+    ],
+    [
+        'id'          => 'dia-26',
+        'name'        => 'Bilhete Dia 26',
+        'subtitle'    => '26 Agosto · Quarta-feira',
+        'price'       => 15.00,
+        'description' => 'Acesso ao Festival do Crato — 1.º dia. A partir de 1 de agosto: 20€.',
+        'highlight'   => false,
+        'event_id'    => 'crato-2026-dia1',
+    ],
+    [
+        'id'          => 'dia-27',
+        'name'        => 'Bilhete Dia 27',
+        'subtitle'    => '27 Agosto · Quinta-feira',
+        'price'       => 15.00,
+        'description' => 'Acesso ao Festival do Crato — 2.º dia. A partir de 1 de agosto: 20€.',
+        'highlight'   => false,
+        'event_id'    => 'crato-2026-dia2',
+    ],
+    [
+        'id'          => 'dia-28',
+        'name'        => 'Bilhete Dia 28',
+        'subtitle'    => '28 Agosto · Sexta-feira',
+        'price'       => 20.00,
+        'description' => 'Acesso ao Festival do Crato — 3.º dia. A partir de 1 de agosto: 25€.',
+        'highlight'   => false,
+        'event_id'    => 'crato-2026-dia3',
+    ],
+    [
+        'id'          => 'dia-29',
+        'name'        => 'Bilhete Dia 29',
+        'subtitle'    => '29 Agosto · Sábado',
+        'price'       => 20.00,
+        'description' => 'Acesso ao Festival do Crato — dia final. A partir de 1 de agosto: 25€.',
+        'highlight'   => false,
+        'event_id'    => 'crato-2026-dia4',
+    ],
+    [
+        'id'          => 'concerto-solidario',
+        'name'        => 'Concerto Solidário',
+        'subtitle'    => '25 Agosto · Terça-feira',
+        'price'       => 10.00,
+        'description' => 'Concerto Solidário no Palco FAG. O passe 4 dias não dá acesso a este concerto.',
+        'highlight'   => false,
+        'event_id'    => 'crato-2026-solidario',
+    ],
+];
+
+$artists = [
+    ['name' => 'A Anunciar', 'day' => 1, 'stage' => 'Palco FAG',      'headliner' => true,  'genre' => 'Música Portuguesa', 'image' => '/themes/crato/img/artist-1.jpg'],
+    ['name' => 'A Anunciar', 'day' => 1, 'stage' => 'Palco FAG',      'headliner' => false, 'genre' => 'Folk / Tradicional', 'image' => '/themes/crato/img/artist-2.jpg'],
+    ['name' => 'A Anunciar', 'day' => 2, 'stage' => 'Palco Festival', 'headliner' => true,  'genre' => 'Música Portuguesa', 'image' => '/themes/crato/img/artist-3.jpg'],
+    ['name' => 'A Anunciar', 'day' => 2, 'stage' => 'Palco Festival', 'headliner' => false, 'genre' => 'Pop / Rock',        'image' => '/themes/crato/img/artist-4.jpg'],
+    ['name' => 'A Anunciar', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true,  'genre' => 'Música Portuguesa', 'image' => '/themes/crato/img/artist-5.jpg'],
+    ['name' => 'A Anunciar', 'day' => 3, 'stage' => 'Palco FAG',      'headliner' => false, 'genre' => 'Fado / Tradicional','image' => '/themes/crato/img/artist-6.jpg'],
+    ['name' => 'Buba Espinho','day'=> 4, 'stage' => 'Palco Festival', 'headliner' => true,  'genre' => 'Música Portuguesa', 'image' => '/themes/crato/img/artist-7.jpg', 'confirmed' => true],
+    ['name' => 'A Anunciar', 'day' => 4, 'stage' => 'Palco FAG',      'headliner' => false, 'genre' => 'Folk / World Music','image' => '/themes/crato/img/artist-8.jpg'],
+];
+
+$products = [
+    [
+        'id'          => 'tshirt-crato-2026',
+        'name'        => 'T-Shirt Festival Crato 2026',
+        'category'    => 'Vestuário',
+        'price'       => 20.00,
+        'description' => 'T-Shirt oficial do Festival do Crato 2026. 100% algodão orgânico.',
+        'image'       => '/themes/crato/img/logo.png',
+        'highlight'   => true,
+        'event_id'    => 'crato-store-tshirt',
+    ],
+    [
+        'id'          => 'bone-crato-2026',
+        'name'        => 'Boné Festival Crato 2026',
+        'category'    => 'Acessórios',
+        'price'       => 15.00,
+        'description' => 'Boné oficial do Festival do Crato 2026.',
+        'image'       => '/themes/crato/img/logo.png',
+        'highlight'   => false,
+        'event_id'    => 'crato-store-bone',
+    ],
+    [
+        'id'          => 'eco-bag-crato-2026',
+        'name'        => 'Eco Bag Festival Crato 2026',
+        'category'    => 'Acessórios',
+        'price'       => 10.00,
+        'description' => 'Saco reutilizável oficial do Festival do Crato 2026.',
+        'image'       => '/themes/crato/img/logo.png',
+        'highlight'   => false,
+        'event_id'    => 'crato-store-ecobag',
+    ],
+    [
+        'id'          => 'hoodie-crato-2026',
+        'name'        => 'Hoodie Festival Crato 2026',
+        'category'    => 'Vestuário',
+        'price'       => 40.00,
+        'description' => 'Hoodie oficial do Festival do Crato 2026. Edição limitada.',
+        'image'       => '/themes/crato/img/logo.png',
+        'highlight'   => false,
+        'event_id'    => 'crato-store-hoodie',
+    ],
+];
+
+$news = [
+    [
+        'date'    => '2026-04-01',
+        'label'   => '40.ª FAG 2026',
+        'title'   => 'Inscrições para a Feira de Artesanato e Gastronomia 2026 já disponíveis!',
+        'excerpt' => 'As candidaturas para participar na 40.ª FAG estão abertas. Prazo de inscrição: 19 de junho de 2026.',
+        'url'     => 'https://festivaldocrato.cm-crato.pt/',
+        'tag'     => 'FAG',
+        'image'   => '/themes/crato/img/1200X630_FAG_INS-copiar.jpg',
+    ],
+    [
+        'date'    => '2026-03-02',
+        'label'   => 'Primeiro Artista Confirmado',
+        'title'   => 'Buba Espinho é o primeiro artista confirmado para o Festival do Crato 2026!',
+        'excerpt' => 'Uma das vozes mais distintivas da nova geração da música portuguesa, Buba Espinho sobe ao palco no dia 29 de agosto.',
+        'url'     => 'https://festivaldocrato.cm-crato.pt/',
+        'tag'     => 'Artistas',
+        'image'   => '/themes/crato/img/1200X630_buba.png',
+    ],
+    [
+        'date'    => '2026-01-21',
+        'label'   => 'Datas Confirmadas',
+        'title'   => 'Festival do Crato celebra mais uma edição no último fim de semana de agosto',
+        'excerpt' => 'O Festival do Crato 2026 está confirmado para 26, 27, 28 e 29 de agosto.',
+        'url'     => 'https://festivaldocrato.cm-crato.pt/',
+        'tag'     => 'Festival',
+        'image'   => '/themes/crato/img/01.jpg',
+    ],
+];
+
+// ─────────────────────────────────────────────
+//  Routing
+// ─────────────────────────────────────────────
 $request = $_SERVER['REQUEST_URI'];
-$path = parse_url($request, PHP_URL_PATH);
-$path = rtrim($path, '/') ?: '/';
+$path    = rtrim(parse_url($request, PHP_URL_PATH), '/') ?: '/';
 
-$routes = Config::get('routes', []);
+$routes = [
+    '/'            => 'home',
+    '/bilheteira'  => 'tickets',
+    '/bilhetes'    => 'tickets',
+    '/lineup'      => 'lineup',
+    '/sobre'       => 'about',
+    '/como-chegar' => 'directions',
+    '/campismo'    => 'camping',
+    '/o-que-fazer' => 'todo',
+    '/contactos'   => 'contacts',
+    '/noticias'    => 'news',
+    '/artistas'    => 'artists',
+    '/info'        => 'info',
+    '/loja'        => 'store',
+    '/produto'     => 'product',
+    '/pesquisa'    => 'search',
+];
+
 $activePage = $routes[$path] ?? '404';
 
-// Dados
-$events     = [];
-$pageConfig = Config::get("pages.$activePage", []);
-$artists    = Config::get('artists', []);
-$tickets    = Config::get('tickets', []);
-$news       = Config::get('news', []);
-$products   = Config::get('products', []);
+$pageTitles = [
+    'home'       => 'Festival Crato 2026',
+    'tickets'    => 'Bilheteira',
+    'lineup'     => 'Programação',
+    'about'      => 'Sobre o Festival',
+    'directions' => 'Como Chegar',
+    'camping'    => 'Campismo',
+    'todo'       => 'O que Fazer',
+    'contacts'   => 'Contactos',
+    'news'       => 'Notícias',
+    'artists'    => 'Artistas',
+    'info'       => 'Informações',
+    'store'      => 'Loja',
+    'product'    => 'Produto',
+];
 
-// API desativada por enquanto — usando dados mockados do config
-// Para ativar a API, descomente o bloco abaixo:
-/*
-$apiEvents = $apiService->getEvents(3);
-if (!empty($apiEvents)) {
-    $news = [];
-    foreach ($apiEvents as $event) {
-        $eventDate = $event->date_start ?? '';
-        $eventName = $event->name ?? 'Evento';
-        $eventLocation = ($event->city->name ?? '') . (($event->country->name ?? '') ? ', ' . $event->country->name : '');
-        $eventImage = !empty($event->image->name) ? '/themes/crato/img/1200X630_FAG_INS-copiar.jpg' : '';
-
-        $excerpt = "Evento em {$eventLocation}.";
-        if (!empty($eventDate)) {
-            $dateObj = new DateTime($eventDate);
-            $excerpt = "Dia " . $dateObj->format('d') . " de " . $dateObj->format('F') . " de " . $dateObj->format('Y') . " em {$eventLocation}.";
-        }
-
-        $news[] = [
-            'date'      => substr($eventDate, 0, 10) ?: date('Y-m-d'),
-            'label'     => 'Evento',
-            'title'     => $eventName,
-            'excerpt'   => $excerpt,
-            'url'       => $checkoutUrl . ($event->id ?? ''),
-            'tag'       => 'Lebillet',
-            'image'     => $eventImage,
-        ];
-    }
-}
-*/
-
-// API desativada — eventos mockados no config
-// Para ativar, implementar chamada cURL aqui
-
-$checkoutUrl = Config::get('api.checkout_url', 'https://checkout.lebillet.eu/');
-$pageTitle   = $pageConfig['title'] ?? ucfirst($activePage);
-$themeName   = Config::get('theme.name', 'default');
+$pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 ?>
 <!DOCTYPE html>
-<html lang="<?= Config::get('lang', 'pt') ?>">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars(Config::get('site_name', 'Festival Crato')) ?> — <?= htmlspecialchars($pageTitle) ?></title>
-    <meta name="description" content="<?= htmlspecialchars(Config::get('festival.description', 'Festival Crato 2026')) ?>">
+    <title><?= htmlspecialchars($siteName) ?> — <?= htmlspecialchars($pageTitle) ?></title>
+    <meta name="description" content="40.ª Feira de Artesanato e Gastronomia e Festival do Crato — 25 a 29 de Agosto de 2026">
     <meta property="og:title" content="40.ª FAG & Festival do Crato 2026">
     <meta property="og:description" content="Feira de Artesanato e Gastronomia e Festival do Crato — 25 a 29 de Agosto de 2026">
     <meta property="og:type" content="website">
@@ -95,11 +252,10 @@ $themeName   = Config::get('theme.name', 'default');
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-    <!-- CSS Base -->
+
+    <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/components.css">
-
-    <!-- CSS do Tema -->
     <link rel="stylesheet" href="/themes/<?= htmlspecialchars($themeName) ?>/theme.css">
 
     <!-- Toastify -->
@@ -108,37 +264,29 @@ $themeName   = Config::get('theme.name', 'default');
 
 <body data-page="<?= htmlspecialchars($activePage) ?>">
 
-    <?= Component::renderIfEnabled('Header', 'header', ['activePage' => $activePage]) ?>
+    <?= Component::render('Header', ['activePage' => $activePage, 'siteName' => $siteName]) ?>
 
     <main class="main-content">
 
         <?php if ($activePage === 'home'): ?>
-            <?= Component::render('Hero') ?>
-            <?= Component::render('Lineup', ['artists' => $artists]) ?>
-            <?= Component::render('News', ['news' => $news]) ?>
+            <?= Component::render('Hero',    ['festival' => $festival]) ?>
+            <?= Component::render('Lineup',  ['artists' => $artists]) ?>
+            <?= Component::render('News',    ['news' => $news]) ?>
             <?= Component::render('Artists', ['artists' => $artists]) ?>
             <?= Component::render('Tickets', ['tickets' => $tickets, 'checkoutUrl' => $checkoutUrl]) ?>
-            <?= Component::render('Store', ['products' => $products, 'checkoutUrl' => $checkoutUrl]) ?>
-            <?= Component::render('About') ?>
+            <?= Component::render('Store',   ['products' => $products]) ?>
+            <?= Component::render('About',   ['festival' => $festival]) ?>
 
         <?php elseif ($activePage === 'store'): ?>
             <?= Component::render('Collections', ['products' => $products, 'checkoutUrl' => $checkoutUrl]) ?>
 
         <?php elseif ($activePage === 'product'): ?>
-            <?= Component::render('ProductDetail', ['checkoutUrl' => $checkoutUrl]) ?>
-
-        <?php elseif ($activePage === 'artists'): ?>
-            <section class="page-hero page-hero--inner">
-                <div class="container">
-                    <h1 class="page-hero__title">Artistas</h1>
-                </div>
-            </section>
-            <?= Component::render('Artists', ['artists' => $artists, 'showAll' => true]) ?>
+            <?= Component::render('ProductDetail', ['products' => $products, 'checkoutUrl' => $checkoutUrl]) ?>
 
         <?php elseif ($activePage === 'tickets'): ?>
             <section class="page-hero page-hero--inner">
                 <div class="container">
-                    <h1 class="page-hero__title">Bilhetes</h1>
+                    <h1 class="page-hero__title">Bilheteira</h1>
                     <p class="page-hero__sub">Garante o teu lugar no Festival Crato 2026</p>
                 </div>
             </section>
@@ -152,22 +300,30 @@ $themeName   = Config::get('theme.name', 'default');
             </section>
             <?= Component::render('Lineup', ['artists' => $artists, 'showAll' => true]) ?>
 
-        <?php elseif ($activePage === 'info'): ?>
+        <?php elseif ($activePage === 'artists'): ?>
             <section class="page-hero page-hero--inner">
                 <div class="container">
-                    <h1 class="page-hero__title">Informações</h1>
+                    <h1 class="page-hero__title">Artistas</h1>
                 </div>
             </section>
-            <?= Component::render('About', ['showFull' => true]) ?>
+            <?= Component::render('Artists', ['artists' => $artists, 'showAll' => true]) ?>
 
-        <?php elseif ($activePage === 'about'): ?>
+        <?php elseif ($activePage === 'news'): ?>
+            <section class="page-hero page-hero--inner">
+                <div class="container">
+                    <h1 class="page-hero__title">Notícias</h1>
+                </div>
+            </section>
+            <?= Component::render('News', ['news' => $news]) ?>
+
+        <?php elseif ($activePage === 'about' || $activePage === 'info'): ?>
             <section class="page-hero page-hero--inner">
                 <div class="container">
                     <h1 class="page-hero__title">Sobre o Festival</h1>
                     <p class="page-hero__sub">40.ª Feira de Artesanato e Gastronomia e Festival do Crato</p>
                 </div>
             </section>
-            <?= Component::render('About', ['showFull' => true]) ?>
+            <?= Component::render('About', ['festival' => $festival, 'showFull' => true]) ?>
 
         <?php elseif ($activePage === 'directions'): ?>
             <section class="page-hero page-hero--inner">
@@ -227,14 +383,6 @@ $themeName   = Config::get('theme.name', 'default');
                 </div>
             </section>
 
-        <?php elseif ($activePage === 'news'): ?>
-            <section class="page-hero page-hero--inner">
-                <div class="container">
-                    <h1 class="page-hero__title">Notícias</h1>
-                </div>
-            </section>
-            <?= Component::render('News', ['news' => $news]) ?>
-
         <?php elseif ($activePage === '404'): ?>
             <section class="page-404">
                 <div class="container">
@@ -254,12 +402,10 @@ $themeName   = Config::get('theme.name', 'default');
 
     </main>
 
-    <?= Component::renderIfEnabled('Footer', 'footer') ?>
+    <?= Component::render('Footer', ['siteName' => $siteName, 'festival' => $festival]) ?>
 
     <!-- Modais -->
-    <?php if (Config::get('components.checkout', true)): ?>
-        <?= Component::render('CheckoutModal', ['checkoutUrl' => $checkoutUrl]) ?>
-    <?php endif; ?>
+    <?= Component::render('CheckoutModal') ?>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

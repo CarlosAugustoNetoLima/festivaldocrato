@@ -1,10 +1,7 @@
 <?php
-use App\Config\Config;
-
-$festival = Config::get('festival', []);
+$festival = $festival ?? [];
 $showFull = $showFull ?? false;
 $edition  = $festival['edition'] ?? '40.ª';
-$mission  = $festival['mission'] ?? '';
 ?>
 
 <section class="about section" id="info">
@@ -94,7 +91,6 @@ $mission  = $festival['mission'] ?? '';
         </div>
 
         <?php if ($showFull): ?>
-            <!-- Extended info for /info page -->
             <div style="margin-top: var(--s-3xl);padding-top: var(--s-3xl);border-top:1px solid var(--c-border);">
                 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2rem;">
                     <div>

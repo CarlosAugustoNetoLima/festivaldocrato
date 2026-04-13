@@ -1,10 +1,7 @@
 <?php
-use App\Config\Config;
+$products    = $products ?? [];
+$checkoutUrl = $checkoutUrl ?? 'https://checkout.lebillet.eu/';
 
-$products    = Config::get('products', []);
-$checkoutUrl = Config::get('api.checkout_url', 'https://checkout.lebillet.eu/');
-
-// Busca produto pelo ID via query string
 $productId = $_GET['id'] ?? '';
 $product   = null;
 
@@ -15,7 +12,6 @@ foreach ($products as $p) {
     }
 }
 
-// Fallback se não encontrado
 if (!$product) {
     $product = [
         'id'          => '',

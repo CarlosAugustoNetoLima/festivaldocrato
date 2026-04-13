@@ -1,8 +1,5 @@
 <?php
-use App\Config\Config;
-
-$products = $products ?? Config::get('products', []);
-// Show only first 4 on homepage
+$products = $products ?? [];
 $featured = array_slice($products, 0, 4);
 ?>
 

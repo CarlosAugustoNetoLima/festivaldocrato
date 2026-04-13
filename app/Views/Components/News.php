@@ -1,7 +1,5 @@
 <?php
-use App\Config\Config;
-
-$news = $news ?? Config::get('news', []);
+$news = $news ?? [];
 ?>
 
 <section class="news section" id="noticias">
@@ -16,10 +14,10 @@ $news = $news ?? Config::get('news', []);
         <div class="news__grid">
             <?php foreach ($news as $i => $item): ?>
                 <?php
-                $date     = $item['date'] ?? '';
-                $dateObj  = $date ? date_create($date) : null;
+                $date          = $item['date'] ?? '';
+                $dateObj       = $date ? date_create($date) : null;
                 $dateFormatted = $dateObj ? date_format($dateObj, 'd M Y') : '';
-                $tag      = $item['tag'] ?? '';
+                $tag           = $item['tag'] ?? '';
                 ?>
                 <article class="news-card <?= !empty($item['image']) ? 'news-card--has-image' : '' ?> reveal" style="transition-delay:<?= $i * 0.1 ?>s;">
                     <?php if (!empty($item['image'])): ?>
