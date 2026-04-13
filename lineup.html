@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Festival Crato — Programação</title>
+    <title>Festival Crato — 404</title>
     <meta name="description" content="A 40.ª Feira de Artesanato e Gastronomia e o Festival do Crato regressam de 25 a 29 de agosto de 2026 para celebrar o artesanato, a gastronomia e a identidade cultural do Alto Alentejo.">
     <meta property="og:title" content="40.ª FAG & Festival do Crato 2026">
     <meta property="og:description" content="Feira de Artesanato e Gastronomia e Festival do Crato — 25 a 29 de Agosto de 2026">
@@ -13,33 +13,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
     <!-- CSS Base -->
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/components.css">
 
     <!-- CSS do Tema -->
-    <link rel="stylesheet" href="themes/crato/theme.css">
+    <link rel="stylesheet" href="/themes/crato/theme.css">
 
     <!-- Toastify -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
-<body data-page="lineup">
+<body data-page="404">
 
     
 <header class="site-header" id="site-header">
     <div class="header-container">
         <!-- Logo -->
-        <a href="index.html" class="header-logo" aria-label="Festival do Crato 2026">
-            <img src="themes/crato/img/logo.png" alt="Festival do Crato 2026" class="header-logo-img">
+        <a href="/" class="header-logo" aria-label="Festival do Crato 2026">
+            <img src="/themes/crato/img/logo.png" alt="Festival do Crato 2026" class="header-logo-img">
         </a>
 
         <!-- Nav Desktop -->
         <nav class="header-nav" aria-label="Navegação principal">
-                                                <a href="bilheteira.html"
+                                                <a href="/bilheteira"
                         class="nav-link ">
                         BILHETEIRA                    </a>
-                                                                <a href="lineup.html"
-                        class="nav-link active">
+                                                                <a href="/lineup"
+                        class="nav-link ">
                         LINE UP                    </a>
                                                                 <div class="nav-dropdown">
                         <a href="#"
@@ -47,22 +47,22 @@
                             O FESTIVAL                            <span class="material-symbols-outlined chevron">expand_more</span>
                         </a>
                         <div class="dropdown-menu">
-                                                            <a href="noticias.html"
+                                                            <a href="/noticias"
                                     class="dropdown-item ">
                                     NOVIDADES                                </a>
-                                                            <a href="como-chegar.html"
+                                                            <a href="/como-chegar"
                                     class="dropdown-item ">
                                     COMO CHEGAR                                </a>
-                                                            <a href="o-que-fazer.html"
+                                                            <a href="/o-que-fazer"
                                     class="dropdown-item ">
                                     O QUE FAZER                                </a>
-                                                            <a href="sobre.html"
+                                                            <a href="/sobre"
                                     class="dropdown-item ">
                                     HISTÓRIA                                </a>
-                                                            <a href="sobre.html#sustentabilidade"
+                                                            <a href="/sobre#sustentabilidade"
                                     class="dropdown-item ">
                                     SUSTENTABILIDADE                                </a>
-                                                            <a href="sobre.html#acessibilidade"
+                                                            <a href="/sobre#acessibilidade"
                                     class="dropdown-item ">
                                     ACESSIBILIDADE                                </a>
                                                             <a href="https://cm-crato.pt"
@@ -70,7 +70,7 @@
                                     O MUNICÍPIO DA VILA                                </a>
                                                     </div>
                     </div>
-                                                                <a href="campismo.html"
+                                                                <a href="/campismo"
                         class="nav-link ">
                         CAMPISMO                    </a>
                                                                 <div class="nav-dropdown">
@@ -79,16 +79,16 @@
                             INFO                            <span class="material-symbols-outlined chevron">expand_more</span>
                         </a>
                         <div class="dropdown-menu">
-                                                            <a href="contactos.html"
+                                                            <a href="/contactos"
                                     class="dropdown-item ">
                                     Contactos O Festival                                </a>
-                                                            <a href="contactos.html#regulamentos"
+                                                            <a href="/contactos#regulamentos"
                                     class="dropdown-item ">
                                     Regulamento e Restrições                                </a>
-                                                            <a href="contactos.html#press"
+                                                            <a href="/contactos#press"
                                     class="dropdown-item ">
                                     Espaço Press                                </a>
-                                                            <a href="contactos.html#faq"
+                                                            <a href="/contactos#faq"
                                     class="dropdown-item ">
                                     Perguntas Frequentes                                </a>
                                                     </div>
@@ -104,9 +104,10 @@
             <button class="header-search-btn" id="search-toggle" aria-label="Pesquisar">
                 <span class="material-symbols-outlined">search</span>
             </button>
+
             <button
                 class="cart-toggle"
-                aria-label="Comprar bilhetes"
+                aria-label="Abrir carrinho"
                 onclick="CheckoutModal.open()"
             >
                 <span class="material-symbols-outlined">shopping_bag</span>
@@ -124,7 +125,7 @@
             <button class="header-search-close" id="search-close" aria-label="Fechar pesquisa">
                 <span class="material-symbols-outlined">close</span>
             </button>
-            <form action="pesquisa.html" method="GET" class="header-search-form">
+            <form action="/pesquisa" method="GET" class="header-search-form">
                 <input type="search" name="q" placeholder="Pesquisar..." class="header-search-input" autocomplete="off">
                 <button type="submit" class="header-search-submit">
                     <span class="material-symbols-outlined">search</span>
@@ -137,11 +138,11 @@
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu de navegação">
     <nav class="mobile-nav">
-                                    <a href="bilheteira.html"
+                                    <a href="/bilheteira"
                     class="mobile-nav-link ">
                     BILHETEIRA                </a>
-                                                <a href="lineup.html"
-                    class="mobile-nav-link active">
+                                                <a href="/lineup"
+                    class="mobile-nav-link ">
                     LINE UP                </a>
                                                 <div class="mobile-nav-group">
                     <button class="mobile-nav-toggle" data-mobile-dropdown aria-expanded="false">
@@ -149,22 +150,22 @@
                     </button>
                     <div class="mobile-nav-sub-wrapper">
                         <div class="mobile-nav-sub">
-                                                            <a href="noticias.html"
+                                                            <a href="/noticias"
                                     class="mobile-nav-link sub ">
                                     NOVIDADES                                </a>
-                                                            <a href="como-chegar.html"
+                                                            <a href="/como-chegar"
                                     class="mobile-nav-link sub ">
                                     COMO CHEGAR                                </a>
-                                                            <a href="o-que-fazer.html"
+                                                            <a href="/o-que-fazer"
                                     class="mobile-nav-link sub ">
                                     O QUE FAZER                                </a>
-                                                            <a href="sobre.html"
+                                                            <a href="/sobre"
                                     class="mobile-nav-link sub ">
                                     HISTÓRIA                                </a>
-                                                            <a href="sobre.html#sustentabilidade"
+                                                            <a href="/sobre#sustentabilidade"
                                     class="mobile-nav-link sub ">
                                     SUSTENTABILIDADE                                </a>
-                                                            <a href="sobre.html#acessibilidade"
+                                                            <a href="/sobre#acessibilidade"
                                     class="mobile-nav-link sub ">
                                     ACESSIBILIDADE                                </a>
                                                             <a href="https://cm-crato.pt"
@@ -173,7 +174,7 @@
                                                     </div>
                     </div>
                 </div>
-                                                <a href="campismo.html"
+                                                <a href="/campismo"
                     class="mobile-nav-link ">
                     CAMPISMO                </a>
                                                 <div class="mobile-nav-group">
@@ -182,16 +183,16 @@
                     </button>
                     <div class="mobile-nav-sub-wrapper">
                         <div class="mobile-nav-sub">
-                                                            <a href="contactos.html"
+                                                            <a href="/contactos"
                                     class="mobile-nav-link sub ">
                                     Contactos O Festival                                </a>
-                                                            <a href="contactos.html#regulamentos"
+                                                            <a href="/contactos#regulamentos"
                                     class="mobile-nav-link sub ">
                                     Regulamento e Restrições                                </a>
-                                                            <a href="contactos.html#press"
+                                                            <a href="/contactos#press"
                                     class="mobile-nav-link sub ">
                                     Espaço Press                                </a>
-                                                            <a href="contactos.html#faq"
+                                                            <a href="/contactos#faq"
                                     class="mobile-nav-link sub ">
                                     Perguntas Frequentes                                </a>
                                                     </div>
@@ -205,200 +206,13 @@
 
     <main class="main-content">
 
-                    <section class="page-hero page-hero--inner">
+                    <section class="page-404">
                 <div class="container">
-                    <h1 class="page-hero__title">Programação</h1>
+                    <h1>404</h1>
+                    <p>Página não encontrada.</p>
+                    <a href="/" class="btn btn-primary">Voltar ao início</a>
                 </div>
             </section>
-            
-<section class="lineup section" id="lineup">
-    <div class="container">
-        <div class="lineup__header">
-            <p class="section-label reveal">Programação 2026</p>
-            <h2 class="section-title reveal">Os <span>Artistas</span></h2>
-
-            <!-- Tabs -->
-            <div class="lineup__tabs" role="tablist">
-                                    <button
-                        class="lineup__tab active"
-                        data-day="1"
-                        role="tab"
-                        aria-selected="true"
-                        id="lineup-tab-day1"
-                    >
-                        Dia 1                        <span style="color:var(--c-text-faint);font-weight:400;margin-left:0.4rem;">
-                            26 Ago · Qua                        </span>
-                    </button>
-                                    <button
-                        class="lineup__tab "
-                        data-day="2"
-                        role="tab"
-                        aria-selected="false"
-                        id="lineup-tab-day2"
-                    >
-                        Dia 2                        <span style="color:var(--c-text-faint);font-weight:400;margin-left:0.4rem;">
-                            27 Ago · Qui                        </span>
-                    </button>
-                                    <button
-                        class="lineup__tab "
-                        data-day="3"
-                        role="tab"
-                        aria-selected="false"
-                        id="lineup-tab-day3"
-                    >
-                        Dia 3                        <span style="color:var(--c-text-faint);font-weight:400;margin-left:0.4rem;">
-                            28 Ago · Sex                        </span>
-                    </button>
-                                    <button
-                        class="lineup__tab "
-                        data-day="4"
-                        role="tab"
-                        aria-selected="false"
-                        id="lineup-tab-day4"
-                    >
-                        Dia 4                        <span style="color:var(--c-text-faint);font-weight:400;margin-left:0.4rem;">
-                            29 Ago · Sáb                        </span>
-                    </button>
-                            </div>
-        </div>
-
-        <!-- Panels -->
-                                <div
-                class="lineup__panel active"
-                data-day="1"
-                role="tabpanel"
-                aria-labelledby="lineup-tab-day1"
-            >
-                                    <div style="margin-bottom: 2.5rem;">
-                        <p class="lineup__stage-label">Palco FAG</p>
-                        <div class="lineup__artists">
-                                                            <div class="lineup__artist-row reveal">
-                                    <span class="lineup__artist-number">01</span>
-                                    <span class="lineup__artist-name headliner">
-                                        A Anunciar                                    </span>
-                                    <span class="lineup__artist-genre">
-                                        Música Portuguesa                                    </span>
-                                </div>
-                                                            <div class="lineup__artist-row reveal">
-                                    <span class="lineup__artist-number">02</span>
-                                    <span class="lineup__artist-name ">
-                                        A Anunciar                                    </span>
-                                    <span class="lineup__artist-genre">
-                                        Folk / Tradicional                                    </span>
-                                </div>
-                                                    </div>
-                    </div>
-                
-                <div style="margin-top: 2rem;">
-                    <a href="bilhetes.html" class="btn btn-outline">
-                        Comprar Bilhete — 26 Ago · Qua                    </a>
-                </div>
-            </div>
-                                <div
-                class="lineup__panel "
-                data-day="2"
-                role="tabpanel"
-                aria-labelledby="lineup-tab-day2"
-            >
-                                    <div style="margin-bottom: 2.5rem;">
-                        <p class="lineup__stage-label">Palco Festival</p>
-                        <div class="lineup__artists">
-                                                            <div class="lineup__artist-row reveal">
-                                    <span class="lineup__artist-number">01</span>
-                                    <span class="lineup__artist-name headliner">
-                                        A Anunciar                                    </span>
-                                    <span class="lineup__artist-genre">
-                                        Música Portuguesa                                    </span>
-                                </div>
-                                                            <div class="lineup__artist-row reveal">
-                                    <span class="lineup__artist-number">02</span>
-                                    <span class="lineup__artist-name ">
-                                        A Anunciar                                    </span>
-                                    <span class="lineup__artist-genre">
-                                        Pop / Rock                                    </span>
-                                </div>
-                                                    </div>
-                    </div>
-                
-                <div style="margin-top: 2rem;">
-                    <a href="bilhetes.html" class="btn btn-outline">
-                        Comprar Bilhete — 27 Ago · Qui                    </a>
-                </div>
-            </div>
-                                <div
-                class="lineup__panel "
-                data-day="3"
-                role="tabpanel"
-                aria-labelledby="lineup-tab-day3"
-            >
-                                    <div style="margin-bottom: 2.5rem;">
-                        <p class="lineup__stage-label">Palco Festival</p>
-                        <div class="lineup__artists">
-                                                            <div class="lineup__artist-row reveal">
-                                    <span class="lineup__artist-number">01</span>
-                                    <span class="lineup__artist-name headliner">
-                                        A Anunciar                                    </span>
-                                    <span class="lineup__artist-genre">
-                                        Música Portuguesa                                    </span>
-                                </div>
-                                                    </div>
-                    </div>
-                                    <div style="margin-bottom: 2.5rem;">
-                        <p class="lineup__stage-label">Palco FAG</p>
-                        <div class="lineup__artists">
-                                                            <div class="lineup__artist-row reveal">
-                                    <span class="lineup__artist-number">01</span>
-                                    <span class="lineup__artist-name ">
-                                        A Anunciar                                    </span>
-                                    <span class="lineup__artist-genre">
-                                        Fado / Tradicional                                    </span>
-                                </div>
-                                                    </div>
-                    </div>
-                
-                <div style="margin-top: 2rem;">
-                    <a href="bilhetes.html" class="btn btn-outline">
-                        Comprar Bilhete — 28 Ago · Sex                    </a>
-                </div>
-            </div>
-                                <div
-                class="lineup__panel "
-                data-day="4"
-                role="tabpanel"
-                aria-labelledby="lineup-tab-day4"
-            >
-                                    <div style="margin-bottom: 2.5rem;">
-                        <p class="lineup__stage-label">Palco Festival</p>
-                        <div class="lineup__artists">
-                                                            <div class="lineup__artist-row reveal">
-                                    <span class="lineup__artist-number">01</span>
-                                    <span class="lineup__artist-name headliner">
-                                        Buba Espinho                                    </span>
-                                    <span class="lineup__artist-genre">
-                                        Música Portuguesa                                    </span>
-                                </div>
-                                                    </div>
-                    </div>
-                                    <div style="margin-bottom: 2.5rem;">
-                        <p class="lineup__stage-label">Palco FAG</p>
-                        <div class="lineup__artists">
-                                                            <div class="lineup__artist-row reveal">
-                                    <span class="lineup__artist-number">01</span>
-                                    <span class="lineup__artist-name ">
-                                        A Anunciar                                    </span>
-                                    <span class="lineup__artist-genre">
-                                        Folk / World Music                                    </span>
-                                </div>
-                                                    </div>
-                    </div>
-                
-                <div style="margin-top: 2rem;">
-                    <a href="bilhetes.html" class="btn btn-outline">
-                        Comprar Bilhete — 29 Ago · Sáb                    </a>
-                </div>
-            </div>
-            </div>
-</section>
 
         
     </main>
@@ -409,8 +223,8 @@
         <div class="footer-top">
             <!-- Brand -->
             <div class="footer-brand">
-                <a href="index.html" class="footer-logo">
-                    <img src="themes/crato/img/logo.png" alt="Festival do Crato 2026" class="footer-logo-img">
+                <a href="/" class="footer-logo">
+                    <img src="/themes/crato/img/logo.png" alt="Festival do Crato 2026" class="footer-logo-img">
                 </a>
                 <p class="footer-tagline">
                     40.ª Feira de Artesanato e Gastronomia<br>
@@ -436,13 +250,13 @@
             <div>
                 <p class="footer-col-title">Evento</p>
                 <nav class="footer-links">
-                                            <a href="lineup.html" class="footer-link">
+                                            <a href="/lineup" class="footer-link">
                             Programação                        </a>
-                                            <a href="artistas.html" class="footer-link">
+                                            <a href="/artistas" class="footer-link">
                             Artistas                        </a>
-                                            <a href="bilhetes.html" class="footer-link">
+                                            <a href="/bilhetes" class="footer-link">
                             Bilhetes                        </a>
-                                            <a href="info.html" class="footer-link">
+                                            <a href="/info" class="footer-link">
                             Info                        </a>
                                     </nav>
             </div>
@@ -451,10 +265,10 @@
             <div>
                 <p class="footer-col-title">Bilhetes</p>
                 <nav class="footer-links">
-                    <a href="bilhetes.html" class="footer-link">Concerto Solidário · 25 Ago</a>
-                    <a href="bilhetes.html" class="footer-link">Bilhete Diário</a>
-                    <a href="bilhetes.html" class="footer-link">Passe 4 Dias</a>
-                    <a href="bilhetes.html" class="footer-link">Passe 4 Dias + Campismo</a>
+                    <a href="/bilhetes" class="footer-link">Concerto Solidário · 25 Ago</a>
+                    <a href="/bilhetes" class="footer-link">Bilhete Diário</a>
+                    <a href="/bilhetes" class="footer-link">Passe 4 Dias</a>
+                    <a href="/bilhetes" class="footer-link">Passe 4 Dias + Campismo</a>
                 </nav>
             </div>
 
@@ -464,8 +278,8 @@
                 <nav class="footer-links">
                     <a href="mailto:festivaldocrato@cm-crato.pt" class="footer-link">festivaldocrato@cm-crato.pt</a>
                     <a href="tel:245990110" class="footer-link">245 990 110</a>
-                    <a href="info.html" class="footer-link">FAQ</a>
-                    <a href="info.html" class="footer-link">Como Chegar</a>
+                    <a href="/info" class="footer-link">FAQ</a>
+                    <a href="/info" class="footer-link">Como Chegar</a>
                 </nav>
             </div>
         </div>
@@ -485,105 +299,187 @@
 
     <!-- Modais -->
             
+<div class="cart-modal-backdrop" id="checkout-modal">
+    <div class="cart-modal-container">
 
-
-
-
-
-    
-            
-<div class="checkout-modal-backdrop" id="checkout-modal">
-    <div class="checkout-modal-container" id="checkout-modal-container">
-        <div class="checkout-modal-overlay" onclick="CheckoutModal.close()"></div>
-
-        <div class="checkout-modal-dialog">
-            <!-- Header -->
-            <div class="checkout-modal-header">
-                <span class="checkout-modal-title" id="checkout-modal-title">Carrinho</span>
-                <button class="checkout-modal-close" onclick="CheckoutModal.close()" aria-label="Fechar">
-                    &times;
-                </button>
-            </div>
-
-            <!-- Estado vazio -->
-            <div class="checkout-modal-empty" id="checkout-modal-empty">
-                <div class="checkout-modal-empty__icon">
-                    <span class="material-symbols-outlined">shopping_bag</span>
-                </div>
-                <p class="checkout-modal-empty__title">O teu carrinho está vazio</p>
-                <p class="checkout-modal-empty__sub">Escolhe os teus bilhetes ou produtos da loja para continuar.</p>
-                <div class="checkout-modal-empty__actions">
-                    <a href="bilheteira.html" class="btn btn-primary" onclick="CheckoutModal.close()">
-                        Ver Bilhetes
-                    </a>
-                    <a href="loja.html" class="btn btn-ghost" onclick="CheckoutModal.close()">
-                        Ver Loja
-                    </a>
-                </div>
-            </div>
-
-            <!-- Checkout via iframe -->
-            <div class="checkout-modal-body" id="checkout-modal-checkout" style="display:none;">
-                <iframe id="checkout-modal-iframe" class="checkout-modal-iframe" src="" title="Checkout"></iframe>
-            </div>
+        <!-- Header -->
+        <div class="cart-modal-header">
+            <h2 class="cart-modal-title">CARRINHO DE COMPRAS</h2>
+            <button class="cart-modal-close" aria-label="Fechar carrinho" onclick="CheckoutModal.close()">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
         </div>
-    </div>
-</div>
+
+        <hr class="cart-modal-divider">
+
+        <!-- Body: 2 colunas -->
+        <div class="cart-modal-body">
+
+            <!-- Coluna Esquerda: lista de produtos ou estado vazio -->
+            <div class="cart-modal-products">
+                <a href="#" class="cart-modal-back" onclick="CheckoutModal.close(); return false;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Retroceder</span>
+                </a>
+
+                <!-- Estado: vazio -->
+                <div id="checkout-modal-empty" class="cart-modal-empty-state">
+                    <div class="cart-empty-icon">
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                    </div>
+                    <p class="cart-empty-title">O teu carrinho está vazio</p>
+                    <p class="cart-empty-sub">Escolhe os teus bilhetes ou produtos da loja para continuar.</p>
+                    <div class="cart-empty-actions">
+                        <a href="/bilheteira" class="btn btn-primary" onclick="CheckoutModal.close()">Ver Bilhetes</a>
+                        <a href="/loja" class="btn btn-ghost" onclick="CheckoutModal.close()">Ver Loja</a>
+                    </div>
+                </div>
+
+                <!-- Estado: item selecionado -->
+                <div id="checkout-modal-items" class="cart-items-list" style="display:none;">
+                    <div class="cart-product-item">
+                        <div class="cart-product-info">
+                            <p class="cart-product-title" id="checkout-modal-item-title"></p>
+                            <p class="cart-product-price" id="checkout-modal-item-price"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna Direita: resumo -->
+            <div class="cart-modal-summary">
+                <div class="cart-summary-card">
+
+                    <hr class="cart-modal-divider-sm">
+
+                    <div class="cart-summary-fees" id="checkout-modal-fees" style="display:none;">
+                        <span class="fee-text">Taxa de serviço</span>
+                        <span class="fee-price">1,50 €</span>
+                    </div>
+
+                    <div class="cart-summary-total">
+                        <span class="total-text">Total</span>
+                        <span class="total-price" id="checkout-modal-total">0,00 €</span>
+                    </div>
+
+                    <!-- Estado vazio: botão desabilitado -->
+                    <button
+                        class="cart-checkout-btn"
+                        id="checkout-modal-btn-disabled"
+                        disabled
+                        aria-disabled="true"
+                    >
+                        FINALIZAR COMPRA
+                    </button>
+
+                    <!-- Estado com item: link para nova aba -->
+                    <a
+                        href="#"
+                        class="cart-checkout-btn"
+                        id="checkout-modal-btn-checkout"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onclick="CheckoutModal.close()"
+                        style="display:none; text-align:center; text-decoration:none;"
+                    >
+                        FINALIZAR COMPRA
+                    </a>
+
+                </div>
+            </div>
+
+        </div><!-- /.cart-modal-body -->
+    </div><!-- /.cart-modal-container -->
+</div><!-- /.cart-modal-backdrop -->
 
 <script>
-const CheckoutModal = {
-    modalId: 'checkout-modal',
-    baseUrl:  'https://checkout.lebillet.eu/',
+const CheckoutModal = (function () {
+    const ID         = 'checkout-modal';
+    const BASE_URL   = 'https://checkout.lebillet.eu/';
+    const FEE        = 1.50;
 
-    open(title, eventId) {
-        const modal      = document.getElementById(this.modalId);
-        const container  = document.getElementById(`${this.modalId}-container`);
-        const titleEl    = document.getElementById(`${this.modalId}-title`);
-        const emptyEl    = document.getElementById(`${this.modalId}-empty`);
-        const checkoutEl = document.getElementById(`${this.modalId}-checkout`);
-        const iframe     = document.getElementById(`${this.modalId}-iframe`);
-
-        if (!modal) return;
-
-        if (eventId) {
-            titleEl.textContent      = title || 'Checkout';
-            iframe.src               = `${this.baseUrl}${eventId}`;
-            emptyEl.style.display    = 'none';
-            checkoutEl.style.display = '';
-            container.classList.add('is-checkout');
-        } else {
-            titleEl.textContent      = 'Carrinho';
-            emptyEl.style.display    = '';
-            checkoutEl.style.display = 'none';
-            iframe.src               = '';
-            container.classList.remove('is-checkout');
-        }
-
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    },
-
-    close() {
-        const modal     = document.getElementById(this.modalId);
-        const iframe    = document.getElementById(`${this.modalId}-iframe`);
-        const container = document.getElementById(`${this.modalId}-container`);
-
-        if (!modal) return;
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-        if (iframe)    iframe.src = '';
-        if (container) container.classList.remove('is-checkout');
+    function fmt(value) {
+        return value.toLocaleString('pt-PT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
     }
-};
 
-document.addEventListener('keydown', (e) => {
+    function el(suffix) {
+        return document.getElementById(suffix ? ID + '-' + suffix : ID);
+    }
+
+    return {
+        open(title, eventId, price) {
+            const backdrop     = el('');
+            const emptyState   = el('empty');
+            const itemsList    = el('items');
+            const itemTitle    = el('item-title');
+            const itemPrice    = el('item-price');
+            const feesRow      = el('fees');
+            const totalEl      = el('total');
+            const btnDisabled  = el('btn-disabled');
+            const btnCheckout  = el('btn-checkout');
+
+            if (!backdrop) return;
+
+            if (eventId) {
+                // Estado com item
+                const p         = parseFloat(price) || 0;
+                const total     = p + FEE;
+
+                itemTitle.textContent = title || 'Bilhete / Produto';
+                itemPrice.textContent = fmt(p);
+                totalEl.textContent   = fmt(total);
+
+                btnCheckout.href = BASE_URL + eventId;
+
+                emptyState.style.display  = 'none';
+                itemsList.style.display   = '';
+                feesRow.style.display     = '';
+                btnDisabled.style.display = 'none';
+                btnCheckout.style.display = '';
+            } else {
+                // Estado vazio
+                totalEl.textContent = '0,00 €';
+
+                emptyState.style.display  = '';
+                itemsList.style.display   = 'none';
+                feesRow.style.display     = 'none';
+                btnDisabled.style.display = '';
+                btnCheckout.style.display = 'none';
+            }
+
+            backdrop.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        },
+
+        close() {
+            const backdrop = el('');
+            if (!backdrop) return;
+            backdrop.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    };
+})();
+
+document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') CheckoutModal.close();
 });
+
+// Fechar ao clicar no backdrop (fora do container)
+(function () {
+    const backdrop = document.getElementById('checkout-modal');
+    if (!backdrop) return;
+    backdrop.addEventListener('click', function (e) {
+        if (e.target === backdrop) CheckoutModal.close();
+    });
+})();
 </script>
     
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="themes/crato/theme.js"></script>
-
+    <script src="/themes/crato/theme.js"></script>
 </body>
 </html>
