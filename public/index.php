@@ -15,11 +15,62 @@ spl_autoload_register(function ($class) {
 });
 
 // ─────────────────────────────────────────────
-//  Site data (hardcoded — padrão yanns)
+//  API LeBillet — buscar eventos (padrão yanns)
 // ─────────────────────────────────────────────
 $checkoutUrl = 'https://checkout.lebillet.eu/';
 $siteName = 'Festival Crato';
 
+// get events (limit 6 — para homepage)
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://lebillet.eu/api_events/events?limit=6',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Basic 9f4c2a1b7e3d6a8cpewe8992801',
+        'API: application/json',
+        'Content-Type: application/json',
+        'Cookie: PHPSESSID=7sooqfe3a52859s597k89fb9m5'
+    ),
+));
+
+$curlResult = curl_exec($curl);
+$response = ($curlResult !== false) ? json_decode($curlResult) : null;
+$eventsLimit = $response?->events ?? [];
+
+// get events (todos — para página de bilheteira)
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://lebillet.eu/api_events/events',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Basic 9f4c2a1b7e3d6a8cpewe8992801',
+        'API: application/json',
+        'Content-Type: application/json',
+        'Cookie: PHPSESSID=7sooqfe3a52859s597k89fb9m5'
+    ),
+));
+
+$curlResult = curl_exec($curl);
+$response = ($curlResult !== false) ? json_decode($curlResult) : null;
+$eventsAll = $response?->events ?? [];
+
+// ─────────────────────────────────────────────
+//  Site data
+// ─────────────────────────────────────────────
 $festival = [
     'edition' => '40.ª',
     'date_start' => '2026-08-25',
@@ -280,7 +331,7 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             <?= Component::render('Lineup', ['artists' => $artists]) ?>
             <?= Component::render('News', ['news' => $news]) ?>
             <?= Component::render('Artists', ['artists' => $artists]) ?>
-            <?= Component::render('Tickets', ['tickets' => $tickets, 'checkoutUrl' => $checkoutUrl]) ?>
+            <?= Component::render('Tickets', ['tickets' => $tickets, 'events' => $eventsLimit, 'checkoutUrl' => $checkoutUrl]) ?>
             <?= Component::render('Store', ['products' => $products]) ?>
             <?= Component::render('About', ['festival' => $festival]) ?>
 
@@ -292,7 +343,7 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
         <?php elseif ($activePage === 'tickets'): ?>
 
-            <?= Component::render('Tickets', ['tickets' => $tickets, 'checkoutUrl' => $checkoutUrl, 'showAll' => true]) ?>
+            <?= Component::render('Tickets', ['tickets' => $tickets, 'events' => $eventsAll, 'checkoutUrl' => $checkoutUrl, 'showAll' => true]) ?>
 
         <?php elseif ($activePage === 'lineup'): ?>
             <section class="page-hero page-hero--inner">
