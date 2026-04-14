@@ -10,7 +10,7 @@ $edition  = $festival['edition'] ?? '40.ª';
             <!-- Image -->
             <div class="about__image reveal">
                 <img
-                    src="/themes/crato/img/about-bg.jpg"
+                    src="/assets/img/about-bg.jpg"
                     alt="Crato, Alto Alentejo"
                     loading="lazy"
                     onerror="this.parentElement.style.background='linear-gradient(135deg,#1a0a0a,#2a1010)'"

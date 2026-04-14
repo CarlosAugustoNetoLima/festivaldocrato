@@ -30,7 +30,7 @@ $tickerItems = [
 <!-- Hero -->
 <section class="hero" id="home">
     <div class="hero__bg">
-        <img src="/themes/crato/img/hero-bg.jpg" alt="Festival Crato 2026" class="hero__bg-img" loading="eager">
+        <img src="/assets/img/hero-bg.jpg" alt="Festival Crato 2026" class="hero__bg-img" loading="eager">
         <div class="hero__overlay"></div>
     </div>
 

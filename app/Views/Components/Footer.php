@@ -19,7 +19,7 @@ $navLinks = [
             <!-- Brand -->
             <div class="footer-brand">
                 <a href="/" class="footer-logo">
-                    <img src="/themes/crato/img/logo.png" alt="Festival do Crato 2026" class="footer-logo-img">
+                    <img src="/assets/img/logo.png" alt="Festival do Crato 2026" class="footer-logo-img">
                 </a>
                 <p class="footer-tagline">
                     <?= htmlspecialchars($edition) ?> Feira de Artesanato e Gastronomia<br>

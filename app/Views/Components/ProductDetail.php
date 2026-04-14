@@ -19,7 +19,7 @@ if (!$product) {
         'category'    => '',
         'price'       => 0,
         'description' => '',
-        'image'       => '/themes/crato/img/logo.png',
+        'image'       => '/assets/img/logo.png',
         'event_id'    => '',
     ];
 }

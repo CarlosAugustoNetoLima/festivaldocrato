@@ -8,7 +8,7 @@ use PDOException;
 class Database
 {
     private $host = 'localhost';
-    private $db_name = 'festival_crato';
+    private $db_name = 'yanns_db';
     private $username = 'root';
     private $password = '';
     public $conn;
@@ -22,11 +22,10 @@ class Database
                 "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
                 $this->username,
                 $this->password
-                );
+            );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conn->exec("set names utf8");
-        }
-        catch (PDOException $exception) {
+        } catch (PDOException $exception) {
             echo "Connection error: " . $exception->getMessage();
         }
 

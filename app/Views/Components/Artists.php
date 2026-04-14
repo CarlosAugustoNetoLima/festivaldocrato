@@ -37,7 +37,7 @@ $dayLabels = [1 => '15 Ago · Dia 1', 2 => '16 Ago · Dia 2', 3 => '17 Ago · Di
                 $dayNum = $artist['day'] ?? 1;
                 $dayLabel = $dayLabels[$dayNum] ?? '';
                 $isHeadliner = $artist['headliner'] ?? false;
-                $imgPath = $artist['image'] ?? "/themes/crato/img/artist-placeholder.jpg";
+                $imgPath = $artist['image'] ?? "/assets/img/artist-placeholder.jpg";
                 ?>
                 <article class="artist-card reveal" style="transition-delay:<?= $i * 0.06 ?>s;">
                     <?php if ($isHeadliner): ?>
@@ -50,7 +50,7 @@ $dayLabels = [1 => '15 Ago · Dia 1', 2 => '16 Ago · Dia 2', 3 => '17 Ago · Di
                             alt="<?= htmlspecialchars($artist['name']) ?>"
                             class="artist-card__img"
                             loading="lazy"
-                            onerror="this.src='/themes/crato/img/artist-placeholder.jpg'"
+                            onerror="this.src='/assets/img/artist-placeholder.jpg'"
                         >
                     </div>
 

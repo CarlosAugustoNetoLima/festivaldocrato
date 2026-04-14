@@ -29,7 +29,7 @@ $navItems = [
     <div class="header-container">
         <!-- Logo -->
         <a href="/" class="header-logo" aria-label="Festival do Crato 2026">
-            <img src="/themes/crato/img/logo.png" alt="Festival do Crato 2026" class="header-logo-img">
+            <img src="/assets/img/logo.png" alt="Festival do Crato 2026" class="header-logo-img">
         </a>
 
         <!-- Nav Desktop -->
