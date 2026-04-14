@@ -4,3 +4,4 @@
 *~
 config/site.local.php
 .claude/
+dist/
