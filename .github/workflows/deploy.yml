@@ -25,28 +25,50 @@ jobs:
         with:
           php-version: '8.2'
 
-      - name: Generate static HTML
+      - name: Generate static HTML pages
         run: |
-          cd public
-          php -r "
-            \$_SERVER['HTTP_HOST'] = 'carlosaugustonetonelima.github.io';
-            \$_SERVER['REQUEST_URI'] = '/festivaldocrato/';
-            \$_GET['page'] = 'home';
-            ob_start();
-            include 'index.php';
-            \$html = ob_get_clean();
-            file_put_contents('index.html', \$html);
-          "
+          BASE="/festivaldocrato"
+          DIST="dist"
+          mkdir -p $DIST
 
-      - name: Fix asset paths for GitHub Pages subdirectory
-        run: |
-          sed -i 's|href="/assets/|href="/festivaldocrato/assets/|g' public/index.html
-          sed -i 's|src="/assets/|src="/festivaldocrato/assets/|g' public/index.html
+          generate() {
+            local uri="$1"
+            local outdir="$DIST$2"
+            mkdir -p "$outdir"
+            php -r "
+              \$_SERVER['HTTP_HOST'] = 'carlosaugustonetonelima.github.io';
+              \$_SERVER['REQUEST_URI'] = '$uri';
+              ob_start();
+              chdir('public');
+              include 'public/index.php';
+              \$html = ob_get_clean();
+              \$html = str_replace('href=\"/assets/', 'href=\"$BASE/assets/', \$html);
+              \$html = str_replace('src=\"/assets/', 'src=\"$BASE/assets/', \$html);
+              \$html = str_replace('href=\"/', 'href=\"$BASE/', \$html);
+              \$html = str_replace('action=\"/', 'action=\"$BASE/', \$html);
+              file_put_contents('${outdir}/index.html', \$html);
+            "
+          }
+
+          generate "/"              ""
+          generate "/bilheteira"    "/bilheteira"
+          generate "/lineup"        "/lineup"
+          generate "/artistas"      "/artistas"
+          generate "/campismo"      "/campismo"
+          generate "/loja"          "/loja"
+          generate "/noticias"      "/noticias"
+          generate "/sobre"         "/sobre"
+          generate "/info"          "/info"
+          generate "/como-chegar"   "/como-chegar"
+          generate "/contactos"     "/contactos"
+
+          # Copy static assets
+          cp -r public/assets $DIST/assets
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public/
+          path: dist/
 
   deploy:
     environment:
