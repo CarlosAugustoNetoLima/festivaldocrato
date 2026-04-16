@@ -1486,8 +1486,18 @@ body {
   letter-spacing: 0.05em;
 }
 
+.cart-modal-close {
+  color: var(--c-text);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.cart-modal-close:hover {
+  opacity: 1;
+}
+
 .cart-modal-close svg {
-  stroke: var(--c-text);
+  stroke: currentColor;
 }
 
 .cart-modal-divider {
@@ -1906,7 +1916,6 @@ body {
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  transform: translateX(-20%) rotate(-3deg);
   z-index: 1;
   display: block;
 }
@@ -1921,7 +1930,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transform: translateX(40%) rotate(-3deg);
   margin-top: 0;
   z-index: 2;
   padding-bottom: 5px;

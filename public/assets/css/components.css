@@ -590,6 +590,23 @@
     gap: 16px;
 }
 
+/* ── Iframe checkout view ── */
+/* Ocupa todo o espaço restante abaixo do cabeçalho */
+.cart-iframe-view {
+    flex: 1;            /* cresce para preencher .cart-modal-container (flex-direction:column) */
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.cart-checkout-iframe {
+    flex: 1;
+    width: 100%;
+    border: none;
+    background: #f9f9f9;
+    min-height: 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .cart-modal-container {
