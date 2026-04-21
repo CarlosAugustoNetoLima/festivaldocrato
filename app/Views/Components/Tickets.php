@@ -26,6 +26,7 @@ if (!$showAll) {
                 $isHighlight = $ticket['highlight'] ?? false;
                 $ticketId    = $ticket['id'] ?? "ticket-$i";
                 $eventId     = $ticket['event_id'] ?? '';
+                $productId   = $ticket['product_id'] ?? '';
                 $price       = $ticket['price'] ?? 0;
                 $priceFull   = number_format($price, 0, ',', '.');
                 ?>
@@ -44,19 +45,25 @@ if (!$showAll) {
                     <h3 class="ticket-card__name"><?= htmlspecialchars($ticket['name'] ?? 'Bilhete') ?></h3>
                     <p class="ticket-card__subtitle"><?= htmlspecialchars($ticket['subtitle'] ?? '') ?></p>
 
+                    <?php if ($price > 0): ?>
                     <div class="ticket-card__price">
                         <span class="ticket-card__price-value"><?= $priceFull ?></span>
                         <span class="ticket-card__price-currency">€</span>
                     </div>
+                    <?php else: ?>
+                    <div class="ticket-card__price">
+                        <span class="ticket-card__price-value" style="font-size:var(--text-base);color:var(--c-text-muted);">Ver preço no checkout</span>
+                    </div>
+                    <?php endif; ?>
 
                     <p class="ticket-card__desc"><?= htmlspecialchars($ticket['description'] ?? '') ?></p>
 
                     <button
                         class="btn btn-outline ticket-card__btn"
-                        onclick="CheckoutModal.open('<?= htmlspecialchars(addslashes($ticket['name'] ?? '')) ?>', '<?= htmlspecialchars($eventId) ?>', <?= (float)$price ?>)"
+                        onclick="CheckoutModal.open('<?= htmlspecialchars(addslashes($ticket['name'] ?? '')) ?>', '<?= htmlspecialchars($eventId) ?>', <?= $price > 0 ? (float)$price : 'null' ?>, '<?= htmlspecialchars($productId) ?>')"
                         id="ticket-btn-<?= htmlspecialchars($ticketId) ?>"
                     >
-                        <?= $isHighlight ? 'Comprar Agora' : 'Comprar Bilhete' ?>
+                        Comprar Bilhete
                     </button>
                 </div>
             <?php endforeach; ?>

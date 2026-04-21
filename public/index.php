@@ -96,71 +96,118 @@ $festival = [
     ],
 ];
 
+// ─────────────────────────────────────────────
+//  Mapear eventos da API para formato de tickets
+// ─────────────────────────────────────────────
+function mapApiEventsToTickets(array $apiEvents): array
+{
+    $tickets = [];
+
+    foreach ($apiEvents as $event) {
+        // Usar dados reais da API
+        $eventId = $event->id ?? null;
+        $name = $event->name ?? 'Evento';
+        $dateStart = $event->date_start ?? '';
+        $city = $event->city->name ?? '';
+        $place = $event->place->name ?? '';
+
+        // Formatar data para exibição (se existir)
+        $dateFormatted = '';
+        if ($dateStart) {
+            $dt = DateTime::createFromFormat('Y-m-d H:i:s', $dateStart);
+            if ($dt) {
+                $dateFormatted = $dt->format('d/m/Y H:i');
+            }
+        }
+
+        // Criar ticket a partir do evento da API
+        // Preço não é exibido - vem do checkout LeBillet (Opção C)
+        $tickets[] = [
+            'id' => 'event-' . $eventId,
+            'name' => $name,
+            'subtitle' => $dateFormatted . ($city ? ' · ' . $city : ''),
+            'price' => null, // null = não exibe preço no card
+            'description' => $place ? 'Local: ' . $place : 'Evento disponível via LeBillet',
+            'highlight' => false,
+            'event_id' => $eventId, // ID numérico da API - ESSENCIAL para o checkout
+            'image' => $event->image->name ?? null, // Imagem do evento
+            '_api_data' => $event, // Guardar dados originais para debug/expansão
+        ];
+    }
+
+    return $tickets;
+}
+
+// ─────────────────────────────────────────────
+//  Tickets: bilhetes reais do Festival do Crato 2026
+//  Evento: checkout.lebillet.eu/1830
+//  Product IDs obtidos diretamente do checkout LeBillet
+// ─────────────────────────────────────────────
+// NOTA: A API LeBillet retorna eventos de outros organizadores.
+//       Os bilhetes do Festival Crato (evento 1830) são definidos
+//       manualmente abaixo com os IDs corretos.
 $tickets = [
-    [
-        'id' => 'passe-4dias',
-        'name' => 'Passe 4 Dias',
-        'subtitle' => '26–29 Agosto · Sem Campismo',
-        'price' => 45.00,
-        'description' => 'Acesso completo aos 4 dias do Festival do Crato 2026. A partir de 1 de agosto: 50€.',
-        'highlight' => true,
-        'event_id' => 'crato-2026-passe',
-    ],
-    [
-        'id' => 'passe-4dias-campismo',
-        'name' => 'Passe 4 Dias + Campismo',
-        'subtitle' => '26–29 Agosto · Com Campismo',
-        'price' => 60.00,
-        'description' => 'Acesso completo aos 4 dias com campismo. A partir de 1 de agosto: 70€.',
-        'highlight' => false,
-        'event_id' => 'crato-2026-passe-campismo',
-    ],
-    [
-        'id' => 'dia-26',
-        'name' => 'Bilhete Dia 26',
-        'subtitle' => '26 Agosto · Quarta-feira',
-        'price' => 15.00,
-        'description' => 'Acesso ao Festival do Crato — 1.º dia. A partir de 1 de agosto: 20€.',
-        'highlight' => false,
-        'event_id' => 'crato-2026-dia1',
-    ],
-    [
-        'id' => 'dia-27',
-        'name' => 'Bilhete Dia 27',
-        'subtitle' => '27 Agosto · Quinta-feira',
-        'price' => 15.00,
-        'description' => 'Acesso ao Festival do Crato — 2.º dia. A partir de 1 de agosto: 20€.',
-        'highlight' => false,
-        'event_id' => 'crato-2026-dia2',
-    ],
-    [
-        'id' => 'dia-28',
-        'name' => 'Bilhete Dia 28',
-        'subtitle' => '28 Agosto · Sexta-feira',
-        'price' => 20.00,
-        'description' => 'Acesso ao Festival do Crato — 3.º dia. A partir de 1 de agosto: 25€.',
-        'highlight' => false,
-        'event_id' => 'crato-2026-dia3',
-    ],
-    [
-        'id' => 'dia-29',
-        'name' => 'Bilhete Dia 29',
-        'subtitle' => '29 Agosto · Sábado',
-        'price' => 20.00,
-        'description' => 'Acesso ao Festival do Crato — dia final. A partir de 1 de agosto: 25€.',
-        'highlight' => false,
-        'event_id' => 'crato-2026-dia4',
-    ],
-    [
-        'id' => 'concerto-solidario',
-        'name' => 'Concerto Solidário',
-        'subtitle' => '25 Agosto · Terça-feira',
-        'price' => 10.00,
-        'description' => 'Concerto Solidário no Palco FAG. O passe 4 dias não dá acesso a este concerto.',
-        'highlight' => false,
-        'event_id' => 'crato-2026-solidario',
-    ],
-];
+        [
+            'id'         => 'passe-4dias',
+            'name'       => 'Passe 4 Dias',
+            'subtitle'   => '26–29 Agosto · Sem Campismo',
+            'price'      => 45.00,
+            'description'=> 'Acesso completo aos 4 dias do Festival do Crato 2026. A partir de 1 de agosto: 50€.',
+            'highlight'  => true,
+            'event_id'   => '1830',
+            'product_id' => '11022',
+        ],
+        [
+            'id'         => 'passe-4dias-campismo',
+            'name'       => 'Passe 4 Dias + Campismo',
+            'subtitle'   => '26–29 Agosto · Com Campismo',
+            'price'      => 60.00,
+            'description'=> 'Acesso completo aos 4 dias com campismo. A partir de 1 de agosto: 70€.',
+            'highlight'  => false,
+            'event_id'   => '1830',
+            'product_id' => '11023',
+        ],
+        [
+            'id'         => 'dia-26',
+            'name'       => 'Bilhete Dia 26',
+            'subtitle'   => '26 Agosto · 1.º dia',
+            'price'      => 15.00,
+            'description'=> 'Acesso ao Festival do Crato — 1.º dia. A partir de 1 de agosto: 20€.',
+            'highlight'  => false,
+            'event_id'   => '1830',
+            'product_id' => '11024',
+        ],
+        [
+            'id'         => 'dia-27',
+            'name'       => 'Bilhete Dia 27',
+            'subtitle'   => '27 Agosto · 2.º dia',
+            'price'      => 15.00,
+            'description'=> 'Acesso ao Festival do Crato — 2.º dia. A partir de 1 de agosto: 20€.',
+            'highlight'  => false,
+            'event_id'   => '1830',
+            'product_id' => '11025',
+        ],
+        [
+            'id'         => 'dia-28',
+            'name'       => 'Bilhete Dia 28',
+            'subtitle'   => '28 Agosto · 3.º dia',
+            'price'      => 20.00,
+            'description'=> 'Acesso ao Festival do Crato — 3.º dia. A partir de 1 de agosto: 25€.',
+            'highlight'  => false,
+            'event_id'   => '1830',
+            'product_id' => '11026',
+        ],
+        [
+            'id'         => 'dia-29',
+            'name'       => 'Bilhete Dia 29',
+            'subtitle'   => '29 Agosto · Dia Final',
+            'price'      => 20.00,
+            'description'=> 'Acesso ao Festival do Crato — dia final. A partir de 1 de agosto: 25€.',
+            'highlight'  => false,
+            'event_id'   => '1830',
+            'product_id' => '11027',
+        ],
+    ];
 
 $artists = [
     ['name' => 'A Anunciar', 'day' => 1, 'stage' => 'Palco FAG', 'headliner' => true, 'genre' => 'Música Portuguesa', 'image' => '/assets/img/artist-1.jpg'],
@@ -178,7 +225,7 @@ $products = [
         'id' => 'tshirt-crato-2026',
         'name' => 'T-Shirt Festival Crato 2026',
         'category' => 'Vestuário',
-        'price' => 20.00,
+        'price' => null, // Preço vem do checkout LeBillet
         'description' => 'T-Shirt oficial do Festival do Crato 2026. 100% algodão orgânico.',
         'image' => '/assets/img/logo.png',
         'highlight' => true,
@@ -188,7 +235,7 @@ $products = [
         'id' => 'bone-crato-2026',
         'name' => 'Boné Festival Crato 2026',
         'category' => 'Acessórios',
-        'price' => 15.00,
+        'price' => null, // Preço vem do checkout LeBillet
         'description' => 'Boné oficial do Festival do Crato 2026.',
         'image' => '/assets/img/logo.png',
         'highlight' => false,
@@ -346,11 +393,6 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             <?= Component::render('Tickets', ['tickets' => $tickets, 'events' => $eventsAll, 'checkoutUrl' => $checkoutUrl, 'showAll' => true]) ?>
 
         <?php elseif ($activePage === 'lineup'): ?>
-            <section class="page-hero page-hero--inner">
-                <div class="container">
-                    <h1 class="page-hero__title">Programação</h1>
-                </div>
-            </section>
             <?= Component::render('Lineup', ['artists' => $artists, 'showAll' => true]) ?>
 
         <?php elseif ($activePage === 'artists'): ?>
@@ -459,7 +501,7 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
     <?= Component::render('Footer', ['siteName' => $siteName, 'festival' => $festival]) ?>
 
     <!-- Modais -->
-    <?= Component::render('CheckoutModal') ?>
+    <?= Component::render('CheckoutModal', ['checkoutUrl' => $checkoutUrl]) ?>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
