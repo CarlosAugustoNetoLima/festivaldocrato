@@ -44,7 +44,7 @@ foreach ($routes as $uri => $outPath) {
     echo "Gerado: $outDir/index.html\n";
 }
 
-// Copiar assets
+// Copiar assets (rsync garante que não aninha assets/assets/)
 echo "Copiando assets...\n";
-shell_exec("cp -r $pubDir/assets $distDir/assets");
+shell_exec("rsync -a --delete $pubDir/assets/ $distDir/assets/");
 echo "Build concluído!\n";
