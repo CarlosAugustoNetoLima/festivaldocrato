@@ -410,16 +410,169 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
         <?php elseif ($activePage === 'contacts'): ?>
             <section class="page-hero page-hero--inner">
                 <div class="container">
-                    <h1 class="page-hero__title">Contactos Úteis</h1>
+                    <h1 class="page-hero__title">Tens dúvidas sobre os bilhetes?</h1>
+                    <p class="page-hero__sub">Entra em contacto connosco e respondemos-te o mais rápido possível.</p>
                 </div>
             </section>
-            <section class="generic-page">
+
+            <section class="contact-section">
+                <div class="container contact-section__container">
+                    <?= Component::render('ContactForm', ['formId' => 'contact-form-main', 'subject' => 'Dúvidas sobre bilhetes']) ?>
+                </div>
+            </section>
+
+            <section class="contact-cta-section">
                 <div class="container">
-                    <p>Município do Crato</p>
-                    <p>Praça do Município, 7430-999 Crato</p>
-                    <p>Email: <a href="mailto:fag@cm-crato.pt">fag@cm-crato.pt</a> | Telf: <a href="tel:+351245990110">245 990 110</a></p>
+                    <div class="contact-cta-grid">
+                        <div class="contact-cta-card">
+                            <h2>Gostavas de trabalhar connosco?</h2>
+                            <p>Procuramos pessoas apaixonadas pela cultura e pelo festival.</p>
+                            <button type="button" class="btn btn-primary" data-open-modal="contact-modal-work">
+                                Vem trabalhar connosco
+                            </button>
+                        </div>
+                        <div class="contact-cta-card">
+                            <h2>Gostavas de ser nosso parceiro?</h2>
+                            <p>Junta a tua marca ao maior festival do Alto Alentejo.</p>
+                            <button type="button" class="btn btn-primary" data-open-modal="contact-modal-partner">
+                                Sê nosso parceiro
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
+
+            <section class="contact-stories-section">
+                <div class="container contact-section__container">
+                    <div class="contact-stories-intro">
+                        <h2>O Festival do Crato faz parte da tua vida e tens uma história para contar?</h2>
+                        <p>Preenche o seguinte formulário e partilha connosco a tua memória.</p>
+                    </div>
+                    <?= Component::render('ContactForm', ['formId' => 'contact-form-stories', 'subject' => 'História do festival', 'submitLabel' => 'Partilhar história']) ?>
+                </div>
+            </section>
+
+            <section class="contact-info-section">
+                <div class="container">
+                    <div class="contact-info-card">
+                        <h3>Município do Crato</h3>
+                        <p>Praça do Município, 7430-999 Crato</p>
+                        <p>
+                            <a href="mailto:fag@cm-crato.pt">fag@cm-crato.pt</a>
+                            <span aria-hidden="true"> · </span>
+                            <a href="tel:+351245990110">245 990 110</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <?= Component::render('ContactModal', [
+                'modalId' => 'contact-modal-work',
+                'title'   => 'Vem trabalhar connosco',
+                'intro'   => 'Conta-nos sobre ti e deixa o teu contacto — entraremos em contacto em breve.',
+                'formId'  => 'contact-form-work',
+                'subject' => 'Candidatura — trabalhar connosco',
+            ]) ?>
+
+            <?= Component::render('ContactModal', [
+                'modalId' => 'contact-modal-partner',
+                'title'   => 'Sê nosso parceiro',
+                'intro'   => 'Fala-nos da tua marca e da oportunidade de parceria que tens em mente.',
+                'formId'  => 'contact-form-partner',
+                'subject' => 'Proposta de parceria',
+            ]) ?>
+
+            <script>
+            (function () {
+                // ── Contact form submission ─────────────────────────────────
+                function attachForm(form) {
+                    form.addEventListener('submit', async function (e) {
+                        e.preventDefault();
+
+                        const submit   = form.querySelector('.contact-form__submit');
+                        const feedback = form.querySelector('.contact-form__feedback');
+                        const data = Object.fromEntries(new FormData(form).entries());
+                        data.privacy = form.querySelector('[name="privacy"]').checked;
+                        data.consent = form.querySelector('[name="consent"]').checked;
+
+                        feedback.textContent = '';
+                        feedback.className = 'contact-form__feedback';
+                        submit.disabled = true;
+                        submit.classList.add('is-loading');
+
+                        try {
+                            const res = await fetch('/contact-submit.php', {
+                                method:  'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body:    JSON.stringify(data),
+                            });
+                            const json = await res.json().catch(() => ({}));
+
+                            if (res.ok && json.ok) {
+                                feedback.textContent = 'Obrigado! A tua mensagem foi enviada.';
+                                feedback.classList.add('is-success');
+                                form.reset();
+                            } else if (res.status === 429) {
+                                feedback.textContent = 'Demasiadas submissões. Tenta novamente mais tarde.';
+                                feedback.classList.add('is-error');
+                            } else if (json.error === 'validation') {
+                                feedback.textContent = 'Verifica os campos marcados e tenta novamente.';
+                                feedback.classList.add('is-error');
+                            } else {
+                                feedback.textContent = 'Não foi possível enviar. Tenta novamente em instantes.';
+                                feedback.classList.add('is-error');
+                            }
+                        } catch (err) {
+                            feedback.textContent = 'Erro de rede. Verifica a ligação e tenta novamente.';
+                            feedback.classList.add('is-error');
+                        } finally {
+                            submit.disabled = false;
+                            submit.classList.remove('is-loading');
+                        }
+                    });
+                }
+                document.querySelectorAll('[data-contact-form]').forEach(attachForm);
+
+                // ── Contact modals ──────────────────────────────────────────
+                let _lastTrigger = null;
+
+                function openModal(id) {
+                    const modal = document.getElementById(id);
+                    if (!modal) return;
+                    _lastTrigger = document.activeElement;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    const firstInput = modal.querySelector('input:not([type="hidden"]):not(.contact-form__hp), textarea');
+                    if (firstInput) setTimeout(() => firstInput.focus(), 60);
+                }
+
+                function closeModal(modal) {
+                    if (!modal) return;
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    if (_lastTrigger && typeof _lastTrigger.focus === 'function') {
+                        _lastTrigger.focus();
+                    }
+                }
+
+                document.querySelectorAll('[data-open-modal]').forEach(btn => {
+                    btn.addEventListener('click', () => openModal(btn.dataset.openModal));
+                });
+                document.querySelectorAll('[data-close-modal]').forEach(btn => {
+                    btn.addEventListener('click', () => closeModal(document.getElementById(btn.dataset.closeModal)));
+                });
+                document.querySelectorAll('[data-contact-modal]').forEach(modal => {
+                    modal.addEventListener('click', e => {
+                        if (e.target === modal) closeModal(modal);
+                    });
+                });
+                document.addEventListener('keydown', e => {
+                    if (e.key !== 'Escape') return;
+                    const open = document.querySelector('[data-contact-modal].active');
+                    if (open) closeModal(open);
+                });
+            })();
+            </script>
 
         <?php elseif ($activePage === '404'): ?>
             <section class="page-404">
