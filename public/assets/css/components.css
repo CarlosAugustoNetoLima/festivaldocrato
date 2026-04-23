@@ -628,6 +628,38 @@
     min-height: 0;
 }
 
+.cart-iframe-wrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: #0C0306;
+}
+
+.cart-iframe-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0C0306;
+    z-index: 2;
+}
+
+.cart-iframe-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #C8111F;
+    border-radius: 50%;
+    animation: iframe-spin 0.7s linear infinite;
+}
+
+@keyframes iframe-spin {
+    to { transform: rotate(360deg); }
+}
+
 .cart-checkout-iframe {
     flex: 1;
     width: 100%;

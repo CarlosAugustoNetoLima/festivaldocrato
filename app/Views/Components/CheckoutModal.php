@@ -19,16 +19,22 @@ $defaultEventId = $defaultEventId ?? '1830';
 
         <hr class="cart-modal-divider" aria-hidden="true">
 
-        <!-- Iframe do checkout via proxy (permite filtrar produto) -->
-        <iframe
-            id="<?= htmlspecialchars($modalId) ?>-iframe"
-            class="cart-checkout-iframe"
-            src="about:blank"
-            data-base-proxy="/checkout-proxy.php"
-            title="Checkout de bilhetes"
-            allow="payment"
-            frameborder="0"
-        ></iframe>
+        <!-- Wrapper com loader enquanto o iframe carrega -->
+        <div class="cart-iframe-wrapper" id="<?= htmlspecialchars($modalId) ?>-wrapper">
+            <div class="cart-iframe-loader" id="<?= htmlspecialchars($modalId) ?>-loader" aria-hidden="true">
+                <span class="cart-iframe-spinner"></span>
+            </div>
+            <iframe
+                id="<?= htmlspecialchars($modalId) ?>-iframe"
+                class="cart-checkout-iframe"
+                src="about:blank"
+                data-base-proxy="/checkout-proxy.php"
+                title="Checkout de bilhetes"
+                allow="payment"
+                frameborder="0"
+                style="opacity:0;transition:opacity 0.25s ease;"
+            ></iframe>
+        </div>
 
     </div><!-- /.cart-modal-container -->
 </div><!-- /.cart-modal-backdrop -->
@@ -73,6 +79,20 @@ const CheckoutModal = (function () {
         return document.getElementById(suffix ? ID + '-' + suffix : ID);
     }
 
+    function showLoader() {
+        const loader = el('loader');
+        const iframe = el('iframe');
+        if (loader) loader.style.display = 'flex';
+        if (iframe) iframe.style.opacity = '0';
+    }
+
+    function hideLoader() {
+        const loader = el('loader');
+        const iframe = el('iframe');
+        if (loader) loader.style.display = 'none';
+        if (iframe) iframe.style.opacity = '1';
+    }
+
     return {
         /**
          * Abre o modal com o checkout filtrado para o produto selecionado.
@@ -104,8 +124,12 @@ const CheckoutModal = (function () {
                         );
                         _loadedProductId = productId;
                     }
+                    // Iframe já carregado — garantir que está visível
+                    hideLoader();
                 } else {
-                    // Novo evento ou primeira carga — carregar o proxy
+                    // Novo evento ou primeira carga — mostrar loader enquanto carrega
+                    showLoader();
+                    iframe.onload = function () { hideLoader(); };
                     let url = proxyBase + '?event_id=' + encodeURIComponent(eventId);
                     if (productId) url += '&product_id=' + encodeURIComponent(productId);
                     iframe.src = url;

@@ -398,7 +398,9 @@ $cartSyncScript = '
 })();
 </script>';
 
-$html = str_replace('</body>', $colorFix . $updateFilterScript . $filterScript . $cartSyncScript . '</body>', $html);
+// colorFix vai para </head> — aplica antes do primeiro render, elimina o flash branco
+$html = str_replace('</head>', $colorFix . '</head>', $html);
+$html = str_replace('</body>', $updateFilterScript . $filterScript . $cartSyncScript . '</body>', $html);
 
 
 // ─── Resposta ─────────────────────────────────────────────────────────────────
