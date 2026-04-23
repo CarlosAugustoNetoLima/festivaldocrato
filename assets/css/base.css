@@ -117,6 +117,26 @@ img {
   border: 0;
 }
 
+.sr-only--focusable:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background: #C8111F;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: 0 0 6px 0;
+}
+
 /* Botões base */
 .btn {
   display: inline-flex;

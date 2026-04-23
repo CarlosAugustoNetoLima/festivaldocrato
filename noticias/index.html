@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival Crato — Notícias</title>
+    <meta name="description"
+        content="40.ª Feira de Artesanato e Gastronomia e Festival do Crato — 25 a 29 de Agosto de 2026">
+    <meta property="og:title" content="40.ª FAG & Festival do Crato 2026">
+    <meta property="og:description"
+        content="Feira de Artesanato e Gastronomia e Festival do Crato — 25 a 29 de Agosto de 2026">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="/festivaldocrato/assets/img/favicon.ico" sizes="any">
+    <link rel="icon" href="/festivaldocrato/assets/img/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/festivaldocrato/assets/img/apple-touch-icon.png">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/festivaldocrato/assets/css/base.css">
+    <link rel="stylesheet" href="/festivaldocrato/assets/css/components.css">
+    <link rel="stylesheet" href="/festivaldocrato/assets/css/theme.css">
+
+    <!-- Toastify -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body data-page="news">
+<a href="#main-content" class="sr-only sr-only--focusable">Saltar para o conteúdo principal</a>
+
+    
+<header class="site-header" id="site-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <a href="/festivaldocrato/" class="header-logo" aria-label="Festival do Crato 2026">
+            <img src="/festivaldocrato/assets/img/logo.png" alt="" class="header-logo-img">
+        </a>
+
+        <!-- Nav Desktop -->
+        <nav class="header-nav" aria-label="Navegação principal">
+                                                <a href="/festivaldocrato/bilheteira"
+                        class="nav-link ">
+                        BILHETEIRA                    </a>
+                                                                <a href="/festivaldocrato/lineup"
+                        class="nav-link ">
+                        LINE UP                    </a>
+                                                                <div class="nav-dropdown">
+                        <button type="button"
+                            class="nav-link dropdown-toggle "
+                            aria-haspopup="true" aria-expanded="false">
+                            O FESTIVAL                            <span class="material-symbols-outlined chevron" aria-hidden="true">expand_more</span>
+                        </button>
+                        <div class="dropdown-menu">
+                                                            <a href="/festivaldocrato/noticias"
+                                    class="dropdown-item active">
+                                    Novidades                                </a>
+                                                            <a href="/festivaldocrato/sobre"
+                                    class="dropdown-item ">
+                                    Sobre o Festival                                </a>
+                                                    </div>
+                    </div>
+                                                                <a href="/festivaldocrato/campismo"
+                        class="nav-link ">
+                        CAMPISMO                    </a>
+                                    </nav>
+
+        <!-- Actions -->
+        <div class="header-actions">
+            <button
+                class="cart-toggle"
+                id="cart-toggle-btn"
+                aria-label="Abrir carrinho"
+                onclick="CheckoutModal.open()"
+            >
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span class="cart-badge" id="cart-badge" aria-hidden="true" style="display:none"></span>
+            </button>
+
+            <button class="menu-toggle" id="menu-toggle" data-mobile-menu-toggle aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="header-search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Pesquisar">
+        <div class="header-search-container">
+            <button class="header-search-close" id="search-close" aria-label="Fechar pesquisa">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+            <form action="/pesquisa" method="GET" class="header-search-form">
+                <label for="search-input" class="sr-only">Pesquisar no site</label>
+                <input type="search" id="search-input" name="q" placeholder="Pesquisar..." class="header-search-input" autocomplete="off">
+                <button type="submit" class="header-search-submit" aria-label="Submeter pesquisa">
+                    <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <nav class="mobile-nav">
+                                    <a href="/festivaldocrato/bilheteira"
+                    class="mobile-nav-link ">
+                    BILHETEIRA                </a>
+                                                <a href="/festivaldocrato/lineup"
+                    class="mobile-nav-link ">
+                    LINE UP                </a>
+                                                <div class="mobile-nav-group">
+                    <button class="mobile-nav-toggle" data-mobile-dropdown aria-expanded="false" aria-haspopup="true">
+                        O FESTIVAL                        <span class="material-symbols-outlined toggle-icon" aria-hidden="true">expand_more</span>
+                    </button>
+                    <div class="mobile-nav-sub-wrapper">
+                        <div class="mobile-nav-sub">
+                                                            <a href="/festivaldocrato/noticias"
+                                    class="mobile-nav-link sub active">
+                                    Novidades                                </a>
+                                                            <a href="/festivaldocrato/sobre"
+                                    class="mobile-nav-link sub ">
+                                    Sobre o Festival                                </a>
+                                                    </div>
+                    </div>
+                </div>
+                                                <a href="/festivaldocrato/campismo"
+                    class="mobile-nav-link ">
+                    CAMPISMO                </a>
+                        </nav>
+</div>
+
+    <main class="main-content" id="main-content">
+
+        
+            
+<section class="news section" id="noticias">
+    <div class="container">
+        <div style="text-align:center;margin-bottom:var(--s-2xl);">
+            <p class="section-label reveal">Últimas Novidades</p>
+            <h2 class="section-title reveal">
+                Notícias &amp; <span>Anúncios</span>
+            </h2>
+        </div>
+
+        <div class="news__grid">
+                                            <article class="news-card news-card--has-image reveal" style="transition-delay:0s;" aria-labelledby="news-title-0">
+                                            <img src="/festivaldocrato/assets/img/anuncio.jpeg" alt="Bispo e Calema confirmados no Festival do Crato 2026" class="news-card__img" loading="lazy">
+                                        <div class="news-card__body">
+                        <div class="news-card__meta">
+                                                            <span class="news-card__tag">Artistas</span>
+                                                                                        <time class="news-card__date" datetime="2026-04-23">23 Apr 2026</time>
+                                                    </div>
+                        <h3 class="news-card__title" id="news-title-0">Bispo e Calema confirmados no Festival do Crato 2026</h3>
+                        <p class="news-card__excerpt">Artistas juntam-se ao já anunciado Buba Espinho &amp; Convidados. O Festival está de regresso à vila alentejana de 26 a 29 de agosto!</p>
+                                                                                <a href="/noticias/bispo-calema"
+                               class="news-card__link"
+                               >
+                                Ler mais <span aria-hidden="true">→</span>
+                                                            </a>
+                                            </div>
+                </article>
+                    </div>
+    </div>
+</section>
+
+        
+    </main>
+
+    
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-top">
+            <!-- Brand -->
+            <div class="footer-brand">
+                <a href="/festivaldocrato/" class="footer-logo">
+                    <img src="/festivaldocrato/assets/img/logo.png" alt="Festival do Crato 2026" class="footer-logo-img">
+                </a>
+                <p class="footer-tagline">
+                    40.ª Feira de Artesanato e Gastronomia<br>
+                    &amp; Festival do Crato · 25–29 Agosto 2026
+                </p>
+                <div class="footer-social">
+                                            <a href="https://instagram.com/" class="footer-social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                                                                <a href="https://facebook.com/" class="footer-social-link" target="_blank" rel="noopener" aria-label="Facebook">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                        </a>
+                                                                <a href="https://twitter.com/" class="footer-social-link" target="_blank" rel="noopener" aria-label="Twitter / X">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+                        </a>
+                                                                <a href="https://youtube.com/" class="footer-social-link" target="_blank" rel="noopener" aria-label="YouTube">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                        </a>
+                                    </div>
+            </div>
+
+            <!-- Festival -->
+            <div>
+                <p class="footer-col-title">Evento</p>
+                <nav class="footer-links">
+                                            <a href="/festivaldocrato/lineup" class="footer-link">
+                            Programação                        </a>
+                                            <a href="/festivaldocrato/artistas" class="footer-link">
+                            Artistas                        </a>
+                                            <a href="/bilhetes" class="footer-link">
+                            Bilhetes                        </a>
+                                            <a href="/festivaldocrato/info" class="footer-link">
+                            Info                        </a>
+                                    </nav>
+            </div>
+
+            <!-- Bilhetes -->
+            <div>
+                <p class="footer-col-title">Bilhetes</p>
+                <nav class="footer-links">
+                    <a href="/bilhetes" class="footer-link">Concerto Solidário · 25 Ago</a>
+                    <a href="/bilhetes" class="footer-link">Bilhete Diário</a>
+                    <a href="/bilhetes" class="footer-link">Passe 4 Dias</a>
+                    <a href="/bilhetes" class="footer-link">Passe 4 Dias + Campismo</a>
+                </nav>
+            </div>
+
+            <!-- Contacto -->
+            <div>
+                <p class="footer-col-title">Contacto</p>
+                <nav class="footer-links">
+                    <a href="mailto:festivaldocrato@cm-crato.pt" class="footer-link">festivaldocrato@cm-crato.pt</a>
+                    <a href="tel:245990110" class="footer-link">245 990 110</a>
+                    <a href="/festivaldocrato/info" class="footer-link">FAQ</a>
+                    <a href="/festivaldocrato/info" class="footer-link">Como Chegar</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copyright">
+                &copy; 2026 Festival Crato · Município do Crato. Todos os direitos reservados.
+            </p>
+            <div class="footer-legal">
+                <a href="#" class="footer-legal-link">Política de Privacidade</a>
+                <a href="#" class="footer-legal-link">Política de Cookies</a>
+                <a href="#" class="footer-legal-link">Termos e Condições</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- Modais -->
+    
+<div class="cart-modal-backdrop" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title">
+    <div class="cart-modal-container">
+
+        <!-- Header -->
+        <div class="cart-modal-header">
+            <h2 class="cart-modal-title" id="checkout-modal-title">COMPRAR BILHETE</h2>
+            <button class="cart-modal-close" aria-label="Fechar" onclick="CheckoutModal.close()">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <hr class="cart-modal-divider" aria-hidden="true">
+
+        <!-- Iframe do checkout via proxy (permite filtrar produto) -->
+        <iframe
+            id="checkout-modal-iframe"
+            class="cart-checkout-iframe"
+            src="about:blank"
+            data-base-proxy="/checkout-proxy.php"
+            title="Checkout de bilhetes"
+            allow="payment"
+            frameborder="0"
+        ></iframe>
+
+    </div><!-- /.cart-modal-container -->
+</div><!-- /.cart-modal-backdrop -->
+
+<script>
+const CartBadge = (function () {
+    const STORAGE_KEY = 'crato_cart_count';
+
+    function count() {
+        return parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
+    }
+
+    function render() {
+        const badge = document.getElementById('cart-badge');
+        if (!badge) return;
+        const n = count();
+        if (n > 0) {
+            badge.textContent = n > 99 ? '99+' : n;
+            badge.style.display = 'block';
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+
+    return {
+        set(n)  { localStorage.setItem(STORAGE_KEY, Math.max(0, n)); render(); },
+        reset() { localStorage.removeItem(STORAGE_KEY); render(); },
+        init()  { render(); },
+    };
+})();
+
+const CheckoutModal = (function () {
+    const ID = 'checkout-modal';
+
+    const DEFAULT_EVENT_ID = '1830';
+
+    // Estado persistente do carrinho entre aberturas
+    let _loadedEventId  = '';
+    let _loadedProductId = '';
+
+    function el(suffix) {
+        return document.getElementById(suffix ? ID + '-' + suffix : ID);
+    }
+
+    return {
+        /**
+         * Abre o modal com o checkout filtrado para o produto selecionado.
+         * Se o eventId for o mesmo da sessão actual, apenas actualiza o filtro
+         * de produto via postMessage (sem recarregar o iframe — carrinho preservado).
+         *
+         * @param {string} productName  Nome do produto (para analytics)
+         * @param {string} eventId      ID do evento LeBillet (ex: "1830")
+         * @param {number|null} price   Preço (para analytics)
+         * @param {string} productId    ID do produto/lote (ex: "11022")
+         */
+        open(productName = '', eventId = '', price = null, productId = '') {
+            const backdrop   = el('');
+            const iframe     = el('iframe');
+            if (!backdrop || !iframe) return;
+
+            // Se abriu sem produto, usar o evento padrão (mostra todos os produtos)
+            if (!eventId) eventId = DEFAULT_EVENT_ID;
+
+            if (eventId) {
+                const proxyBase = iframe.dataset.baseProxy || '/checkout-proxy.php';
+
+                if (_loadedEventId === eventId && iframe.src !== 'about:blank' && iframe.contentWindow) {
+                    // Mesma sessão — só actualiza o filtro sem recarregar
+                    if (productId !== _loadedProductId) {
+                        iframe.contentWindow.postMessage(
+                            { type: 'cratoUpdateFilter', productId: productId },
+                            window.location.origin
+                        );
+                        _loadedProductId = productId;
+                    }
+                } else {
+                    // Novo evento ou primeira carga — carregar o proxy
+                    let url = proxyBase + '?event_id=' + encodeURIComponent(eventId);
+                    if (productId) url += '&product_id=' + encodeURIComponent(productId);
+                    iframe.src = url;
+                    _loadedEventId   = eventId;
+                    _loadedProductId = productId;
+                }
+            }
+
+            // Analytics (opcional)
+            if (typeof dataLayer !== 'undefined' && eventId) {
+                const item = { item_name: productName, item_id: String(eventId), quantity: 1 };
+                if (price && price > 0) item.price = price;
+                dataLayer.push({ event: 'begin_checkout', ecommerce: { items: [item] } });
+            }
+
+            backdrop.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            // Mover foco para o botão fechar (acessibilidade)
+            const closeBtn = backdrop.querySelector('.cart-modal-close');
+            if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
+        },
+
+        close() {
+            const backdrop = el('');
+            if (!backdrop) return;
+            backdrop.classList.remove('active');
+            document.body.style.overflow = '';
+            // Devolver foco ao botão que abriu o modal
+            const trigger = document.getElementById('cart-toggle-btn');
+            if (trigger) trigger.focus();
+            // NÃO resetar o iframe — preserva o estado do carrinho entre aberturas
+        }
+    };
+})();
+
+document.addEventListener('DOMContentLoaded', function () {
+    CartBadge.reset();
+});
+
+window.addEventListener('message', function (e) {
+    if (e.data && e.data.type === 'cratoCartCount') {
+        CartBadge.set(e.data.count);
+    }
+});
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') CheckoutModal.close();
+});
+
+(function () {
+    const backdrop = document.getElementById('checkout-modal');
+    if (!backdrop) return;
+    backdrop.addEventListener('click', function (e) {
+        if (e.target === backdrop) CheckoutModal.close();
+    });
+})();
+</script>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="/festivaldocrato/assets/js/theme.js"></script>
+</body>
+
+</html>

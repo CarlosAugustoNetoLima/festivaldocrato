@@ -65,6 +65,23 @@
 
 .cart-badge {
   position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  background: #e63946;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  border-radius: 8px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.cart-badge {
+  position: absolute;
   top: 0;
   right: 0;
   min-width: 18px;
@@ -312,8 +329,10 @@
     max-width: 1135px;
     height: calc(100vh - 80px);
     max-height: 800px;
-    background-color: #fff;
-    box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.1);
+    background-color: #0C0306;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+    border-radius: var(--r-md, 12px);
     transform: translateY(20px);
     transition: transform 0.3s ease;
     display: flex;
@@ -332,17 +351,18 @@
     justify-content: space-between;
     padding: 16px 24px;
     width: 100%;
-    background-color: #fff;
+    background-color: #0C0306;
 }
 
 .cart-modal-title {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
     font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
+    font-weight: 400;
+    font-size: 28px;
     line-height: normal;
-    color: #111;
+    color: #FFFFFF;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
     margin: 0;
     flex: 1;
 }
@@ -351,18 +371,26 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 16px;
-    height: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    border-radius: var(--r-sm, 6px);
+    transition: color 0.2s ease, background 0.2s ease;
+    width: 32px;
+    height: 32px;
+}
+
+.cart-modal-close:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .cart-modal-divider {
     border: none;
     height: 1px;
-    background-color: #111;
+    background-color: rgba(255, 255, 255, 0.08);
     margin: 0;
     width: 100%;
 }
@@ -370,7 +398,7 @@
 .cart-modal-divider-sm {
     border: none;
     height: 1px;
-    background-color: #ddd;
+    background-color: rgba(255, 255, 255, 0.06);
     margin: 16px 0;
     width: 100%;
 }
@@ -381,7 +409,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: #fff;
+    background-color: #0C0306;
 }
 
 /* Left Side: Product List */
@@ -480,7 +508,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     font-weight: 700;
-    color: #111;
+    color: #FFFFFF;
     text-transform: uppercase;
     margin: 0;
 }
@@ -489,15 +517,15 @@
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 400;
-    color: #666;
+    color: rgba(255, 255, 255, 0.5);
     margin: 0;
 }
 
 /* Right Side: Summary */
 .cart-modal-summary {
     width: 350px;
-    border-left: 1px solid #111;
-    background-color: #fff;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: #0C0306;
     padding: 24px;
     display: flex;
     flex-direction: column;
@@ -518,7 +546,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 12px;
     font-weight: 400;
-    color: #666;
+    color: rgba(255, 255, 255, 0.45);
 }
 
 .cart-summary-fees .fee-text {
@@ -539,7 +567,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 18px;
     font-weight: 700;
-    color: #111;
+    color: #FFFFFF;
 }
 
 .cart-summary-total .total-text {
@@ -554,21 +582,22 @@
 .cart-checkout-btn {
     display: block;
     width: 100%;
-    padding: 12px 16px;
+    padding: 0.85rem 2rem;
     margin-top: 16px;
-    background-color: #111;
+    background: linear-gradient(135deg, #C8111F 0%, #E01828 100%);
     color: #fff;
-    border: 1px solid #111;
+    border: none;
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    border-radius: 0;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    border-radius: var(--r-sm, 6px);
+    box-shadow: 0 4px 20px rgba(232, 49, 26, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-sizing: border-box;
 }
 
@@ -579,8 +608,8 @@
 }
 
 .cart-checkout-btn:not(:disabled):hover {
-    background-color: #333;
-    border-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(232, 49, 26, 0.5);
 }
 
 /* Items list */
@@ -588,6 +617,213 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+/* ── Iframe checkout view ── */
+/* Ocupa todo o espaço restante abaixo do cabeçalho */
+.cart-iframe-view {
+    flex: 1;            /* cresce para preencher .cart-modal-container (flex-direction:column) */
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.cart-checkout-iframe {
+    flex: 1;
+    width: 100%;
+    border: none;
+    background: #0C0306;
+    min-height: 0;
+}
+
+
+/* News Article */
+.news-article {
+    padding-bottom: 120px;
+}
+
+.news-article__hero {
+    max-width: 760px;
+    margin: var(--s-2xl) auto 0;
+}
+
+.news-article__hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--r-md);
+}
+
+.news-article__content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding-top: var(--s-2xl);
+}
+
+.news-article__meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: var(--s-lg);
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.news-article__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    margin-bottom: var(--s-md);
+    color: #fff;
+}
+
+.news-article__lead {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: var(--s-xl);
+    font-style: italic;
+    border-left: 3px solid var(--color-primary, #C8111F);
+    padding-left: var(--s-md);
+}
+
+.news-article__content p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: var(--s-lg);
+}
+
+.news-article__content h2 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: #fff;
+    margin: var(--s-2xl) 0 var(--s-md);
+}
+
+.news-article__back {
+    display: inline-block;
+    margin-top: var(--s-xl);
+}
+
+/* Camping Page */
+.camping-page {
+    padding: var(--s-2xl) 0 120px;
+}
+
+.camping-intro {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.75);
+    max-width: 800px;
+    margin-bottom: var(--s-2xl);
+}
+
+.camping-checkin {
+    display: flex;
+    gap: 24px;
+    margin-bottom: var(--s-2xl);
+    flex-wrap: wrap;
+}
+
+.camping-checkin__item {
+    flex: 1;
+    min-width: 220px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--r-md);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.camping-checkin__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #C8111F;
+}
+
+.camping-checkin__value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.camping-checkin__item small {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
+}
+
+.camping-section-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: #fff;
+    margin: var(--s-2xl) 0 var(--s-md);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.camping-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--s-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.camping-list li {
+    padding-left: 20px;
+    position: relative;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+}
+
+.camping-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-primary, #C8111F);
+}
+
+.camping-list--rules li::before {
+    background: #e63946;
+}
+
+.camping-warning {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    border-left: 2px solid #e63946;
+    padding-left: 12px;
+    margin-top: var(--s-md);
+}
+
+.camping-two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: var(--s-xl);
+}
+
+.camping-map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--s-md);
+}
+
+@media (max-width: 768px) {
+    .camping-two-cols {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 }
 
 /* Responsive */
@@ -610,7 +846,7 @@
     .cart-modal-summary {
         width: 100%;
         border-left: none;
-        border-top: 1px solid #111;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         padding-bottom: 80px;
     }
 
