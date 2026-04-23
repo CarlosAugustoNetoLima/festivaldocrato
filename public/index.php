@@ -1,6 +1,7 @@
 <?php
 // Entry point — Festival Crato
 use App\Helpers\Component;
+use App\Services\LeBilletService;
 
 // Autoloader
 spl_autoload_register(function ($class) {
@@ -15,58 +16,20 @@ spl_autoload_register(function ($class) {
 });
 
 // ─────────────────────────────────────────────
-//  API LeBillet — buscar eventos (padrão yanns)
+//  Configuração
 // ─────────────────────────────────────────────
 $checkoutUrl = 'https://checkout.lebillet.eu/';
 $siteName = 'Festival Crato';
+$lebilletApiKey = '9f4c2a1b7e3d6a8cpewe8992801';
+$festivalEventId = 1830;
 
-// get events (limit 6 — para homepage)
-$curl = curl_init();
-
-curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://lebillet.eu/api_events/events?limit=6',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_HTTPHEADER => array(
-        'Authorization: Basic 9f4c2a1b7e3d6a8cpewe8992801',
-        'API: application/json',
-        'Content-Type: application/json',
-        'Cookie: PHPSESSID=7sooqfe3a52859s597k89fb9m5'
-    ),
-));
-
-$curlResult = curl_exec($curl);
-$response = ($curlResult !== false) ? json_decode($curlResult) : null;
-$eventsLimit = $response?->events ?? [];
-
-// get events (todos — para página de bilheteira)
-$curl = curl_init();
-
-curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://lebillet.eu/api_events/events',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_HTTPHEADER => array(
-        'Authorization: Basic 9f4c2a1b7e3d6a8cpewe8992801',
-        'API: application/json',
-        'Content-Type: application/json',
-        'Cookie: PHPSESSID=7sooqfe3a52859s597k89fb9m5'
-    ),
-));
-
-$curlResult = curl_exec($curl);
-$response = ($curlResult !== false) ? json_decode($curlResult) : null;
-$eventsAll = $response?->events ?? [];
+// ─────────────────────────────────────────────
+//  LeBillet Service — dados via API/checkout
+// ─────────────────────────────────────────────
+$lebillet = new LeBilletService();
+$eventsLimit = $lebillet->getApiEvents($lebilletApiKey, 6);
+$eventsAll = $lebillet->getApiEvents($lebilletApiKey);
+$tickets = $lebillet->getCheckoutTickets($festivalEventId);
 
 // ─────────────────────────────────────────────
 //  Site data
@@ -96,128 +59,10 @@ $festival = [
     ],
 ];
 
-// ─────────────────────────────────────────────
-//  Mapear eventos da API para formato de tickets
-// ─────────────────────────────────────────────
-function mapApiEventsToTickets(array $apiEvents): array
-{
-    $tickets = [];
-
-    foreach ($apiEvents as $event) {
-        // Usar dados reais da API
-        $eventId = $event->id ?? null;
-        $name = $event->name ?? 'Evento';
-        $dateStart = $event->date_start ?? '';
-        $city = $event->city->name ?? '';
-        $place = $event->place->name ?? '';
-
-        // Formatar data para exibição (se existir)
-        $dateFormatted = '';
-        if ($dateStart) {
-            $dt = DateTime::createFromFormat('Y-m-d H:i:s', $dateStart);
-            if ($dt) {
-                $dateFormatted = $dt->format('d/m/Y H:i');
-            }
-        }
-
-        // Criar ticket a partir do evento da API
-        // Preço não é exibido - vem do checkout LeBillet (Opção C)
-        $tickets[] = [
-            'id' => 'event-' . $eventId,
-            'name' => $name,
-            'subtitle' => $dateFormatted . ($city ? ' · ' . $city : ''),
-            'price' => null, // null = não exibe preço no card
-            'description' => $place ? 'Local: ' . $place : 'Evento disponível via LeBillet',
-            'highlight' => false,
-            'event_id' => $eventId, // ID numérico da API - ESSENCIAL para o checkout
-            'image' => $event->image->name ?? null, // Imagem do evento
-            '_api_data' => $event, // Guardar dados originais para debug/expansão
-        ];
-    }
-
-    return $tickets;
-}
-
-// ─────────────────────────────────────────────
-//  Tickets: bilhetes reais do Festival do Crato 2026
-//  Evento: checkout.lebillet.eu/1830
-//  Product IDs obtidos diretamente do checkout LeBillet
-// ─────────────────────────────────────────────
-// NOTA: A API LeBillet retorna eventos de outros organizadores.
-//       Os bilhetes do Festival Crato (evento 1830) são definidos
-//       manualmente abaixo com os IDs corretos.
-$tickets = [
-        [
-            'id'         => 'passe-4dias',
-            'name'       => 'Passe 4 Dias',
-            'subtitle'   => '26–29 Agosto · Sem Campismo',
-            'price'      => 45.00,
-            'description'=> 'Acesso completo aos 4 dias do Festival do Crato 2026. A partir de 1 de agosto: 50€.',
-            'highlight'  => true,
-            'event_id'   => '1830',
-            'product_id' => '11022',
-        ],
-        [
-            'id'         => 'passe-4dias-campismo',
-            'name'       => 'Passe 4 Dias + Campismo',
-            'subtitle'   => '26–29 Agosto · Com Campismo',
-            'price'      => 60.00,
-            'description'=> 'Acesso completo aos 4 dias com campismo. A partir de 1 de agosto: 70€.',
-            'highlight'  => false,
-            'event_id'   => '1830',
-            'product_id' => '11023',
-        ],
-        [
-            'id'         => 'dia-26',
-            'name'       => 'Bilhete Dia 26',
-            'subtitle'   => '26 Agosto · 1.º dia',
-            'price'      => 15.00,
-            'description'=> 'Acesso ao Festival do Crato — 1.º dia. A partir de 1 de agosto: 20€.',
-            'highlight'  => false,
-            'event_id'   => '1830',
-            'product_id' => '11024',
-        ],
-        [
-            'id'         => 'dia-27',
-            'name'       => 'Bilhete Dia 27',
-            'subtitle'   => '27 Agosto · 2.º dia',
-            'price'      => 15.00,
-            'description'=> 'Acesso ao Festival do Crato — 2.º dia. A partir de 1 de agosto: 20€.',
-            'highlight'  => false,
-            'event_id'   => '1830',
-            'product_id' => '11025',
-        ],
-        [
-            'id'         => 'dia-28',
-            'name'       => 'Bilhete Dia 28',
-            'subtitle'   => '28 Agosto · 3.º dia',
-            'price'      => 20.00,
-            'description'=> 'Acesso ao Festival do Crato — 3.º dia. A partir de 1 de agosto: 25€.',
-            'highlight'  => false,
-            'event_id'   => '1830',
-            'product_id' => '11026',
-        ],
-        [
-            'id'         => 'dia-29',
-            'name'       => 'Bilhete Dia 29',
-            'subtitle'   => '29 Agosto · Dia Final',
-            'price'      => 20.00,
-            'description'=> 'Acesso ao Festival do Crato — dia final. A partir de 1 de agosto: 25€.',
-            'highlight'  => false,
-            'event_id'   => '1830',
-            'product_id' => '11027',
-        ],
-    ];
-
 $artists = [
-    ['name' => 'A Anunciar', 'day' => 1, 'stage' => 'Palco FAG', 'headliner' => true, 'genre' => 'Música Portuguesa', 'image' => '/assets/img/artist-1.jpg'],
-    ['name' => 'A Anunciar', 'day' => 1, 'stage' => 'Palco FAG', 'headliner' => false, 'genre' => 'Folk / Tradicional', 'image' => '/assets/img/artist-2.jpg'],
-    ['name' => 'A Anunciar', 'day' => 2, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Música Portuguesa', 'image' => '/assets/img/artist-3.jpg'],
-    ['name' => 'A Anunciar', 'day' => 2, 'stage' => 'Palco Festival', 'headliner' => false, 'genre' => 'Pop / Rock', 'image' => '/assets/img/artist-4.jpg'],
-    ['name' => 'A Anunciar', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Música Portuguesa', 'image' => '/assets/img/artist-5.jpg'],
-    ['name' => 'A Anunciar', 'day' => 3, 'stage' => 'Palco FAG', 'headliner' => false, 'genre' => 'Fado / Tradicional', 'image' => '/assets/img/artist-6.jpg'],
-    ['name' => 'Buba Espinho', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Música Portuguesa', 'image' => '/assets/img/artist-7.jpg', 'confirmed' => true],
-    ['name' => 'A Anunciar', 'day' => 4, 'stage' => 'Palco FAG', 'headliner' => false, 'genre' => 'Folk / World Music', 'image' => '/assets/img/artist-8.jpg'],
+    ['name' => 'Bispo', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Rap / Hip-Hop', 'image' => '/assets/img/26_agosto.jpeg', 'confirmed' => true],
+    ['name' => 'Calema', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'R&B / Pop', 'image' => '/assets/img/28_agosto.jpeg', 'confirmed' => true],
+    ['name' => 'Buba Espinho', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Música Portuguesa', 'image' => '/assets/img/29_agosto.jpeg', 'confirmed' => true],
 ];
 
 $products = [
@@ -245,7 +90,7 @@ $products = [
         'id' => 'eco-bag-crato-2026',
         'name' => 'Eco Bag Festival Crato 2026',
         'category' => 'Acessórios',
-        'price' => 10.00,
+        'price' => null, // Preço vem do checkout LeBillet
         'description' => 'Saco reutilizável oficial do Festival do Crato 2026.',
         'image' => '/assets/img/logo.png',
         'highlight' => false,
@@ -255,7 +100,7 @@ $products = [
         'id' => 'hoodie-crato-2026',
         'name' => 'Hoodie Festival Crato 2026',
         'category' => 'Vestuário',
-        'price' => 40.00,
+        'price' => null, // Preço vem do checkout LeBillet
         'description' => 'Hoodie oficial do Festival do Crato 2026. Edição limitada.',
         'image' => '/assets/img/logo.png',
         'highlight' => false,
@@ -265,31 +110,12 @@ $products = [
 
 $news = [
     [
-        'date' => '2026-04-01',
-        'label' => '40.ª FAG 2026',
-        'title' => 'Inscrições para a Feira de Artesanato e Gastronomia 2026 já disponíveis!',
-        'excerpt' => 'As candidaturas para participar na 40.ª FAG estão abertas. Prazo de inscrição: 19 de junho de 2026.',
-        'url' => 'https://festivaldocrato.cm-crato.pt/',
-        'tag' => 'FAG',
-        'image' => '/assets/img/1200X630_FAG_INS-copiar.jpg',
-    ],
-    [
-        'date' => '2026-03-02',
-        'label' => 'Primeiro Artista Confirmado',
-        'title' => 'Buba Espinho é o primeiro artista confirmado para o Festival do Crato 2026!',
-        'excerpt' => 'Uma das vozes mais distintivas da nova geração da música portuguesa, Buba Espinho sobe ao palco no dia 29 de agosto.',
-        'url' => 'https://festivaldocrato.cm-crato.pt/',
+        'date' => '2026-04-23',
         'tag' => 'Artistas',
-        'image' => '/assets/img/1200X630_buba.png',
-    ],
-    [
-        'date' => '2026-01-21',
-        'label' => 'Datas Confirmadas',
-        'title' => 'Festival do Crato celebra mais uma edição no último fim de semana de agosto',
-        'excerpt' => 'O Festival do Crato 2026 está confirmado para 26, 27, 28 e 29 de agosto.',
-        'url' => 'https://festivaldocrato.cm-crato.pt/',
-        'tag' => 'Festival',
-        'image' => '/assets/img/01.jpg',
+        'title' => 'Bispo e Calema confirmados no Festival do Crato 2026',
+        'excerpt' => 'Artistas juntam-se ao já anunciado Buba Espinho & Convidados. O Festival está de regresso à vila alentejana de 26 a 29 de agosto!',
+        'url' => '/noticias/bispo-calema',
+        'image' => '/assets/img/anuncio.jpeg',
     ],
 ];
 
@@ -310,6 +136,7 @@ $routes = [
     '/o-que-fazer' => 'todo',
     '/contactos' => 'contacts',
     '/noticias' => 'news',
+    '/noticias/bispo-calema' => 'news_bispo_calema',
     '/artistas' => 'artists',
     '/info' => 'info',
     '/loja' => 'store',
@@ -350,6 +177,9 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
     <meta property="og:description"
         content="Feira de Artesanato e Gastronomia e Festival do Crato — 25 a 29 de Agosto de 2026">
     <meta property="og:type" content="website">
+    <link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/img/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 
     <!-- Google Fonts -->
     <link
@@ -368,10 +198,11 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 </head>
 
 <body data-page="<?= htmlspecialchars($activePage) ?>">
+<a href="#main-content" class="sr-only sr-only--focusable">Saltar para o conteúdo principal</a>
 
     <?= Component::render('Header', ['activePage' => $activePage, 'siteName' => $siteName]) ?>
 
-    <main class="main-content">
+    <main class="main-content" id="main-content">
 
         <?php if ($activePage === 'home'): ?>
             <?= Component::render('Hero', ['festival' => $festival]) ?>
@@ -379,7 +210,7 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             <?= Component::render('News', ['news' => $news]) ?>
             <?= Component::render('Artists', ['artists' => $artists]) ?>
             <?= Component::render('Tickets', ['tickets' => $tickets, 'events' => $eventsLimit, 'checkoutUrl' => $checkoutUrl]) ?>
-            <?= Component::render('Store', ['products' => $products]) ?>
+            <?php // Component::render('Store', ['products' => $products]) ?>
             <?= Component::render('About', ['festival' => $festival]) ?>
 
         <?php elseif ($activePage === 'store'): ?>
@@ -396,20 +227,62 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             <?= Component::render('Lineup', ['artists' => $artists, 'showAll' => true]) ?>
 
         <?php elseif ($activePage === 'artists'): ?>
-            <section class="page-hero page-hero--inner">
-                <div class="container">
-                    <h1 class="page-hero__title">Artistas</h1>
-                </div>
-            </section>
+
             <?= Component::render('Artists', ['artists' => $artists, 'showAll' => true]) ?>
 
         <?php elseif ($activePage === 'news'): ?>
-            <section class="page-hero page-hero--inner">
-                <div class="container">
-                    <h1 class="page-hero__title">Notícias</h1>
-                </div>
-            </section>
+
             <?= Component::render('News', ['news' => $news]) ?>
+
+        <?php elseif ($activePage === 'news_bispo_calema'): ?>
+            <article class="news-article">
+                <div class="container">
+                    <div class="news-article__hero">
+                        <img src="/assets/img/anuncio.jpeg" alt="Bispo e Calema confirmados no Festival do Crato 2026"
+                            class="news-article__hero-img">
+                    </div>
+                    <div class="news-article__content">
+                        <div class="news-article__meta">
+                            <span class="news-card__tag">Artistas</span>
+                            <time datetime="2026-04-23">23 Abr 2026</time>
+                        </div>
+                        <h1 class="news-article__title">Bispo e Calema confirmados no Festival do Crato 2026</h1>
+                        <p class="news-article__lead">Artistas juntam-se ao já anunciado Buba Espinho &amp; Convidados</p>
+
+                        <p>O <strong>Festival do Crato</strong> anuncia mais dois nomes para a próxima edição. Bispo e
+                            Calema juntam-se ao já anunciado Buba Espinho &amp; Convidados. O Festival está de regresso à
+                            vila alentejana de 26 a 29 de agosto!</p>
+
+                        <p><strong>Bispo</strong> é um dos artistas mais ouvidos em Portugal, somando centenas de milhões de
+                            streams nas plataformas digitais e presença recorrente nos tops nacionais. Tem vários temas
+                            certificados com galardões de platina e ouro, incluindo "Nós2", "Pormenores" e "Essa Saia", que
+                            marcaram diferentes fases do seu percurso.</p>
+
+                        <p><strong>Calema</strong> são um dos projetos mais bem-sucedidos da música em português, acumulando
+                            centenas de milhões de streams e visualizações nas plataformas digitais. Ao longo da sua
+                            carreira, somam vários temas certificados com galardões de ouro e platina, incluindo "A Nossa
+                            Vez" ou "Te Amo". Em 2024, tornaram-se os primeiros artistas portugueses a realizar um concerto
+                            em nome próprio no Estádio da Luz.</p>
+
+                        <h2>Sobre o Festival do Crato</h2>
+                        <p>O Festival do Crato, situado no Alto Alentejo, é um dos festivais de verão mais relevantes em
+                            Portugal, combinando música, território e tradição. Para além do cartaz musical, o evento
+                            integra uma feira de artesanato e gastronomia que valoriza produtores e tradições locais,
+                            criando uma experiência que vai além dos concertos.</p>
+
+                        <p>O recinto conta ainda com uma zona de campismo para portadores de passe geral com campismo, que
+                            permite prolongar a experiência ao longo de toda a programação.</p>
+
+                        <p>Com uma média de cerca de 100 mil visitantes por edição, o Festival do Crato é hoje o principal
+                            festival de verão do Alentejo, reunindo diferentes gerações num ambiente marcado pela cultura
+                            local, música e gastronomia.</p>
+
+                        <p>A edição de 2026 realiza-se de <strong>26 a 29 de agosto</strong>.</p>
+
+                        <a href="/noticias" class="btn btn-ghost news-article__back">← Voltar às Notícias</a>
+                    </div>
+                </div>
+            </article>
 
         <?php elseif ($activePage === 'about' || $activePage === 'info'): ?>
             <section class="page-hero page-hero--inner">
@@ -430,9 +303,9 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             <section class="generic-page">
                 <div class="container">
                     <p>A Vila do Crato situa-se no Alto Alentejo, com fácil acesso pela A6 (saída para Elvas/Marvão).</p>
-                    <h3>Transportes Públicos</h3>
+                    <h2>Transportes Públicos</h2>
                     <p>Comboio até Portalegre ou Elvas, seguido de autocarro ou táxi.</p>
-                    <h3>Estacionamento</h3>
+                    <h2>Estacionamento</h2>
                     <p>Parques de estacionamento disponíveis junto ao recinto.</p>
                 </div>
             </section>
@@ -441,13 +314,82 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             <section class="page-hero page-hero--inner">
                 <div class="container">
                     <h1 class="page-hero__title">Campismo</h1>
-                    <p class="page-hero__sub">Receção ao Campista e informações sobre alojamento</p>
+                    <p class="page-hero__sub">Vive o Festival do Crato até ao último momento</p>
                 </div>
             </section>
-            <section class="generic-page">
+            <section class="camping-page">
                 <div class="container">
-                    <p>O Parque de Campismo do Festival Crato abre no dia 24 de agosto de 2026.</p>
-                    <p>Bilhetes com campismo disponíveis em combinação com o passe de 4 dias.</p>
+
+                    <p class="camping-intro">O Parque de Campismo do Festival do Crato é a solução ideal para quem pretende aproveitar ao máximo todos os dias do evento, com conforto, segurança e um ambiente de convívio entre festivaleiros. A pensar na comodidade dos visitantes, a organização disponibiliza uma zona de camping ocasional equipada com as condições essenciais para uma estadia tranquila, permitindo viver o festival de forma prática e próxima de toda a animação.</p>
+
+                    <div class="camping-checkin">
+                        <div class="camping-checkin__item">
+                            <span class="camping-checkin__label">Check-in</span>
+                            <span class="camping-checkin__value">23 de agosto, a partir das 10h00</span>
+                            <small>Acesso reservado a portadores do Passe 4 Dias com Camping Ocasional</small>
+                        </div>
+                        <div class="camping-checkin__item">
+                            <span class="camping-checkin__label">Check-out</span>
+                            <span class="camping-checkin__value">30 de agosto, até às 18h00</span>
+                        </div>
+                    </div>
+
+                    <h2 class="camping-section-title">Condições e Serviços Disponíveis</h2>
+                    <p>A zona de campismo está equipada com um conjunto de infraestruturas e serviços que visam garantir conforto, segurança e bem-estar a todos os utilizadores:</p>
+                    <ul class="camping-list">
+                        <li>Área destinada à utilização de fogareiros</li>
+                        <li>Lava-loiça</li>
+                        <li>Posto de carregamento de telemóveis</li>
+                        <li>Instalações sanitárias e duche para pessoas com mobilidade reduzida</li>
+                        <li>Chuveiros interiores e exteriores</li>
+                        <li>Área de refeitório ao ar livre</li>
+                        <li>Iluminação noturna</li>
+                        <li>Sistema de videovigilância</li>
+                        <li>Equipa de apoio e segurança no local</li>
+                    </ul>
+
+                    <div class="camping-two-cols">
+                        <div>
+                            <h2 class="camping-section-title">Regras de Utilização</h2>
+                            <p>Para garantir a segurança e o bom funcionamento da zona de campismo, devem ser respeitadas as seguintes normas.</p>
+                            <p><strong>É proibido:</strong></p>
+                            <ul class="camping-list camping-list--rules">
+                                <li>Fazer fogueiras</li>
+                                <li>Utilizar garrafas, vasilhame ou utensílios em vidro</li>
+                                <li>Deitar lixo para o chão</li>
+                                <li>Montar tendas em acessos reservados a viaturas de emergência</li>
+                                <li>Delimitar ou reservar espaço de forma abusiva</li>
+                                <li>A entrada de animais, exceto cães guia</li>
+                            </ul>
+                            <p class="camping-warning">O incumprimento das normas poderá implicar a perda do direito de acesso ao parque de campismo e ao Festival.</p>
+                        </div>
+                        <div>
+                            <h2 class="camping-section-title">O Que Levar</h2>
+                            <ul class="camping-list camping-list--pack">
+                                <li>Tenda e material de campismo</li>
+                                <li>Saco-cama ou colchão insuflável</li>
+                                <li>Roupa adequada às condições climatéricas</li>
+                                <li>Produtos de higiene pessoal</li>
+                                <li>Lanterna ou iluminação portátil</li>
+                                <li>Protetor solar</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h2 class="camping-section-title">Informações Importantes</h2>
+                    <ul class="camping-list">
+                        <li>A zona de campismo dispõe de sistema de videovigilância</li>
+                        <li>Recomenda-se a vigilância permanente de crianças</li>
+                        <li>Cada utilizador é responsável pelos seus bens pessoais</li>
+                        <li>A organização reserva-se o direito de aplicar medidas necessárias para garantir a segurança de todos</li>
+                    </ul>
+
+                    <h2 class="camping-section-title">Localização do Campismo</h2>
+                    <a href="https://maps.app.goo.gl/zKYtMe21nYnLhKzE9" target="_blank" rel="noopener" class="btn btn-primary camping-map-btn">
+                        <span class="material-symbols-outlined">location_on</span>
+                        Ver localização no mapa
+                    </a>
+
                 </div>
             </section>
 
@@ -475,15 +417,15 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                 <div class="container">
                     <p>Município do Crato</p>
                     <p>Praça do Município, 7430-999 Crato</p>
-                    <p>Email: fag@cm-crato.pt | Telf: 245 990 110</p>
+                    <p>Email: <a href="mailto:fag@cm-crato.pt">fag@cm-crato.pt</a> | Telf: <a href="tel:+351245990110">245 990 110</a></p>
                 </div>
             </section>
 
         <?php elseif ($activePage === '404'): ?>
             <section class="page-404">
                 <div class="container">
-                    <h1>404</h1>
-                    <p>Página não encontrada.</p>
+                    <h1>Página não encontrada</h1>
+                    <p>Erro 404 — A página que procura não existe.</p>
                     <a href="/" class="btn btn-primary">Voltar ao início</a>
                 </div>
             </section>

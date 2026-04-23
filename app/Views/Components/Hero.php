@@ -1,6 +1,6 @@
 <?php
 $festival = $festival ?? [];
-$edition  = $festival['edition'] ?? '40.ª';
+$edition = $festival['edition'] ?? '40.ª';
 
 $tickerItems = [
     '★ Buba Espinho · 29 Agosto 2026',
@@ -30,7 +30,23 @@ $tickerItems = [
 <!-- Hero -->
 <section class="hero" id="home">
     <div class="hero__bg">
-        <img src="/assets/img/hero-bg.jpg" alt="Festival Crato 2026" class="hero__bg-img" loading="eager">
+        <picture>
+            <source
+                type="image/webp"
+                srcset="/assets/img/cratobg_1280.webp 1280w, /assets/img/cratobg.webp 2560w"
+                sizes="100vw"
+            >
+            <img
+                src="/assets/img/cratobg_2560.png"
+                alt="Festival Crato 2026"
+                class="hero__bg-img"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                width="2560"
+                height="1706"
+            >
+        </picture>
         <div class="hero__overlay"></div>
     </div>
 
@@ -42,13 +58,13 @@ $tickerItems = [
         </h1>
         <!-- Badge -->
         <div class="hero__badge">
-            <span class="hero__badge-dot"></span>
+            <span class="hero__badge-dot" aria-hidden="true"></span>
             <?= htmlspecialchars($edition) ?> FAG &amp; Festival · 25–29 Agosto 2026
         </div>
         <!-- CTAs -->
         <div class="hero__actions">
             <a href="/bilhetes" class="btn btn-primary" id="hero-cta-tickets">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                     <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" />
                     <line x1="7" y1="7" x2="7.01" y2="7" />
                 </svg>
@@ -60,22 +76,22 @@ $tickerItems = [
         </div>
 
         <!-- Countdown -->
-        <div class="hero__countdown" id="hero-countdown">
+        <div class="hero__countdown" id="hero-countdown" aria-label="Contagem decrescente para o festival" role="timer">
             <div class="countdown-item">
                 <span class="countdown-number" data-cd-days>--</span>
                 <span class="countdown-label">Dias</span>
             </div>
-            <span class="countdown-sep">:</span>
+            <span class="countdown-sep" aria-hidden="true">:</span>
             <div class="countdown-item">
                 <span class="countdown-number" data-cd-hours>--</span>
                 <span class="countdown-label">Horas</span>
             </div>
-            <span class="countdown-sep">:</span>
+            <span class="countdown-sep" aria-hidden="true">:</span>
             <div class="countdown-item">
                 <span class="countdown-number" data-cd-minutes>--</span>
                 <span class="countdown-label">Min</span>
             </div>
-            <span class="countdown-sep">:</span>
+            <span class="countdown-sep" aria-hidden="true">:</span>
             <div class="countdown-item">
                 <span class="countdown-number" data-cd-seconds>--</span>
                 <span class="countdown-label">Seg</span>

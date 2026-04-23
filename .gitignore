@@ -5,3 +5,5 @@
 config/site.local.php
 .claude/
 dist/
+cart_debug.json
+public/debug-proxy.php

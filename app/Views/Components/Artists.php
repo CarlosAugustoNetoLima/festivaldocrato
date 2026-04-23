@@ -2,17 +2,8 @@
 $artists = $artists ?? [];
 $showAll  = $showAll ?? false;
 
-// On homepage, show only headliners + first 3 non-headliners
-if (!$showAll) {
-    $headliners    = array_filter($artists, fn($a) => $a['headliner'] ?? false);
-    $nonHeadliners = array_filter($artists, fn($a) => !($a['headliner'] ?? false));
-    $artists = array_values(array_merge(
-        array_values($headliners),
-        array_slice(array_values($nonHeadliners), 0, 3)
-    ));
-}
 
-$dayLabels = [1 => '15 Ago · Dia 1', 2 => '16 Ago · Dia 2', 3 => '17 Ago · Dia 3'];
+$dayLabels = [1 => '26 Ago · Dia 1', 2 => '27 Ago · Dia 2', 3 => '28 Ago · Dia 3', 4 => '29 Ago · Dia 4'];
 ?>
 
 <section class="artists section" id="artistas">
@@ -25,8 +16,8 @@ $dayLabels = [1 => '15 Ago · Dia 1', 2 => '16 Ago · Dia 2', 3 => '17 Ago · Di
                 </h2>
             </div>
             <?php if (!$showAll): ?>
-                <a href="/artistas" class="btn btn-ghost reveal" style="flex-shrink:0;">
-                    Ver todos →
+                <a href="/artistas" class="btn btn-ghost reveal" style="flex-shrink:0;" aria-label="Ver todos os artistas">
+                    Ver todos <span aria-hidden="true">→</span>
                 </a>
             <?php endif; ?>
         </div>
@@ -39,7 +30,7 @@ $dayLabels = [1 => '15 Ago · Dia 1', 2 => '16 Ago · Dia 2', 3 => '17 Ago · Di
                 $isHeadliner = $artist['headliner'] ?? false;
                 $imgPath = $artist['image'] ?? "/assets/img/artist-placeholder.jpg";
                 ?>
-                <article class="artist-card reveal" style="transition-delay:<?= $i * 0.06 ?>s;">
+                <article class="artist-card reveal" style="transition-delay:<?= $i * 0.06 ?>s;" aria-label="<?= htmlspecialchars($artist['name']) ?>">
                     <?php if ($isHeadliner): ?>
                         <span class="artist-card__badge">Headliner</span>
                     <?php endif; ?>
@@ -54,7 +45,7 @@ $dayLabels = [1 => '15 Ago · Dia 1', 2 => '16 Ago · Dia 2', 3 => '17 Ago · Di
                         >
                     </div>
 
-                    <div class="artist-card__overlay"></div>
+                    <div class="artist-card__overlay" aria-hidden="true"></div>
 
                     <div class="artist-card__content">
                         <span class="artist-card__day"><?= htmlspecialchars($dayLabel) ?></span>

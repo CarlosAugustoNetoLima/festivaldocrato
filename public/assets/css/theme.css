@@ -863,7 +863,7 @@ body {
   border-radius: var(--r-md);
   overflow: hidden;
   aspect-ratio: 3/4;
-  cursor: pointer;
+  cursor: default;
   group: true;
 }
 
@@ -1634,6 +1634,15 @@ body {
 
   .mobile-menu {
     display: flex;
+  }
+
+  .hero__bg-img {
+    object-position: center calc(50% - 120px);
+  }
+
+  .hero {
+    justify-content: flex-start;
+    padding-top: 5rem;
   }
 
   .hero__countdown {

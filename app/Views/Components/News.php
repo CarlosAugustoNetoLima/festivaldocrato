@@ -19,7 +19,7 @@ $news = $news ?? [];
                 $dateFormatted = $dateObj ? date_format($dateObj, 'd M Y') : '';
                 $tag           = $item['tag'] ?? '';
                 ?>
-                <article class="news-card <?= !empty($item['image']) ? 'news-card--has-image' : '' ?> reveal" style="transition-delay:<?= $i * 0.1 ?>s;">
+                <article class="news-card <?= !empty($item['image']) ? 'news-card--has-image' : '' ?> reveal" style="transition-delay:<?= $i * 0.1 ?>s;" aria-labelledby="news-title-<?= $i ?>">
                     <?php if (!empty($item['image'])): ?>
                         <img src="<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['title'] ?? '') ?>" class="news-card__img" loading="lazy">
                     <?php endif; ?>
@@ -32,11 +32,15 @@ $news = $news ?? [];
                                 <time class="news-card__date" datetime="<?= htmlspecialchars($date) ?>"><?= htmlspecialchars($dateFormatted) ?></time>
                             <?php endif; ?>
                         </div>
-                        <h3 class="news-card__title"><?= htmlspecialchars($item['title'] ?? '') ?></h3>
+                        <h3 class="news-card__title" id="news-title-<?= $i ?>"><?= htmlspecialchars($item['title'] ?? '') ?></h3>
                         <p class="news-card__excerpt"><?= htmlspecialchars($item['excerpt'] ?? '') ?></p>
                         <?php if (!empty($item['url'])): ?>
-                            <a href="<?= htmlspecialchars($item['url']) ?>" class="news-card__link" target="_blank" rel="noopener">
+                            <?php $isExternal = str_starts_with($item['url'], 'http'); ?>
+                            <a href="<?= htmlspecialchars($item['url']) ?>"
+                               class="news-card__link"
+                               <?= $isExternal ? 'target="_blank" rel="noopener" aria-label="Ler mais sobre ' . htmlspecialchars($item['title'] ?? '') . ' (abre numa nova janela)"' : '' ?>>
                                 Ler mais <span aria-hidden="true">→</span>
+                                <?php if ($isExternal): ?><span class="sr-only"> (abre numa nova janela)</span><?php endif; ?>
                             </a>
                         <?php endif; ?>
                     </div>
