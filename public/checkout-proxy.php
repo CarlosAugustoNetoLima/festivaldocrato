@@ -211,11 +211,54 @@ div.cart-sidebar, div.map-card, .ticket-box, .modal-content,
 
 /* Fix mobile scroll inside iframe */
 @media (max-width: 768px) {
-    html, body, .wrapper, .main-panel, #tickets-container, .content, div.cart-sidebar {
+    html, body, .wrapper, .main-panel, .content, div.cart-sidebar {
         height: auto !important;
         max-height: none !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
+    }
+
+    /* Integrar carrinho no fluxo da página, sem overlay e sempre aberto */
+    div.cart-sidebar {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        margin-top: 20px !important;
+        transform: none !important;
+        display: block !important;
+        height: auto !important;
+        min-height: 0 !important;
+        padding-bottom: 140px !important; /* Adicionado padding para o Total não ficar sob o botão */
+    }
+    
+    /* Mostrar sempre o conteúdo interno do carrinho */
+    .cart-sidebar-content,
+    .resume-cart,
+    .resume-cart-content {
+        display: block !important;
+        height: auto !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Ocultar o botão de toggle do carrinho mobile */
+    #button-cart-sider {
+        display: none !important;
+    }
+    
+    /* Remover espaço excessivo entre o formulário e o carrinho */
+    form, .content, .main-panel, #tickets-container, .wrapper, .calema-section, .map-card, .off-date, .map-card .off-date, .div-table-product, .container-fluid, .row.cart-content {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        height: auto !important;
+        align-items: flex-start !important; /* Evita que flex items estiquem e criem buracos */
+    }
+
+    body {
+        padding-bottom: 160px !important; /* Preservado o padding de 160px ajustado pelo usuário */
     }
 }
 

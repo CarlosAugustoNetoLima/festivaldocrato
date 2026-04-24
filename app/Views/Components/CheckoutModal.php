@@ -93,6 +93,73 @@ const CheckoutModal = (function () {
         if (iframe) iframe.style.opacity = '1';
     }
 
+    // O checkout do LeBillet usa position:fixed nos containers principais —
+    // em mobile o body tem altura 0 e o conteúdo ultrapassa o viewport do
+    // iframe sem poder fazer scroll. Solução: medir a altura real do conteúdo
+    // e ajustar a altura do <iframe> para que o wrapper exterior trate do
+    // scroll (overflow-y:auto já presente em .cart-iframe-wrapper mobile).
+    let _heightObserver = null;
+    let _heightTimer = null;
+
+    function isMobileViewport() {
+        return window.matchMedia('(max-width: 768px)').matches;
+    }
+
+    function adjustIframeHeight() {
+        const iframe = el('iframe');
+        if (!iframe) return;
+        if (!isMobileViewport()) {
+            iframe.style.height = '';
+            iframe.style.minHeight = '';
+            iframe.style.flex = '';
+            return;
+        }
+        try {
+            const doc = iframe.contentDocument;
+            if (!doc || !doc.body) return;
+            let target = doc.body.scrollHeight || 0;
+            const sel = '#tickets-container, .cart-sidebar, .wrapper, .main-panel, .content';
+            doc.querySelectorAll(sel).forEach(node => {
+                const cs = doc.defaultView.getComputedStyle(node);
+                const top = parseFloat(cs.top);
+                // Usar scrollHeight para apanhar o conteúdo real quando o nó
+                // está verticalmente espremido entre top/bottom (ex: .cart-sidebar
+                // ancorado por top:Npx; bottom:0 — offsetHeight dá só o espaço
+                // disponível, não o que o conteúdo precisa).
+                const h = Math.max(node.offsetHeight, node.scrollHeight);
+                if (h > 0) target = Math.max(target, (isNaN(top) ? 0 : top) + h);
+            });
+            if (target <= 0) return;
+            const current = parseInt(iframe.style.height, 10) || 0;
+            if (Math.abs(current - target) > 4) {
+                iframe.style.height = target + 'px';
+                iframe.style.minHeight = target + 'px';
+                iframe.style.flex = '0 0 auto';
+            }
+        } catch (e) { /* same-origin issue */ }
+    }
+
+    function scheduleAdjust() {
+        clearTimeout(_heightTimer);
+        _heightTimer = setTimeout(adjustIframeHeight, 80);
+    }
+
+    function setupHeightObserver() {
+        const iframe = el('iframe');
+        if (!iframe) return;
+        if (_heightObserver) { _heightObserver.disconnect(); _heightObserver = null; }
+        try {
+            const doc = iframe.contentDocument;
+            if (!doc || !doc.body) return;
+            _heightObserver = new MutationObserver(scheduleAdjust);
+            _heightObserver.observe(doc.body, { childList: true, subtree: true, attributes: true });
+        } catch (e) {}
+        // Re-medir após carregamentos assíncronos do LeBillet
+        [100, 300, 700, 1500].forEach(ms => setTimeout(adjustIframeHeight, ms));
+    }
+
+    window.addEventListener('resize', scheduleAdjust);
+
     return {
         /**
          * Abre o modal com o checkout filtrado para o produto selecionado.
@@ -124,12 +191,16 @@ const CheckoutModal = (function () {
                         );
                         _loadedProductId = productId;
                     }
-                    // Iframe já carregado — garantir que está visível
+                    // Iframe já carregado — garantir que está visível e remedir altura
                     hideLoader();
+                    scheduleAdjust();
                 } else {
                     // Novo evento ou primeira carga — mostrar loader enquanto carrega
                     showLoader();
-                    iframe.onload = function () { hideLoader(); };
+                    iframe.onload = function () {
+                        hideLoader();
+                        setupHeightObserver();
+                    };
                     let url = proxyBase + '?event_id=' + encodeURIComponent(eventId);
                     if (productId) url += '&product_id=' + encodeURIComponent(productId);
                     iframe.src = url;
