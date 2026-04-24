@@ -8,18 +8,18 @@ $dayLabels = [1 => '26 Ago · Dia 1', 2 => '27 Ago · Dia 2', 3 => '28 Ago · Di
 
 <section class="artists section" id="artistas">
     <div class="container">
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:var(--s-2xl);gap:1rem;flex-wrap:wrap;">
-            <div>
-                <p class="section-label reveal">Festival Crato 2026</p>
-                <h2 class="section-title reveal">
+        <div style="margin-bottom:var(--s-2xl);">
+            <p class="section-label reveal" style="margin-bottom: var(--s-sm);">Festival Crato 2026</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+                <h2 class="section-title reveal" style="margin:0;">
                     <?= $showAll ? 'Todos os <span>Artistas</span>' : '<span>Artistas</span> em Destaque' ?>
                 </h2>
+                <?php if (!$showAll): ?>
+                    <a href="/artistas" class="btn btn-ghost reveal" style="flex-shrink:0; margin-top:0;" aria-label="Ver todos os artistas">
+                        Ver todos <span aria-hidden="true">→</span>
+                    </a>
+                <?php endif; ?>
             </div>
-            <?php if (!$showAll): ?>
-                <a href="/artistas" class="btn btn-ghost reveal" style="flex-shrink:0;" aria-label="Ver todos os artistas">
-                    Ver todos <span aria-hidden="true">→</span>
-                </a>
-            <?php endif; ?>
         </div>
 
         <div class="artists__grid">

@@ -52,10 +52,9 @@ $festival = [
         'zip' => '7430-999 Crato',
     ],
     'social' => [
-        'instagram' => 'https://instagram.com/',
-        'facebook' => 'https://facebook.com/',
-        'twitter' => 'https://twitter.com/',
-        'youtube' => 'https://youtube.com/',
+        'instagram' => 'https://www.instagram.com/festivaldocrato',
+        'facebook' => 'https://www.facebook.com/FestivaldoCrato',
+        'youtube' => 'https://www.youtube.com/@CratoTV',
     ],
 ];
 
@@ -198,7 +197,7 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 </head>
 
 <body data-page="<?= htmlspecialchars($activePage) ?>">
-<a href="#main-content" class="sr-only sr-only--focusable">Saltar para o conteúdo principal</a>
+    <a href="#main-content" class="sr-only sr-only--focusable">Saltar para o conteúdo principal</a>
 
     <?= Component::render('Header', ['activePage' => $activePage, 'siteName' => $siteName]) ?>
 
@@ -286,18 +285,18 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
         <?php elseif ($activePage === 'about' || $activePage === 'info'): ?>
             <?= Component::render('PageHeader', [
-                'label'    => 'O Festival',
-                'title'    => 'Sobre o',
-                'accent'   => 'Crato',
+                'label' => 'O Festival',
+                'title' => 'Sobre o',
+                'accent' => 'Crato',
                 'subtitle' => '40.ª Feira de Artesanato e Gastronomia e Festival do Crato.',
             ]) ?>
             <?= Component::render('About', ['festival' => $festival, 'showFull' => true]) ?>
 
         <?php elseif ($activePage === 'directions'): ?>
             <?= Component::render('PageHeader', [
-                'label'    => 'Festival Crato 2026',
-                'title'    => 'Como',
-                'accent'   => 'Chegar',
+                'label' => 'Festival Crato 2026',
+                'title' => 'Como',
+                'accent' => 'Chegar',
                 'subtitle' => 'Informações sobre acessos e transportes para o Crato.',
             ]) ?>
             <section class="generic-page">
@@ -312,15 +311,19 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
         <?php elseif ($activePage === 'camping'): ?>
             <?= Component::render('PageHeader', [
-                'label'    => 'Festival Crato 2026',
-                'title'    => 'Parque de',
-                'accent'   => 'Campismo',
+                'label' => 'Festival Crato 2026',
+                'title' => 'Parque de',
+                'accent' => 'Campismo',
                 'subtitle' => 'Vive o Festival do Crato até ao último momento.',
             ]) ?>
             <section class="camping-page">
                 <div class="container">
 
-                    <p class="camping-intro">O Parque de Campismo do Festival do Crato é a solução ideal para quem pretende aproveitar ao máximo todos os dias do evento, com conforto, segurança e um ambiente de convívio entre festivaleiros. A pensar na comodidade dos visitantes, a organização disponibiliza uma zona de camping ocasional equipada com as condições essenciais para uma estadia tranquila, permitindo viver o festival de forma prática e próxima de toda a animação.</p>
+                    <p class="camping-intro">O Parque de Campismo do Festival do Crato é a solução ideal para quem pretende
+                        aproveitar ao máximo todos os dias do evento, com conforto, segurança e um ambiente de convívio
+                        entre festivaleiros. A pensar na comodidade dos visitantes, a organização disponibiliza uma zona de
+                        camping ocasional equipada com as condições essenciais para uma estadia tranquila, permitindo viver
+                        o festival de forma prática e próxima de toda a animação.</p>
 
                     <div class="camping-checkin">
                         <div class="camping-checkin__item">
@@ -335,7 +338,8 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                     </div>
 
                     <h2 class="camping-section-title">Condições e Serviços Disponíveis</h2>
-                    <p>A zona de campismo está equipada com um conjunto de infraestruturas e serviços que visam garantir conforto, segurança e bem-estar a todos os utilizadores:</p>
+                    <p>A zona de campismo está equipada com um conjunto de infraestruturas e serviços que visam garantir
+                        conforto, segurança e bem-estar a todos os utilizadores:</p>
                     <ul class="camping-list">
                         <li>Área destinada à utilização de fogareiros</li>
                         <li>Lava-loiça</li>
@@ -351,7 +355,8 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                     <div class="camping-two-cols">
                         <div>
                             <h2 class="camping-section-title">Regras de Utilização</h2>
-                            <p>Para garantir a segurança e o bom funcionamento da zona de campismo, devem ser respeitadas as seguintes normas.</p>
+                            <p>Para garantir a segurança e o bom funcionamento da zona de campismo, devem ser respeitadas as
+                                seguintes normas.</p>
                             <p><strong>É proibido:</strong></p>
                             <ul class="camping-list camping-list--rules">
                                 <li>Fazer fogueiras</li>
@@ -361,7 +366,8 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                                 <li>Delimitar ou reservar espaço de forma abusiva</li>
                                 <li>A entrada de animais, exceto cães guia</li>
                             </ul>
-                            <p class="camping-warning">O incumprimento das normas poderá implicar a perda do direito de acesso ao parque de campismo e ao Festival.</p>
+                            <p class="camping-warning">O incumprimento das normas poderá implicar a perda do direito de
+                                acesso ao parque de campismo e ao Festival.</p>
                         </div>
                         <div>
                             <h2 class="camping-section-title">O Que Levar</h2>
@@ -381,11 +387,13 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                         <li>A zona de campismo dispõe de sistema de videovigilância</li>
                         <li>Recomenda-se a vigilância permanente de crianças</li>
                         <li>Cada utilizador é responsável pelos seus bens pessoais</li>
-                        <li>A organização reserva-se o direito de aplicar medidas necessárias para garantir a segurança de todos</li>
+                        <li>A organização reserva-se o direito de aplicar medidas necessárias para garantir a segurança de
+                            todos</li>
                     </ul>
 
                     <h2 class="camping-section-title">Localização do Campismo</h2>
-                    <a href="https://maps.app.goo.gl/zKYtMe21nYnLhKzE9" target="_blank" rel="noopener" class="btn btn-primary camping-map-btn">
+                    <a href="https://maps.app.goo.gl/zKYtMe21nYnLhKzE9" target="_blank" rel="noopener"
+                        class="btn btn-primary camping-map-btn">
                         <span class="material-symbols-outlined">location_on</span>
                         Ver localização no mapa
                     </a>
@@ -395,9 +403,9 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
         <?php elseif ($activePage === 'todo'): ?>
             <?= Component::render('PageHeader', [
-                'label'    => 'Festival Crato 2026',
-                'title'    => 'O que',
-                'accent'   => 'Fazer',
+                'label' => 'Festival Crato 2026',
+                'title' => 'O que',
+                'accent' => 'Fazer',
                 'subtitle' => 'Artesanato, gastronomia, música e muito mais.',
             ]) ?>
             <section class="generic-page">
@@ -409,9 +417,9 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
         <?php elseif ($activePage === 'contacts'): ?>
             <?= Component::render('PageHeader', [
-                'label'    => 'Fala Connosco',
-                'title'    => 'Entra em',
-                'accent'   => 'Contacto',
+                'label' => 'Fala Connosco',
+                'title' => 'Entra em',
+                'accent' => 'Contacto',
                 'subtitle' => 'Tens dúvidas sobre os bilhetes? Estamos aqui para te ajudar.',
             ]) ?>
 
@@ -468,110 +476,108 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
             <?= Component::render('ContactModal', [
                 'modalId' => 'contact-modal-work',
-                'title'   => 'Vem trabalhar connosco',
-                'intro'   => 'Conta-nos sobre ti e deixa o teu contacto — entraremos em contacto em breve.',
-                'formId'  => 'contact-form-work',
+                'title' => 'Vem trabalhar connosco',
+                'intro' => 'Conta-nos sobre ti e deixa o teu contacto — entraremos em contacto em breve.',
+                'formId' => 'contact-form-work',
                 'subject' => 'Candidatura — trabalhar connosco',
             ]) ?>
 
             <?= Component::render('ContactModal', [
                 'modalId' => 'contact-modal-partner',
-                'title'   => 'Sê nosso parceiro',
-                'intro'   => 'Fala-nos da tua marca e da oportunidade de parceria que tens em mente.',
-                'formId'  => 'contact-form-partner',
+                'title' => 'Sê nosso parceiro',
+                'intro' => 'Fala-nos da tua marca e da oportunidade de parceria que tens em mente.',
+                'formId' => 'contact-form-partner',
                 'subject' => 'Proposta de parceria',
             ]) ?>
 
             <script>
-            (function () {
-                // ── Contact form submission ─────────────────────────────────
-                function attachForm(form) {
-                    form.addEventListener('submit', async function (e) {
-                        e.preventDefault();
+                (function () {
+                    // ── Contact form submission ─────────────────────────────────
+                    function attachForm(form) {
+                        form.addEventListener('submit', async function (e) {
+                            e.preventDefault();
 
-                        const submit   = form.querySelector('.contact-form__submit');
-                        const feedback = form.querySelector('.contact-form__feedback');
-                        const data = Object.fromEntries(new FormData(form).entries());
-                        data.privacy = form.querySelector('[name="privacy"]').checked;
-                        data.consent = form.querySelector('[name="consent"]').checked;
+                            const submit = form.querySelector('.contact-form__submit');
+                            const feedback = form.querySelector('.contact-form__feedback');
+                            const data = Object.fromEntries(new FormData(form).entries());
 
-                        feedback.textContent = '';
-                        feedback.className = 'contact-form__feedback';
-                        submit.disabled = true;
-                        submit.classList.add('is-loading');
+                            feedback.textContent = '';
+                            feedback.className = 'contact-form__feedback';
+                            submit.disabled = true;
+                            submit.classList.add('is-loading');
 
-                        try {
-                            const res = await fetch('/contact-submit.php', {
-                                method:  'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body:    JSON.stringify(data),
-                            });
-                            const json = await res.json().catch(() => ({}));
+                            try {
+                                const res = await fetch('/contact-submit.php', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify(data),
+                                });
+                                const json = await res.json().catch(() => ({}));
 
-                            if (res.ok && json.ok) {
-                                feedback.textContent = 'Obrigado! A tua mensagem foi enviada.';
-                                feedback.classList.add('is-success');
-                                form.reset();
-                            } else if (res.status === 429) {
-                                feedback.textContent = 'Demasiadas submissões. Tenta novamente mais tarde.';
+                                if (res.ok && json.ok) {
+                                    feedback.textContent = 'Obrigado! A tua mensagem foi enviada.';
+                                    feedback.classList.add('is-success');
+                                    form.reset();
+                                } else if (res.status === 429) {
+                                    feedback.textContent = 'Demasiadas submissões. Tenta novamente mais tarde.';
+                                    feedback.classList.add('is-error');
+                                } else if (json.error === 'validation') {
+                                    feedback.textContent = 'Verifica os campos marcados e tenta novamente.';
+                                    feedback.classList.add('is-error');
+                                } else {
+                                    feedback.textContent = 'Não foi possível enviar. Tenta novamente em instantes.';
+                                    feedback.classList.add('is-error');
+                                }
+                            } catch (err) {
+                                feedback.textContent = 'Erro de rede. Verifica a ligação e tenta novamente.';
                                 feedback.classList.add('is-error');
-                            } else if (json.error === 'validation') {
-                                feedback.textContent = 'Verifica os campos marcados e tenta novamente.';
-                                feedback.classList.add('is-error');
-                            } else {
-                                feedback.textContent = 'Não foi possível enviar. Tenta novamente em instantes.';
-                                feedback.classList.add('is-error');
+                            } finally {
+                                submit.disabled = false;
+                                submit.classList.remove('is-loading');
                             }
-                        } catch (err) {
-                            feedback.textContent = 'Erro de rede. Verifica a ligação e tenta novamente.';
-                            feedback.classList.add('is-error');
-                        } finally {
-                            submit.disabled = false;
-                            submit.classList.remove('is-loading');
-                        }
-                    });
-                }
-                document.querySelectorAll('[data-contact-form]').forEach(attachForm);
-
-                // ── Contact modals ──────────────────────────────────────────
-                let _lastTrigger = null;
-
-                function openModal(id) {
-                    const modal = document.getElementById(id);
-                    if (!modal) return;
-                    _lastTrigger = document.activeElement;
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    const firstInput = modal.querySelector('input:not([type="hidden"]):not(.contact-form__hp), textarea');
-                    if (firstInput) setTimeout(() => firstInput.focus(), 60);
-                }
-
-                function closeModal(modal) {
-                    if (!modal) return;
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                    if (_lastTrigger && typeof _lastTrigger.focus === 'function') {
-                        _lastTrigger.focus();
+                        });
                     }
-                }
+                    document.querySelectorAll('[data-contact-form]').forEach(attachForm);
 
-                document.querySelectorAll('[data-open-modal]').forEach(btn => {
-                    btn.addEventListener('click', () => openModal(btn.dataset.openModal));
-                });
-                document.querySelectorAll('[data-close-modal]').forEach(btn => {
-                    btn.addEventListener('click', () => closeModal(document.getElementById(btn.dataset.closeModal)));
-                });
-                document.querySelectorAll('[data-contact-modal]').forEach(modal => {
-                    modal.addEventListener('click', e => {
-                        if (e.target === modal) closeModal(modal);
+                    // ── Contact modals ──────────────────────────────────────────
+                    let _lastTrigger = null;
+
+                    function openModal(id) {
+                        const modal = document.getElementById(id);
+                        if (!modal) return;
+                        _lastTrigger = document.activeElement;
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                        const firstInput = modal.querySelector('input:not([type="hidden"]):not(.contact-form__hp), textarea');
+                        if (firstInput) setTimeout(() => firstInput.focus(), 60);
+                    }
+
+                    function closeModal(modal) {
+                        if (!modal) return;
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                        if (_lastTrigger && typeof _lastTrigger.focus === 'function') {
+                            _lastTrigger.focus();
+                        }
+                    }
+
+                    document.querySelectorAll('[data-open-modal]').forEach(btn => {
+                        btn.addEventListener('click', () => openModal(btn.dataset.openModal));
                     });
-                });
-                document.addEventListener('keydown', e => {
-                    if (e.key !== 'Escape') return;
-                    const open = document.querySelector('[data-contact-modal].active');
-                    if (open) closeModal(open);
-                });
-            })();
+                    document.querySelectorAll('[data-close-modal]').forEach(btn => {
+                        btn.addEventListener('click', () => closeModal(document.getElementById(btn.dataset.closeModal)));
+                    });
+                    document.querySelectorAll('[data-contact-modal]').forEach(modal => {
+                        modal.addEventListener('click', e => {
+                            if (e.target === modal) closeModal(modal);
+                        });
+                    });
+                    document.addEventListener('keydown', e => {
+                        if (e.key !== 'Escape') return;
+                        const open = document.querySelector('[data-contact-modal].active');
+                        if (open) closeModal(open);
+                    });
+                })();
             </script>
 
         <?php elseif ($activePage === '404'): ?>

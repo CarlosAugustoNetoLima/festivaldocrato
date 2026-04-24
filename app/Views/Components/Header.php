@@ -13,7 +13,7 @@ $navItems = [
     ['id' => 'camping',  'label' => 'CAMPISMO',    'url' => '/campismo'],
     ['id' => 'info',     'label' => 'INFO',        'url' => '#', 'submenu' => [
         ['id' => 'about',    'label' => 'Sobre o Festival', 'url' => '/sobre'],
-        // ['id' => 'contacts', 'label' => 'Contactos',        'url' => '/contactos'],
+        ['id' => 'contacts', 'label' => 'Contactos',        'url' => '/contactos'],
     ]],
     // ['id' => 'store',    'label' => 'LOJA',       'url' => '/loja'],
 ];

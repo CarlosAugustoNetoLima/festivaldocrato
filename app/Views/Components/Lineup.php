@@ -12,7 +12,7 @@ $dayMeta = [
 // Group by day — only days with artists
 $byDay = [];
 foreach ($artists as $artist) {
-    $day = (int)($artist['day'] ?? 1);
+    $day = (int) ($artist['day'] ?? 1);
     $byDay[$day][] = $artist;
 }
 ksort($byDay);
@@ -27,16 +27,16 @@ unset($group);
 <section class="lineup section" id="lineup">
     <div class="container">
         <div class="lineup__header">
-            <p class="section-label reveal">Programação 2026</p>
+            <p class="section-label reveal">Line up</p>
             <h2 class="section-title reveal">Os <span>Artistas</span></h2>
         </div>
 
         <div class="lineup__cards">
             <?php foreach ($byDay as $day => $dayArtists): ?>
                 <?php
-                $meta      = $dayMeta[$day] ?? ['num' => $day, 'month' => 'AGO', 'weekday' => '', 'full' => "Dia $day"];
+                $meta = $dayMeta[$day] ?? ['num' => $day, 'month' => 'AGO', 'weekday' => '', 'full' => "Dia $day"];
                 $headliner = null;
-                $others    = [];
+                $others = [];
                 foreach ($dayArtists as $a) {
                     if (($a['headliner'] ?? false) && $headliner === null) {
                         $headliner = $a;
@@ -46,7 +46,8 @@ unset($group);
                 }
                 $img = $headliner['image'] ?? '';
                 ?>
-                <article class="lineup__card reveal" style="transition-delay:<?= (array_search($day, array_keys($byDay)) * 0.1) ?>s">
+                <article class="lineup__card reveal"
+                    style="transition-delay:<?= (array_search($day, array_keys($byDay)) * 0.1) ?>s">
                     <!-- Background photo -->
                     <?php if ($img): ?>
                         <div class="lineup__card-bg" style="background-image:url('<?= htmlspecialchars($img) ?>')"></div>
@@ -72,12 +73,15 @@ unset($group);
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>
-                        <a href="/bilhetes" class="lineup__card-btn">
-                            Comprar bilhete — <?= $meta['num'] ?> <?= $meta['month'] ?>
-                        </a>
                     </div>
                 </article>
             <?php endforeach; ?>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--s-3xl);">
+            <a href="/bilheteira" class="btn btn-outline reveal">
+                Comprar agora <span aria-hidden="true">→</span>
+            </a>
         </div>
     </div>
 </section>

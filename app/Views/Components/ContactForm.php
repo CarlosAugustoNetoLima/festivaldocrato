@@ -41,20 +41,7 @@ $showPhone = $showPhone ?? true;
         </div>
     </div>
 
-    <div class="contact-form__check">
-        <input type="checkbox" id="<?= htmlspecialchars($formId) ?>-privacy" name="privacy" required>
-        <label for="<?= htmlspecialchars($formId) ?>-privacy">
-            Li e aceito a <a href="/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.
-        </label>
-    </div>
 
-    <div class="contact-form__check">
-        <input type="checkbox" id="<?= htmlspecialchars($formId) ?>-consent" name="consent" required>
-        <label for="<?= htmlspecialchars($formId) ?>-consent">
-            Autorizo que os meus dados sejam recolhidos e objeto de tratamento para os efeitos indicados no <a
-                href="/aviso-legal" target="_blank" rel="noopener">Aviso Legal</a>.
-        </label>
-    </div>
 
     <div class="contact-form__actions">
         <button type="submit" class="btn btn-primary contact-form__submit w-100">

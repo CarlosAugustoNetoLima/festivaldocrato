@@ -56,8 +56,6 @@ $email = trim((string) ($data['email'] ?? ''));
 $phone = trim((string) ($data['phone'] ?? ''));
 $message = trim((string) ($data['message'] ?? ''));
 $subject = trim((string) ($data['subject'] ?? 'Contacto Festival do Crato'));
-$privacy = !empty($data['privacy']);
-$consent = !empty($data['consent']);
 
 // Validação
 $errors = [];
@@ -69,8 +67,6 @@ if ($phone !== '' && !preg_match('/^[\d\s\+\-\(\)]{5,30}$/', $phone))
     $errors[] = 'phone';
 if ($message === '' || mb_strlen($message) > 4000)
     $errors[] = 'message';
-if (!$privacy || !$consent)
-    $errors[] = 'consent';
 
 if ($errors) {
     http_response_code(422);
@@ -83,7 +79,7 @@ $cleanSubject = preg_replace("/[\r\n]+/", ' ', $subject);
 $cleanName = preg_replace("/[\r\n]+/", ' ', $name);
 
 
-$to = '';
+$to = 'festivaldocrato@cm-crato.pt';
 
 $mailSubject = '[Festival Crato] ' . $cleanSubject;
 $mailBody = "Assunto: {$cleanSubject}\n"

@@ -3,12 +3,16 @@ $festival = $festival ?? [];
 $edition = $festival['edition'] ?? '40.ª';
 
 $tickerItems = [
+    '★ Bispo · 26 Agosto 2026',
+    '★ Calema · 28 Agosto 2026',
     '★ Buba Espinho · 29 Agosto 2026',
     '★ Inscrições FAG Abertas · Prazo 19 Junho',
     '★ Festival do Crato · 26 a 29 Agosto 2026',
     '★ 40.ª Feira de Artesanato e Gastronomia · Acesso Gratuito',
     '★ Receção ao Campista · 24 Agosto · Palco FAG',
     '★ Bilhetes Disponíveis · Compra Agora',
+    '★ Bispo · 26 Agosto 2026',
+    '★ Calema · 28 Agosto 2026',
     '★ Buba Espinho · 29 Agosto 2026',
     '★ Inscrições FAG Abertas · Prazo 19 Junho',
     '★ Festival do Crato · 26 a 29 Agosto 2026',
