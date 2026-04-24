@@ -36,7 +36,10 @@ if (isset($_GET['relay'])) {
     $allowedCts = ['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data', 'text/plain'];
     $ct = 'application/x-www-form-urlencoded';
     foreach ($allowedCts as $allowed) {
-        if (stripos($rawCt, $allowed) === 0) { $ct = $allowed; break; }
+        if (stripos($rawCt, $allowed) === 0) {
+            $ct = $allowed;
+            break;
+        }
     }
 
     // Extrair o SID do POST body (o checkout.js envia sid=XXXX no body)
@@ -107,7 +110,7 @@ if (isset($_GET['relay'])) {
 
     // CORS: só permite origem do próprio domínio do site
     $requestOrigin = $_SERVER['HTTP_ORIGIN'] ?? '';
-    $siteDomain    = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
+    $siteDomain = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
     if (empty($requestOrigin) || $requestOrigin === $siteDomain) {
         header('Access-Control-Allow-Origin: ' . $siteDomain);
     }
@@ -206,6 +209,16 @@ div.cart-sidebar, div.map-card, .ticket-box, .modal-content,
     box-shadow: none !important;
 }
 
+/* Fix mobile scroll inside iframe */
+@media (max-width: 768px) {
+    html, body, .wrapper, .main-panel, #tickets-container, .content, div.cart-sidebar {
+        height: auto !important;
+        max-height: none !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+
 /* Tabelas */
 table, .table, table th, table td, .table-borderless th, .table-borderless td {
     background: transparent !important;
@@ -294,6 +307,7 @@ button#promo-btn:hover {
 svg {
     stroke: #FFFFFF !important;
 }
+
 </style>
 ';
 
@@ -367,6 +381,7 @@ function applyProductFilter(pid) {
     });
 }
 </script>';
+
 
 $cartSyncScript = '
 <script id="proxy-cart-sync">

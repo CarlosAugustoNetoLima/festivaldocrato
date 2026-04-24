@@ -3,13 +3,18 @@ $activePage = $activePage ?? 'home';
 $siteName   = $siteName ?? 'Festival Crato';
 
 $navItems = [
-    ['id' => 'tickets',  'label' => 'BILHETEIRA', 'url' => '/bilheteira'],
-    ['id' => 'lineup',   'label' => 'LINE UP',    'url' => '/lineup'],
-    ['id' => 'about',    'label' => 'O FESTIVAL', 'url' => '#', 'submenu' => [
-        ['id' => 'news',  'label' => 'Novidades',         'url' => '/noticias'],
-        ['id' => 'about', 'label' => 'Sobre o Festival',  'url' => '/sobre'],
+    ['id' => 'tickets',  'label' => 'BILHETEIRA',  'url' => '/bilheteira'],
+    ['id' => 'lineup',   'label' => 'LINE UP',     'url' => '/lineup'],
+    ['id' => 'festival', 'label' => 'O FESTIVAL',  'url' => '#', 'submenu' => [
+        ['id' => 'news',       'label' => 'Novidades',   'url' => '/noticias'],
+        // ['id' => 'directions', 'label' => 'Como Chegar', 'url' => '/como-chegar'],
+        ['id' => 'stay',       'label' => 'Onde Ficar',  'url' => 'https://cm-crato.pt/visitar/onde-ficar/', 'external' => true],
     ]],
-    ['id' => 'camping',  'label' => 'CAMPISMO',   'url' => '/campismo'],
+    ['id' => 'camping',  'label' => 'CAMPISMO',    'url' => '/campismo'],
+    ['id' => 'info',     'label' => 'INFO',        'url' => '#', 'submenu' => [
+        ['id' => 'about',    'label' => 'Sobre o Festival', 'url' => '/sobre'],
+        ['id' => 'contacts', 'label' => 'Contactos',        'url' => '/contactos'],
+    ]],
     // ['id' => 'store',    'label' => 'LOJA',       'url' => '/loja'],
 ];
 ?>
@@ -25,9 +30,10 @@ $navItems = [
         <nav class="header-nav" aria-label="Navegação principal">
             <?php foreach ($navItems as $item): ?>
                 <?php if (isset($item['submenu'])): ?>
+                    <?php $submenuActive = $activePage === $item['id'] || in_array($activePage, array_column($item['submenu'], 'id'), true); ?>
                     <div class="nav-dropdown">
                         <button type="button"
-                            class="nav-link dropdown-toggle <?= $activePage === $item['id'] ? 'active' : '' ?>"
+                            class="nav-link dropdown-toggle <?= $submenuActive ? 'active' : '' ?>"
                             aria-haspopup="true" aria-expanded="false">
                             <?= htmlspecialchars($item['label']) ?>
                             <span class="material-symbols-outlined chevron" aria-hidden="true">expand_more</span>
@@ -35,8 +41,10 @@ $navItems = [
                         <div class="dropdown-menu">
                             <?php foreach ($item['submenu'] as $sub): ?>
                                 <a href="<?= htmlspecialchars($sub['url']) ?>"
-                                    class="dropdown-item <?= $activePage === $sub['id'] ? 'active' : '' ?>">
+                                    class="dropdown-item <?= $activePage === $sub['id'] ? 'active' : '' ?>"
+                                    <?php if (!empty($sub['external'])): ?>target="_blank" rel="noopener noreferrer"<?php endif; ?>>
                                     <?= htmlspecialchars($sub['label']) ?>
+                                    <?php if (!empty($sub['external'])): ?><span class="material-symbols-outlined external-icon" aria-hidden="true" style="font-size:14px;vertical-align:middle;margin-left:4px;opacity:.6;">open_in_new</span><span class="sr-only"> (abre em nova janela)</span><?php endif; ?>
                                 </a>
                             <?php endforeach; ?>
                         </div>
@@ -90,8 +98,9 @@ $navItems = [
     <nav class="mobile-nav">
         <?php foreach ($navItems as $item): ?>
             <?php if (isset($item['submenu'])): ?>
-                <div class="mobile-nav-group">
-                    <button class="mobile-nav-toggle" data-mobile-dropdown aria-expanded="false" aria-haspopup="true">
+                <?php $submenuActive = $activePage === $item['id'] || in_array($activePage, array_column($item['submenu'], 'id'), true); ?>
+                <div class="mobile-nav-group<?= $submenuActive ? ' active' : '' ?>">
+                    <button class="mobile-nav-toggle<?= $submenuActive ? ' active' : '' ?>" data-mobile-dropdown aria-expanded="false" aria-haspopup="true">
                         <?= htmlspecialchars($item['label']) ?>
                         <span class="material-symbols-outlined toggle-icon" aria-hidden="true">expand_more</span>
                     </button>
@@ -99,8 +108,10 @@ $navItems = [
                         <div class="mobile-nav-sub">
                             <?php foreach ($item['submenu'] as $sub): ?>
                                 <a href="<?= htmlspecialchars($sub['url']) ?>"
-                                    class="mobile-nav-link sub <?= $activePage === $sub['id'] ? 'active' : '' ?>">
+                                    class="mobile-nav-link sub <?= $activePage === $sub['id'] ? 'active' : '' ?>"
+                                    <?php if (!empty($sub['external'])): ?>target="_blank" rel="noopener noreferrer"<?php endif; ?>>
                                     <?= htmlspecialchars($sub['label']) ?>
+                                    <?php if (!empty($sub['external'])): ?><span class="material-symbols-outlined" aria-hidden="true" style="font-size:14px;vertical-align:middle;margin-left:4px;opacity:.6;">open_in_new</span><span class="sr-only"> (abre em nova janela)</span><?php endif; ?>
                                 </a>
                             <?php endforeach; ?>
                         </div>

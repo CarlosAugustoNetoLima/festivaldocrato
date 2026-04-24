@@ -109,23 +109,6 @@
     setInterval(tick, 1000);
   }
 
-  /* ─── Lineup Tabs ───────────────────────── */
-  const lineupTabs = document.querySelectorAll('.lineup__tab');
-  const lineupPanels = document.querySelectorAll('.lineup__panel');
-
-  lineupTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.day;
-
-      lineupTabs.forEach(t => t.classList.remove('active'));
-      lineupPanels.forEach(p => p.classList.remove('active'));
-
-      tab.classList.add('active');
-      const panel = document.querySelector(`.lineup__panel[data-day="${target}"]`);
-      if (panel) panel.classList.add('active');
-    });
-  });
-
   /* ─── Scroll Reveal ─────────────────────── */
   const revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length) {

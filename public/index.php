@@ -285,21 +285,21 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             </article>
 
         <?php elseif ($activePage === 'about' || $activePage === 'info'): ?>
-            <section class="page-hero page-hero--inner">
-                <div class="container">
-                    <h1 class="page-hero__title">Sobre o Festival</h1>
-                    <p class="page-hero__sub">40.ª Feira de Artesanato e Gastronomia e Festival do Crato</p>
-                </div>
-            </section>
+            <?= Component::render('PageHeader', [
+                'label'    => 'O Festival',
+                'title'    => 'Sobre o',
+                'accent'   => 'Crato',
+                'subtitle' => '40.ª Feira de Artesanato e Gastronomia e Festival do Crato.',
+            ]) ?>
             <?= Component::render('About', ['festival' => $festival, 'showFull' => true]) ?>
 
         <?php elseif ($activePage === 'directions'): ?>
-            <section class="page-hero page-hero--inner">
-                <div class="container">
-                    <h1 class="page-hero__title">Como Chegar</h1>
-                    <p class="page-hero__sub">Informações sobre acessos e transportes para o Crato</p>
-                </div>
-            </section>
+            <?= Component::render('PageHeader', [
+                'label'    => 'Festival Crato 2026',
+                'title'    => 'Como',
+                'accent'   => 'Chegar',
+                'subtitle' => 'Informações sobre acessos e transportes para o Crato.',
+            ]) ?>
             <section class="generic-page">
                 <div class="container">
                     <p>A Vila do Crato situa-se no Alto Alentejo, com fácil acesso pela A6 (saída para Elvas/Marvão).</p>
@@ -311,12 +311,12 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             </section>
 
         <?php elseif ($activePage === 'camping'): ?>
-            <section class="page-hero page-hero--inner">
-                <div class="container">
-                    <h1 class="page-hero__title">Campismo</h1>
-                    <p class="page-hero__sub">Vive o Festival do Crato até ao último momento</p>
-                </div>
-            </section>
+            <?= Component::render('PageHeader', [
+                'label'    => 'Festival Crato 2026',
+                'title'    => 'Parque de',
+                'accent'   => 'Campismo',
+                'subtitle' => 'Vive o Festival do Crato até ao último momento.',
+            ]) ?>
             <section class="camping-page">
                 <div class="container">
 
@@ -394,12 +394,12 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             </section>
 
         <?php elseif ($activePage === 'todo'): ?>
-            <section class="page-hero page-hero--inner">
-                <div class="container">
-                    <h1 class="page-hero__title">O que Fazer</h1>
-                    <p class="page-hero__sub">Artesanato, gastronomia, música e muito mais</p>
-                </div>
-            </section>
+            <?= Component::render('PageHeader', [
+                'label'    => 'Festival Crato 2026',
+                'title'    => 'O que',
+                'accent'   => 'Fazer',
+                'subtitle' => 'Artesanato, gastronomia, música e muito mais.',
+            ]) ?>
             <section class="generic-page">
                 <div class="container">
                     <p>Além dos espetáculos musicais, a FAG oferece exposição de artesanato, degustação de produtos
@@ -408,12 +408,12 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             </section>
 
         <?php elseif ($activePage === 'contacts'): ?>
-            <section class="page-hero page-hero--inner">
-                <div class="container">
-                    <h1 class="page-hero__title">Tens dúvidas sobre os bilhetes?</h1>
-                    <p class="page-hero__sub">Entra em contacto connosco e respondemos-te o mais rápido possível.</p>
-                </div>
-            </section>
+            <?= Component::render('PageHeader', [
+                'label'    => 'Fala Connosco',
+                'title'    => 'Entra em',
+                'accent'   => 'Contacto',
+                'subtitle' => 'Tens dúvidas sobre os bilhetes? Estamos aqui para te ajudar.',
+            ]) ?>
 
             <section class="contact-section">
                 <div class="container contact-section__container">

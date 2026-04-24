@@ -170,7 +170,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 window.addEventListener('message', function (e) {
-    if (e.data && e.data.type === 'cratoCartCount') {
+    if (!e.data) return;
+    if (e.data.type === 'cratoCartCount') {
         CartBadge.set(e.data.count);
     }
 });

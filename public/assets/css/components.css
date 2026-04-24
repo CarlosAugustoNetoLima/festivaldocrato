@@ -635,6 +635,8 @@
     flex-direction: column;
     min-height: 0;
     background: #0C0306;
+    overflow-y: auto; /* Fix para scroll no iOS/mobile */
+    -webkit-overflow-scrolling: touch;
 }
 
 .cart-iframe-loader {
@@ -860,14 +862,41 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    .cart-modal-backdrop {
+        align-items: stretch;
+        padding: 0;
+    }
+
     .cart-modal-container {
-        max-height: 100vh;
-        height: 100vh;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        height: 100dvh;
+        max-height: none;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    /* iframe preenche o espaço restante; scroll acontece na wrapper se o iOS expandir o iframe */
+    .cart-iframe-wrapper {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .cart-checkout-iframe {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
     }
 
     .cart-modal-body {
         flex-direction: column;
-        overflow-y: auto;
+        overflow-y: visible;
     }
 
     .cart-modal-products {
