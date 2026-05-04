@@ -6,6 +6,36 @@ $showAll     = $showAll ?? false;
 if (!$showAll) {
     $tickets = array_slice($tickets, 0, 4);
 }
+
+// ── Mapeamento bilhete → imagens (desktop / mobile) ─────────────────────────
+// Desktop = imagem grande | Mobile = @1,5x (menor, carrega mais rápido)
+$ticketImages = [
+    // product_id => ['desktop' => '...', 'mobile' => '...']
+    '11022' => [
+        'desktop' => '/assets/img/bilhetes/passe%20geral.jpg.jpeg',
+        'mobile'  => '/assets/img/bilhetes/passe%20geral%401%2C5x.jpg.jpeg',
+    ],
+    '11023' => [
+        'desktop' => '/assets/img/bilhetes/passe%20geral%20com%20campismo.jpg.jpeg',
+        'mobile'  => '/assets/img/bilhetes/passe%20geral%20com%20campismo%401%2C5x.jpg.jpeg',
+    ],
+    '11024' => [
+        'desktop' => '/assets/img/bilhetes/passe%20di%C3%A1rio%2026%401%2C5x.jpg.jpeg',
+        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2026%401%2C5x.jpg.jpeg',
+    ],
+    '11025' => [
+        'desktop' => '/assets/img/bilhetes/bilhete%20di%C3%A1rio%2027.jpg.jpeg',
+        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2027%401%2C5x.jpg.jpeg',
+    ],
+    '11026' => [
+        'desktop' => '/assets/img/bilhetes/bilhete%20di%C3%A1rio%2028.jpg.jpeg',
+        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2028%401%2C5x.jpg.jpeg',
+    ],
+    '11027' => [
+        'desktop' => '/assets/img/bilhetes/bilhete%20di%C3%A1rio%2029.jpg.jpeg',
+        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2029%401%2C5x.jpg.jpeg',
+    ],
+];
 ?>
 
 <section class="tickets section" id="bilhetes">
@@ -29,6 +59,7 @@ if (!$showAll) {
                 $productId   = $ticket['product_id'] ?? '';
                 $price       = $ticket['price'] ?? 0;
                 $priceFull   = number_format($price, 0, ',', '.');
+                $imgs        = $ticketImages[$productId] ?? null;
                 ?>
                 <div
                     class="ticket-card <?= $isHighlight ? 'highlight' : '' ?> reveal"
@@ -41,30 +72,46 @@ if (!$showAll) {
                         <span class="ticket-badge">Mais Popular</span>
                     <?php endif; ?>
 
-                    <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
-                    <h3 class="ticket-card__name"><?= htmlspecialchars($ticket['name'] ?? 'Bilhete') ?></h3>
-                    <p class="ticket-card__subtitle"><?= htmlspecialchars($ticket['subtitle'] ?? '') ?></p>
-
-                    <?php if ($price > 0): ?>
-                    <div class="ticket-card__price">
-                        <span class="ticket-card__price-value"><?= $priceFull ?></span>
-                        <span class="ticket-card__price-currency">€</span>
-                    </div>
-                    <?php else: ?>
-                    <div class="ticket-card__price">
-                        <span class="ticket-card__price-value" style="font-size:var(--text-base);color:var(--c-text-muted);">Ver preço no checkout</span>
-                    </div>
+                    <?php if ($imgs): ?>
+                        <div class="ticket-card__cover">
+                            <picture>
+                                <source media="(min-width: 640px)" srcset="<?= $imgs['desktop'] ?>">
+                                <img
+                                    src="<?= $imgs['mobile'] ?>"
+                                    alt="<?= htmlspecialchars($ticket['name'] ?? 'Bilhete') ?>"
+                                    class="ticket-card__cover-img"
+                                    loading="lazy"
+                                >
+                            </picture>
+                        </div>
                     <?php endif; ?>
 
-                    <p class="ticket-card__desc"><?= htmlspecialchars($ticket['description'] ?? '') ?></p>
+                    <div class="ticket-card__body">
+                        <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                        <h3 class="ticket-card__name"><?= htmlspecialchars($ticket['name'] ?? 'Bilhete') ?></h3>
+                        <p class="ticket-card__subtitle"><?= htmlspecialchars($ticket['subtitle'] ?? '') ?></p>
 
-                    <button
-                        class="btn btn-outline ticket-card__btn"
-                        onclick="CheckoutModal.open('<?= htmlspecialchars(addslashes($ticket['name'] ?? '')) ?>', '<?= htmlspecialchars($eventId) ?>', <?= $price > 0 ? (float)$price : 'null' ?>, '<?= htmlspecialchars($productId) ?>')"
-                        id="ticket-btn-<?= htmlspecialchars($ticketId) ?>"
-                    >
-                        Comprar Bilhete
-                    </button>
+                        <?php if ($price > 0): ?>
+                        <div class="ticket-card__price">
+                            <span class="ticket-card__price-value"><?= $priceFull ?></span>
+                            <span class="ticket-card__price-currency">€</span>
+                        </div>
+                        <?php else: ?>
+                        <div class="ticket-card__price">
+                            <span class="ticket-card__price-value" style="font-size:var(--text-base);color:var(--c-text-muted);">Ver preço no checkout</span>
+                        </div>
+                        <?php endif; ?>
+
+                        <p class="ticket-card__desc"><?= htmlspecialchars($ticket['description'] ?? '') ?></p>
+
+                        <button
+                            class="btn btn-outline ticket-card__btn"
+                            onclick="CheckoutModal.open('<?= htmlspecialchars(addslashes($ticket['name'] ?? '')) ?>', '<?= htmlspecialchars($eventId) ?>', <?= $price > 0 ? (float)$price : 'null' ?>, '<?= htmlspecialchars($productId) ?>')"
+                            id="ticket-btn-<?= htmlspecialchars($ticketId) ?>"
+                        >
+                            Comprar Bilhete
+                        </button>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>

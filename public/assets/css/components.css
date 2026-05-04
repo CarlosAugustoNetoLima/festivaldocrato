@@ -749,7 +749,80 @@
     line-height: 1.75;
     color: rgba(255,255,255,0.75);
     max-width: 800px;
+    margin: 0 auto var(--s-2xl);
+    text-align: center;
+}
+
+/* ── Camping hero image ── */
+.camping-hero-img {
+    position: relative;
+    width: 100%;
+    border-radius: var(--r-lg);
+    overflow: hidden;
     margin-bottom: var(--s-2xl);
+    /* Subtle red glow that fits the brand */
+    box-shadow: 0 0 0 1px rgba(200, 17, 31, 0.2),
+                0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.camping-hero-img img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.camping-hero-img:hover img {
+    transform: scale(1.03);
+}
+
+.camping-hero-img__overlay {
+    position: absolute;
+    inset: 0;
+    /* Bottom gradient so badge reads well */
+    background: linear-gradient(
+        to bottom,
+        rgba(12, 3, 6, 0.10) 0%,
+        rgba(12, 3, 6, 0.30) 55%,
+        rgba(12, 3, 6, 0.72) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 1.75rem 2rem;
+}
+
+.camping-hero-img__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(200, 17, 31, 0.20);
+    border: 1px solid rgba(200, 17, 31, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.45rem 1.1rem;
+    border-radius: 100px;
+}
+
+.camping-hero-img__badge .material-symbols-outlined {
+    font-size: 1rem;
+    color: var(--c-accent-light, #ff3647);
+}
+
+@media (max-width: 768px) {
+    .camping-hero-img img {
+        height: 240px;
+    }
+
+    .camping-hero-img__overlay {
+        padding: 1.25rem;
+    }
 }
 
 .camping-checkin {
@@ -791,6 +864,20 @@
     margin-top: 4px;
 }
 
+.camping-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: var(--s-2xl);
+}
+
+.camping-details {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--r-md);
+    overflow: hidden;
+}
+
 .camping-section-title {
     font-family: var(--font-display);
     font-size: 1.5rem;
@@ -798,6 +885,95 @@
     margin: var(--s-2xl) 0 var(--s-md);
     text-transform: uppercase;
     letter-spacing: 0.03em;
+}
+
+.camping-details summary.camping-section-title {
+    margin: 0;
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none; /* remove default arrow */
+    user-select: none;
+    transition: background 0.2s ease;
+}
+
+.camping-details summary.camping-section-title::-webkit-details-marker {
+    display: none;
+}
+
+.camping-details summary.camping-section-title:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.camping-details[open] summary.camping-section-title {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.camping-details[open] .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-icon {
+    transition: transform 0.3s ease;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.camping-details-content {
+    padding: 24px;
+}
+
+.camping-location-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .camping-location-layout {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.camping-map-wrapper {
+    flex: 2;
+    border-radius: var(--r-md);
+    overflow: hidden;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.camping-map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.camping-location-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.camping-location-info h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.camping-location-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.camping-location-info .btn {
+    align-self: flex-start;
 }
 
 .camping-list {
@@ -1141,6 +1317,10 @@
   gap: 1.5rem;
 }
 
+.contact-cta-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .contact-cta-card {
   background: #180508;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1148,15 +1328,41 @@
   padding: 2rem;
   text-align: center;
   transition: border-color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-cta-card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(200, 17, 31, 0.12);
+  border: 1px solid rgba(200, 17, 31, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-cta-card__icon .material-symbols-outlined {
+  font-size: 1.4rem;
+  color: #C8111F;
 }
 
 .contact-cta-card:hover {
   border-color: rgba(200, 17, 31, 0.4);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+}
+
+.contact-cta-card:hover .contact-cta-card__icon {
+  background: rgba(200, 17, 31, 0.2);
+  border-color: rgba(200, 17, 31, 0.5);
 }
 
 .contact-cta-card h2 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   margin-bottom: 0.75rem;
   color: #FFFFFF;
 }
@@ -1164,6 +1370,7 @@
 .contact-cta-card p {
   color: rgba(255, 255, 255, 0.6);
   margin-bottom: 1.5rem;
+  flex: 1;
 }
 
 /* ── Info card ───────────────────────────────────────────────────── */

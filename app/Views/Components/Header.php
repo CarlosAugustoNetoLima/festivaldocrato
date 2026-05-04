@@ -6,14 +6,14 @@ $navItems = [
     ['id' => 'tickets',  'label' => 'BILHETEIRA',  'url' => '/bilheteira'],
     ['id' => 'lineup',   'label' => 'LINE UP',     'url' => '/lineup'],
     ['id' => 'festival', 'label' => 'O FESTIVAL',  'url' => '#', 'submenu' => [
-        ['id' => 'news',       'label' => 'Novidades',   'url' => '/noticias'],
-        // ['id' => 'directions', 'label' => 'Como Chegar', 'url' => '/como-chegar'],
-        ['id' => 'stay',       'label' => 'Onde Ficar',  'url' => 'https://cm-crato.pt/visitar/onde-ficar/', 'external' => true],
+        ['id' => 'about',    'label' => 'Sobre o Festival', 'url' => '/sobre'],
+        ['id' => 'news',     'label' => 'Novidades',        'url' => '/noticias'],
     ]],
     ['id' => 'camping',  'label' => 'CAMPISMO',    'url' => '/campismo'],
     ['id' => 'info',     'label' => 'INFO',        'url' => '#', 'submenu' => [
-        ['id' => 'about',    'label' => 'Sobre o Festival', 'url' => '/sobre'],
-        ['id' => 'contacts', 'label' => 'Contactos',        'url' => '/contactos'],
+        ['id' => 'stay',     'label' => 'Onde Ficar',    'url' => 'https://cm-crato.pt/visitar/onde-ficar/', 'external' => true],
+        ['id' => 'eat',      'label' => 'Onde Comer',    'url' => 'https://cm-crato.pt/visitar/onde-comer/', 'external' => true],
+        ['id' => 'contacts', 'label' => 'Contactos',     'url' => '/contactos'],
     ]],
     // ['id' => 'store',    'label' => 'LOJA',       'url' => '/loja'],
 ];

@@ -97,7 +97,7 @@ $navLinks = [
 
         <div class="footer-bottom">
             <p class="footer-copyright">
-                &copy; <?= $year ?> <?= htmlspecialchars($siteName) ?> · Município do Crato. Todos os direitos
+                &copy; <?= $year ?> <?= htmlspecialchars($siteName) ?> · Festival do Crato. Todos os direitos
                 reservados.
             </p>
             <div class="footer-legal">

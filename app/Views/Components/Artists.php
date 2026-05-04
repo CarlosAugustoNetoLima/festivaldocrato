@@ -31,7 +31,7 @@ $dayLabels = [1 => '26 Ago · Dia 1', 2 => '27 Ago · Dia 2', 3 => '28 Ago · Di
                 $imgPath = $artist['image'] ?? "/assets/img/artist-placeholder.jpg";
                 ?>
                 <article class="artist-card reveal" style="transition-delay:<?= $i * 0.06 ?>s;" aria-label="<?= htmlspecialchars($artist['name']) ?>">
-                    <?php if ($isHeadliner): ?>
+                    <?php if ($isHeadliner && ($artist['confirmed'] ?? true)): ?>
                         <span class="artist-card__badge">Headliner</span>
                     <?php endif; ?>
 
@@ -48,7 +48,9 @@ $dayLabels = [1 => '26 Ago · Dia 1', 2 => '27 Ago · Dia 2', 3 => '28 Ago · Di
                     <div class="artist-card__overlay" aria-hidden="true"></div>
 
                     <div class="artist-card__content">
-                        <span class="artist-card__day"><?= htmlspecialchars($dayLabel) ?></span>
+                        <?php if ($artist['confirmed'] ?? true): ?>
+                            <span class="artist-card__day"><?= htmlspecialchars($dayLabel) ?></span>
+                        <?php endif; ?>
                         <h3 class="artist-card__name <?= $isHeadliner ? 'headliner' : '' ?>">
                             <?= htmlspecialchars($artist['name']) ?>
                         </h3>

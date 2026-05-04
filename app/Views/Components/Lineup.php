@@ -7,6 +7,7 @@ $dayMeta = [
     2 => ['num' => '27', 'month' => 'AGO', 'weekday' => 'QUI', 'full' => '27 Ago · Qui'],
     3 => ['num' => '28', 'month' => 'AGO', 'weekday' => 'SEX', 'full' => '28 Ago · Sex'],
     4 => ['num' => '29', 'month' => 'AGO', 'weekday' => 'SÁB', 'full' => '29 Ago · Sáb'],
+    5 => ['num' => '?', 'month' => '', 'weekday' => 'EM BREVE', 'full' => 'A anunciar'],
 ];
 
 // Group by day — only days with artists
@@ -54,16 +55,18 @@ unset($group);
                     <?php endif; ?>
                     <div class="lineup__card-overlay"></div>
 
-                    <!-- Date badge -->
-                    <div class="lineup__card-date">
-                        <span class="lineup__card-date-num"><?= $meta['num'] ?></span>
-                        <span class="lineup__card-date-info"><?= $meta['month'] ?><br><?= $meta['weekday'] ?></span>
-                    </div>
-
                     <!-- Content -->
                     <div class="lineup__card-body">
+                        <!-- Date pill — inside body, no overlap -->
+                        <div class="lineup__card-date">
+                            <span class="lineup__card-date-num"><?= $meta['num'] ?></span>
+                            <span class="lineup__card-date-info"><?= $meta['month'] ?> · <?= $meta['weekday'] ?></span>
+                        </div>
+
                         <?php if ($headliner): ?>
-                            <p class="lineup__card-genre"><?= htmlspecialchars($headliner['genre'] ?? '') ?></p>
+                            <?php if (!empty($headliner['genre'])): ?>
+                                <p class="lineup__card-genre"><?= htmlspecialchars($headliner['genre'] ?? '') ?></p>
+                            <?php endif; ?>
                             <h3 class="lineup__card-name"><?= htmlspecialchars($headliner['name']) ?></h3>
                         <?php endif; ?>
                         <?php if ($others): ?>

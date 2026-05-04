@@ -40,18 +40,22 @@ $edition = $festival['edition'] ?? '40.ª';
         <div class="about__gallery">
             <div class="about__gallery-item reveal">
                 <img src="/assets/img/festival.webp" alt="Festival do Crato" loading="lazy"
+                    width="640" height="427"
                     onerror="this.parentElement.style.background='linear-gradient(135deg,#1a0a0a,#2a1010)'">
             </div>
             <div class="about__gallery-item reveal">
                 <img src="/assets/img/Festival-Crato-Concerto.webp" alt="Festival do Crato" loading="lazy"
+                    width="640" height="427"
                     onerror="this.parentElement.style.background='linear-gradient(135deg,#1a0a0a,#2a1010)'">
             </div>
             <div class="about__gallery-item reveal">
-                <img src="/assets/img/Crato_2019.jpg" alt="Festival do Crato" loading="lazy"
+                <img src="/assets/img/Crato_2019.webp" alt="Festival do Crato" loading="lazy"
+                    width="1920" height="1280"
                     onerror="this.parentElement.style.background='linear-gradient(135deg,#1a0a0a,#2a1010)'">
             </div>
             <div class="about__gallery-item reveal">
                 <img src="/assets/img/cratobg_1280.webp" alt="Festival do Crato" loading="lazy"
+                    width="1280" height="853"
                     onerror="this.parentElement.style.background='linear-gradient(135deg,#1a0a0a,#2a1010)'">
             </div>
         </div>
@@ -113,7 +117,7 @@ $edition = $festival['edition'] ?? '40.ª';
                             style="font-family:var(--font-heading);font-size:1.8rem;margin-bottom:1rem;color:var(--c-brand);">
                             Contacto</h3>
                         <p style="color:var(--c-text-muted);line-height:1.8;">
-                            Município do Crato<br>
+                            Festival do Crato<br>
                             Praça do Município<br>
                             7430-999 Crato<br><br>
                             Tel: <a href="tel:245990110" style="color:var(--c-accent);">245 990 110</a><br>

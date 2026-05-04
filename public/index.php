@@ -42,11 +42,11 @@ $festival = [
     'date_campista' => '2026-08-24',
     'location' => 'Crato, Alto Alentejo',
     'venue' => 'Vila do Crato',
-    'organizer' => 'Município do Crato',
+    'organizer' => 'Festival do Crato',
     'description' => 'A 40.ª Feira de Artesanato e Gastronomia e o Festival do Crato regressam de 25 a 29 de agosto de 2026.',
     'mission' => 'Promover e preservar o artesanato e a gastronomia enquanto valores culturais.',
     'contact' => [
-        'email' => 'fag@cm-crato.pt',
+        'email' => 'festivaldocrato@cm-crato.pt',
         'phone' => '245 990 110',
         'address' => 'Praça do Município',
         'zip' => '7430-999 Crato',
@@ -59,9 +59,10 @@ $festival = [
 ];
 
 $artists = [
-    ['name' => 'Bispo', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Rap / Hip-Hop', 'image' => '/assets/img/26_agosto.jpeg', 'confirmed' => true],
-    ['name' => 'Calema', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'R&B / Pop', 'image' => '/assets/img/28_agosto.jpeg', 'confirmed' => true],
-    ['name' => 'Buba Espinho', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Música Portuguesa', 'image' => '/assets/img/29_agosto.jpeg', 'confirmed' => true],
+    ['name' => 'Bispo', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Rap / Hip-Hop', 'image' => '/assets/img/artists/POST_bispo-_website.webp', 'confirmed' => true],
+    ['name' => 'Calema', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'R&B / Pop', 'image' => '/assets/img/artists/POST_calema_website.webp', 'confirmed' => true],
+    ['name' => 'Buba Espinho', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Música Portuguesa', 'image' => '/assets/img/artists/POST_buba_website.webp', 'confirmed' => true],
+    ['name' => 'A Anunciar', 'day' => 5, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => '', 'image' => '/assets/img/artists/WEBSITE_anunciar.webp', 'confirmed' => false, 'announced' => false],
 ];
 
 $products = [
@@ -180,11 +181,14 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
     <link rel="icon" href="/assets/img/favicon-32x32.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 
-    <!-- Google Fonts -->
+    <!-- Preconnect hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Google Fonts — single request -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
         rel="stylesheet">
 
     <!-- CSS -->
@@ -207,7 +211,6 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             <?= Component::render('Hero', ['festival' => $festival]) ?>
             <?= Component::render('Lineup', ['artists' => $artists]) ?>
             <?= Component::render('News', ['news' => $news]) ?>
-            <?= Component::render('Artists', ['artists' => $artists]) ?>
             <?= Component::render('Tickets', ['tickets' => $tickets, 'events' => $eventsLimit, 'checkoutUrl' => $checkoutUrl]) ?>
             <?php // Component::render('Store', ['products' => $products]) ?>
             <?= Component::render('About', ['festival' => $festival]) ?>
@@ -284,12 +287,7 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             </article>
 
         <?php elseif ($activePage === 'about' || $activePage === 'info'): ?>
-            <?= Component::render('PageHeader', [
-                'label' => 'O Festival',
-                'title' => 'Sobre o',
-                'accent' => 'Crato',
-                'subtitle' => '40.ª Feira de Artesanato e Gastronomia e Festival do Crato.',
-            ]) ?>
+
             <?= Component::render('About', ['festival' => $festival, 'showFull' => true]) ?>
 
         <?php elseif ($activePage === 'directions'): ?>
@@ -325,6 +323,16 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                         camping ocasional equipada com as condições essenciais para uma estadia tranquila, permitindo viver
                         o festival de forma prática e próxima de toda a animação.</p>
 
+                    <div class="camping-hero-img">
+                        <img src="/assets/img/campismo.jpeg" alt="Parque de Campismo do Festival do Crato — tendas e festivaleiros ao amanhecer" loading="lazy">
+                        <div class="camping-hero-img__overlay">
+                            <span class="camping-hero-img__badge">
+                                <span class="material-symbols-outlined">outdoor_grill</span>
+                                Parque de Campismo
+                            </span>
+                        </div>
+                    </div>
+
                     <div class="camping-checkin">
                         <div class="camping-checkin__item">
                             <span class="camping-checkin__label">Check-in</span>
@@ -337,66 +345,111 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                         </div>
                     </div>
 
-                    <h2 class="camping-section-title">Condições e Serviços Disponíveis</h2>
-                    <p>A zona de campismo está equipada com um conjunto de infraestruturas e serviços que visam garantir
-                        conforto, segurança e bem-estar a todos os utilizadores:</p>
-                    <ul class="camping-list">
-                        <li>Área destinada à utilização de fogareiros</li>
-                        <li>Lava-loiça</li>
-                        <li>Posto de carregamento de telemóveis</li>
-                        <li>Instalações sanitárias e duche para pessoas com mobilidade reduzida</li>
-                        <li>Chuveiros interiores e exteriores</li>
-                        <li>Área de refeitório ao ar livre</li>
-                        <li>Iluminação noturna</li>
-                        <li>Sistema de videovigilância</li>
-                        <li>Equipa de apoio e segurança no local</li>
-                    </ul>
+                    <div class="camping-accordion">
+                        <details class="camping-details" name="camping-faq">
+                            <summary class="camping-section-title">
+                                Condições e Serviços Disponíveis
+                                <span class="material-symbols-outlined accordion-icon" aria-hidden="true">expand_more</span>
+                            </summary>
+                            <div class="camping-details-content">
+                                <p>A zona de campismo está equipada com um conjunto de infraestruturas e serviços que visam
+                                    garantir
+                                    conforto, segurança e bem-estar a todos os utilizadores:</p>
+                                <ul class="camping-list">
+                                    <li>Área destinada à utilização de fogareiros</li>
+                                    <li>Lava-loiça</li>
+                                    <li>Posto de carregamento de telemóveis</li>
+                                    <li>Instalações sanitárias e duche para pessoas com mobilidade reduzida</li>
+                                    <li>Chuveiros interiores e exteriores</li>
+                                    <li>Área de refeitório ao ar livre</li>
+                                    <li>Iluminação noturna</li>
+                                    <li>Sistema de videovigilância</li>
+                                    <li>Equipa de apoio e segurança no local</li>
+                                </ul>
+                            </div>
+                        </details>
 
-                    <div class="camping-two-cols">
-                        <div>
-                            <h2 class="camping-section-title">Regras de Utilização</h2>
-                            <p>Para garantir a segurança e o bom funcionamento da zona de campismo, devem ser respeitadas as
-                                seguintes normas.</p>
-                            <p><strong>É proibido:</strong></p>
-                            <ul class="camping-list camping-list--rules">
-                                <li>Fazer fogueiras</li>
-                                <li>Utilizar garrafas, vasilhame ou utensílios em vidro</li>
-                                <li>Deitar lixo para o chão</li>
-                                <li>Montar tendas em acessos reservados a viaturas de emergência</li>
-                                <li>Delimitar ou reservar espaço de forma abusiva</li>
-                                <li>A entrada de animais, exceto cães guia</li>
-                            </ul>
-                            <p class="camping-warning">O incumprimento das normas poderá implicar a perda do direito de
-                                acesso ao parque de campismo e ao Festival.</p>
-                        </div>
-                        <div>
-                            <h2 class="camping-section-title">O Que Levar</h2>
-                            <ul class="camping-list camping-list--pack">
-                                <li>Tenda e material de campismo</li>
-                                <li>Saco-cama ou colchão insuflável</li>
-                                <li>Roupa adequada às condições climatéricas</li>
-                                <li>Produtos de higiene pessoal</li>
-                                <li>Lanterna ou iluminação portátil</li>
-                                <li>Protetor solar</li>
-                            </ul>
-                        </div>
+                        <details class="camping-details" name="camping-faq">
+                            <summary class="camping-section-title">
+                                Regras de Utilização
+                                <span class="material-symbols-outlined accordion-icon" aria-hidden="true">expand_more</span>
+                            </summary>
+                            <div class="camping-details-content">
+                                <p>Para garantir a segurança e o bom funcionamento da zona de campismo, devem ser
+                                    respeitadas as
+                                    seguintes normas.</p>
+                                <p><strong>É proibido:</strong></p>
+                                <ul class="camping-list camping-list--rules">
+                                    <li>Fazer fogueiras</li>
+                                    <li>Utilizar garrafas, vasilhame ou utensílios em vidro</li>
+                                    <li>Deitar lixo para o chão</li>
+                                    <li>Montar tendas em acessos reservados a viaturas de emergência</li>
+                                    <li>Delimitar ou reservar espaço de forma abusiva</li>
+                                    <li>A entrada de animais, exceto cães guia</li>
+                                </ul>
+                                <p class="camping-warning">O incumprimento das normas poderá implicar a perda do direito de
+                                    acesso ao parque de campismo e ao Festival.</p>
+                            </div>
+                        </details>
+
+                        <details class="camping-details" name="camping-faq">
+                            <summary class="camping-section-title">
+                                O Que Levar
+                                <span class="material-symbols-outlined accordion-icon" aria-hidden="true">expand_more</span>
+                            </summary>
+                            <div class="camping-details-content">
+                                <ul class="camping-list camping-list--pack">
+                                    <li>Tenda e material de campismo</li>
+                                    <li>Saco-cama ou colchão insuflável</li>
+                                    <li>Roupa adequada às condições climatéricas</li>
+                                    <li>Produtos de higiene pessoal</li>
+                                    <li>Lanterna ou iluminação portátil</li>
+                                    <li>Protetor solar</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="camping-details" name="camping-faq">
+                            <summary class="camping-section-title">
+                                Informações Importantes
+                                <span class="material-symbols-outlined accordion-icon" aria-hidden="true">expand_more</span>
+                            </summary>
+                            <div class="camping-details-content">
+                                <ul class="camping-list">
+                                    <li>A zona de campismo dispõe de sistema de videovigilância</li>
+                                    <li>Recomenda-se a vigilância permanente de crianças</li>
+                                    <li>Cada utilizador é responsável pelos seus bens pessoais</li>
+                                    <li>A organização reserva-se o direito de aplicar medidas necessárias para garantir a
+                                        segurança de
+                                        todos</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="camping-details" name="camping-faq">
+                            <summary class="camping-section-title">
+                                Localização do Campismo
+                                <span class="material-symbols-outlined accordion-icon" aria-hidden="true">expand_more</span>
+                            </summary>
+                            <div class="camping-details-content camping-location-layout">
+                                <div class="camping-map-wrapper">
+                                    <iframe
+                                        src="https://maps.google.com/maps?q=Crato,+Portugal&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                                        frameborder="0" allowfullscreen="" loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                                <div class="camping-location-info">
+                                    <h3>Parque de Campismo</h3>
+                                    <p>Vila do Crato<br>7430-999 Crato, Alto Alentejo</p>
+                                    <a href="https://maps.app.goo.gl/zKYtMe21nYnLhKzE9" target="_blank" rel="noopener"
+                                        class="btn btn-primary camping-map-btn">
+                                        <span class="material-symbols-outlined">open_in_new</span>
+                                        Abrir no Google Maps
+                                    </a>
+                                </div>
+                            </div>
+                        </details>
                     </div>
-
-                    <h2 class="camping-section-title">Informações Importantes</h2>
-                    <ul class="camping-list">
-                        <li>A zona de campismo dispõe de sistema de videovigilância</li>
-                        <li>Recomenda-se a vigilância permanente de crianças</li>
-                        <li>Cada utilizador é responsável pelos seus bens pessoais</li>
-                        <li>A organização reserva-se o direito de aplicar medidas necessárias para garantir a segurança de
-                            todos</li>
-                    </ul>
-
-                    <h2 class="camping-section-title">Localização do Campismo</h2>
-                    <a href="https://maps.app.goo.gl/zKYtMe21nYnLhKzE9" target="_blank" rel="noopener"
-                        class="btn btn-primary camping-map-btn">
-                        <span class="material-symbols-outlined">location_on</span>
-                        Ver localização no mapa
-                    </a>
 
                 </div>
             </section>
@@ -420,27 +473,37 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                 'label' => 'Fala Connosco',
                 'title' => 'Entra em',
                 'accent' => 'Contacto',
-                'subtitle' => 'Tens dúvidas sobre os bilhetes? Estamos aqui para te ajudar.',
+                'subtitle' => 'Bilhetes, parcerias ou candidaturas — estamos aqui para te ajudar.',
             ]) ?>
-
-            <section class="contact-section">
-                <div class="container contact-section__container">
-                    <?= Component::render('ContactForm', ['formId' => 'contact-form-main', 'subject' => 'Dúvidas sobre bilhetes']) ?>
-                </div>
-            </section>
 
             <section class="contact-cta-section">
                 <div class="container">
-                    <div class="contact-cta-grid">
+                    <div class="contact-cta-grid contact-cta-grid--3">
                         <div class="contact-cta-card">
-                            <h2>Gostavas de trabalhar connosco?</h2>
+                            <div class="contact-cta-card__icon">
+                                <span class="material-symbols-outlined">mail</span>
+                            </div>
+                            <h2>Entra em Contacto</h2>
+                            <p>Tens dúvidas sobre bilhetes ou o festival? Envia-nos uma mensagem.</p>
+                            <button type="button" class="btn btn-primary" id="btn-scroll-to-form">
+                                Escreve-nos
+                            </button>
+                        </div>
+                        <div class="contact-cta-card">
+                            <div class="contact-cta-card__icon">
+                                <span class="material-symbols-outlined">work</span>
+                            </div>
+                            <h2>Trabalhar Connosco</h2>
                             <p>Procuramos pessoas apaixonadas pela cultura e pelo festival.</p>
                             <button type="button" class="btn btn-primary" data-open-modal="contact-modal-work">
                                 Vem trabalhar connosco
                             </button>
                         </div>
                         <div class="contact-cta-card">
-                            <h2>Gostavas de ser nosso parceiro?</h2>
+                            <div class="contact-cta-card__icon">
+                                <span class="material-symbols-outlined">handshake</span>
+                            </div>
+                            <h2>Sê Nosso Parceiro</h2>
                             <p>Junta a tua marca ao maior festival do Alto Alentejo.</p>
                             <button type="button" class="btn btn-primary" data-open-modal="contact-modal-partner">
                                 Sê nosso parceiro
@@ -450,7 +513,14 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                 </div>
             </section>
 
-            <section class="contact-stories-section">
+            <section class="contact-section" id="contact-form-section">
+                <div class="container contact-section__container">
+                    <?= Component::render('ContactForm', ['formId' => 'contact-form-main', 'subject' => 'Dúvidas sobre bilhetes']) ?>
+                </div>
+            </section>
+
+            <!-- Secção de histórias — oculta temporariamente, aguarda página própria -->
+            <section class="contact-stories-section" style="display:none;" aria-hidden="true">
                 <div class="container contact-section__container">
                     <div class="contact-stories-intro">
                         <h2>O Festival do Crato faz parte da tua vida e tens uma história para contar?</h2>
@@ -463,12 +533,9 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             <section class="contact-info-section">
                 <div class="container">
                     <div class="contact-info-card">
-                        <h3>Município do Crato</h3>
-                        <p>Praça do Município, 7430-999 Crato</p>
+                        <h3>Festival do Crato</h3>
                         <p>
-                            <a href="mailto:fag@cm-crato.pt">fag@cm-crato.pt</a>
-                            <span aria-hidden="true"> · </span>
-                            <a href="tel:+351245990110">245 990 110</a>
+                            <a href="mailto:festivaldocrato@cm-crato.pt">festivaldocrato@cm-crato.pt</a>
                         </p>
                     </div>
                 </div>
@@ -538,6 +605,18 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                         });
                     }
                     document.querySelectorAll('[data-contact-form]').forEach(attachForm);
+
+                    // ── Scroll to form ──────────────────────────────────────────
+                    const scrollBtn = document.getElementById('btn-scroll-to-form');
+                    if (scrollBtn) {
+                        scrollBtn.addEventListener('click', function () {
+                            const section = document.getElementById('contact-form-section');
+                            if (!section) return;
+                            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            const firstInput = section.querySelector('input:not([type="hidden"]):not(.contact-form__hp)');
+                            if (firstInput) setTimeout(() => firstInput.focus(), 400);
+                        });
+                    }
 
                     // ── Contact modals ──────────────────────────────────────────
                     let _lastTrigger = null;
