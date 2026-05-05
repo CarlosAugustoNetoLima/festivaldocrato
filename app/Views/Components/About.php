@@ -87,7 +87,7 @@ $edition = $festival['edition'] ?? '40.ª';
                             style="font-family:var(--font-heading);font-size:1.8rem;margin-bottom:1rem;color:var(--c-brand);">
                             Feira de Artesanato e Gastronomia</h3>
                         <p style="color:var(--c-text-muted);line-height:1.8;">
-                            A 40.ª FAG decorre de 25 a 29 de agosto, com dezenas de expositores de artesanato
+                            A 40.ª FAG decorre de 26 a 29 de agosto, com dezenas de expositores de artesanato
                             e gastronomia regional. Um espaço dedicado à valorização das tradições e sabores
                             do Alto Alentejo.
                         </p>

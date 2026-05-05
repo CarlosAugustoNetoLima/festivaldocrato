@@ -76,7 +76,7 @@
   /* ─── Countdown ─────────────────────────── */
   const countdownEl = document.getElementById('hero-countdown');
   if (countdownEl) {
-    const festivalDate = new Date('2026-08-25T12:00:00');
+    const festivalDate = new Date('2026-08-26T12:00:00');
 
     const pad = n => String(n).padStart(2, '0');
 
@@ -183,5 +183,30 @@
   document.querySelectorAll('.artists__grid, .tickets__grid, .news__grid').forEach(container => {
     gridObserver.observe(container);
   });
+
+  /* ─── Cookie Banner Logic ───────────────── */
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const rejectBtn = document.getElementById('cookie-reject');
+
+  if (banner && acceptBtn && rejectBtn) {
+    const cookieChoice = localStorage.getItem('cookie-consent');
+
+    if (!cookieChoice) {
+      setTimeout(() => {
+        banner.classList.add('active');
+      }, 2000);
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'accepted');
+      banner.classList.remove('active');
+    });
+
+    rejectBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'rejected');
+      banner.classList.remove('active');
+    });
+  }
 
 })();

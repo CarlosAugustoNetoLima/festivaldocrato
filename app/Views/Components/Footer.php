@@ -23,7 +23,7 @@ $navLinks = [
                 </a>
                 <p class="footer-tagline">
                     <?= htmlspecialchars($edition) ?> Feira de Artesanato e Gastronomia<br>
-                    &amp; Festival do Crato · 25–29 Agosto 2026
+                    &amp; Festival do Crato · 26–29 Agosto 2026
                 </p>
                 <div class="footer-social">
                     <?php if (!empty($social['instagram'])): ?>
@@ -76,7 +76,7 @@ $navLinks = [
             <div>
                 <p class="footer-col-title">Bilhetes</p>
                 <nav class="footer-links">
-                    <a href="/bilhetes" class="footer-link">Concerto Solidário · 25 Ago</a>
+
                     <a href="/bilhetes" class="footer-link">Bilhete Diário</a>
                     <a href="/bilhetes" class="footer-link">Passe 4 Dias</a>
                     <a href="/bilhetes" class="footer-link">Passe 4 Dias + Campismo</a>
@@ -101,9 +101,9 @@ $navLinks = [
                 reservados.
             </p>
             <div class="footer-legal">
-                <a href="#" class="footer-legal-link">Política de Privacidade</a>
-                <a href="#" class="footer-legal-link">Política de Cookies</a>
-                <a href="#" class="footer-legal-link">Termos e Condições</a>
+                <a href="/politica-privacidade" class="footer-legal-link">Política de Privacidade</a>
+                <a href="/cookies" class="footer-legal-link">Política de Cookies</a>
+                <a href="/termos" class="footer-legal-link">Termos e Condições</a>
             </div>
         </div>
     </div>

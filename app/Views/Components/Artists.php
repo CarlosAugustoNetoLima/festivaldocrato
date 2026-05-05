@@ -54,7 +54,7 @@ $dayLabels = [1 => '26 Ago · Dia 1', 2 => '27 Ago · Dia 2', 3 => '28 Ago · Di
                         <h3 class="artist-card__name <?= $isHeadliner ? 'headliner' : '' ?>">
                             <?= htmlspecialchars($artist['name']) ?>
                         </h3>
-                        <p class="artist-card__genre"><?= htmlspecialchars($artist['genre'] ?? '') ?></p>
+
                     </div>
                 </article>
             <?php endforeach; ?>

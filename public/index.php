@@ -36,14 +36,14 @@ $tickets = $lebillet->getCheckoutTickets($festivalEventId);
 // ─────────────────────────────────────────────
 $festival = [
     'edition' => '40.ª',
-    'date_start' => '2026-08-25',
+    'date_start' => '2026-08-26',
     'date_end' => '2026-08-29',
     'date_festival_start' => '2026-08-26',
     'date_campista' => '2026-08-24',
     'location' => 'Crato, Alto Alentejo',
     'venue' => 'Vila do Crato',
     'organizer' => 'Festival do Crato',
-    'description' => 'A 40.ª Feira de Artesanato e Gastronomia e o Festival do Crato regressam de 25 a 29 de agosto de 2026.',
+    'description' => 'A 40.ª Feira de Artesanato e Gastronomia e o Festival do Crato regressam de 26 a 29 de agosto de 2026.',
     'mission' => 'Promover e preservar o artesanato e a gastronomia enquanto valores culturais.',
     'contact' => [
         'email' => 'festivaldocrato@cm-crato.pt',
@@ -142,6 +142,9 @@ $routes = [
     '/loja' => 'store',
     '/produto' => 'product',
     '/pesquisa' => 'search',
+    '/politica-privacidade' => 'legal_privacy',
+    '/cookies' => 'legal_cookies',
+    '/termos' => 'legal_terms',
 ];
 
 $activePage = $routes[$path] ?? '404';
@@ -160,6 +163,9 @@ $pageTitles = [
     'info' => 'Informações',
     'store' => 'Loja',
     'product' => 'Produto',
+    'legal_privacy' => 'Política de Privacidade',
+    'legal_cookies' => 'Política de Cookies',
+    'legal_terms' => 'Termos e Condições',
 ];
 
 $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
@@ -172,10 +178,10 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($siteName) ?> — <?= htmlspecialchars($pageTitle) ?></title>
     <meta name="description"
-        content="40.ª Feira de Artesanato e Gastronomia e Festival do Crato — 25 a 29 de Agosto de 2026">
+        content="40.ª Feira de Artesanato e Gastronomia e Festival do Crato — 26 a 29 de Agosto de 2026">
     <meta property="og:title" content="40.ª FAG & Festival do Crato 2026">
     <meta property="og:description"
-        content="Feira de Artesanato e Gastronomia e Festival do Crato — 25 a 29 de Agosto de 2026">
+        content="Feira de Artesanato e Gastronomia e Festival do Crato — 26 a 29 de Agosto de 2026">
     <meta property="og:type" content="website">
     <link rel="icon" href="/assets/img/favicon.ico" sizes="any">
     <link rel="icon" href="/assets/img/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -659,6 +665,44 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                 })();
             </script>
 
+        <?php elseif (str_starts_with($activePage, 'legal_')): ?>
+            <?= Component::render('PageHeader', [
+                'label' => 'Legal',
+                'title' => explode(' ', $pageTitle)[0],
+                'accent' => implode(' ', array_slice(explode(' ', $pageTitle), 1)),
+                'subtitle' => 'Informações legais e transparência.',
+            ]) ?>
+            <section class="legal-page">
+                <div class="container">
+                    <div class="legal-content">
+                        <?php if ($activePage === 'legal_privacy'): ?>
+                            <h2>1. Recolha de Dados</h2>
+                            <p>O Festival do Crato recolhe dados pessoais através do formulário de contacto e no processo de compra de bilhetes (gerido pela plataforma externa LeBillet). Os dados recolhidos limitam-se ao estritamente necessário para a prestação do serviço.</p>
+                            <h2>2. Finalidade</h2>
+                            <p>Os seus dados são utilizados para responder a pedidos de informação, processar candidaturas e garantir o acesso ao recinto do festival. Não partilhamos dados com terceiros para fins comerciais.</p>
+                            <h2>3. Direitos do Utilizador</h2>
+                            <p>Ao abrigo do RGPD, tem o direito de aceder, retificar ou solicitar a eliminação dos seus dados. Para tal, contacte-nos através de festivaldocrato@cm-crato.pt.</p>
+
+                        <?php elseif ($activePage === 'legal_cookies'): ?>
+                            <h2>O que são Cookies?</h2>
+                            <p>Cookies são pequenos ficheiros de texto armazenados no seu dispositivo para melhorar a experiência de navegação.</p>
+                            <h2>Cookies Utilizados</h2>
+                            <p>Utilizamos apenas cookies essenciais para o funcionamento do site (como a sessão de checkout) e cookies de análise anónima para entender como os visitantes interagem com o site.</p>
+                            <h2>Gestão de Cookies</h2>
+                            <p>Pode alterar as suas preferências de cookies nas definições do seu navegador a qualquer momento.</p>
+
+                        <?php elseif ($activePage === 'legal_terms'): ?>
+                            <h2>1. Bilheteira</h2>
+                            <p>A compra de bilhetes é final. Não se efetuam trocas ou devoluções, exceto em caso de cancelamento do evento nos termos previstos na lei.</p>
+                            <h2>2. Acesso ao Recinto</h2>
+                            <p>A organização reserva-se o direito de admissão. É proibida a entrada de objetos perigosos, vidro e substâncias ilícitas. Os portadores de bilhete podem ser sujeitos a revistas de segurança.</p>
+                            <h2>3. Direitos de Imagem</h2>
+                            <p>Ao entrar no recinto, o portador do bilhete consente na eventual captação e utilização da sua imagem para fins de divulgação e arquivo do evento.</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </section>
+
         <?php elseif ($activePage === '404'): ?>
             <section class="page-404">
                 <div class="container">
@@ -682,6 +726,19 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
     <!-- Modais -->
     <?= Component::render('CheckoutModal', ['checkoutUrl' => $checkoutUrl]) ?>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="container">
+            <div class="cookie-banner__content">
+                <p>Utilizamos cookies para melhorar a sua experiência no nosso site. Ao continuar a navegar, está a aceitar a nossa <a href="/politica-privacidade">Política de Privacidade</a>.</p>
+                <div class="cookie-banner__actions">
+                    <button id="cookie-accept" class="btn btn-primary btn-sm">Aceitar</button>
+                    <button id="cookie-reject" class="btn btn-outline btn-sm">Rejeitar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

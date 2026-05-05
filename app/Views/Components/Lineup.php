@@ -64,9 +64,7 @@ unset($group);
                         </div>
 
                         <?php if ($headliner): ?>
-                            <?php if (!empty($headliner['genre'])): ?>
-                                <p class="lineup__card-genre"><?= htmlspecialchars($headliner['genre'] ?? '') ?></p>
-                            <?php endif; ?>
+
                             <h3 class="lineup__card-name"><?= htmlspecialchars($headliner['name']) ?></h3>
                         <?php endif; ?>
                         <?php if ($others): ?>

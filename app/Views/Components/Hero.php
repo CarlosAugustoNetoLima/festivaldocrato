@@ -63,7 +63,7 @@ $tickerItems = [
         <!-- Badge -->
         <div class="hero__badge">
             <span class="hero__badge-dot" aria-hidden="true"></span>
-            <?= htmlspecialchars($edition) ?> FAG &amp; Festival · 25–29 Agosto 2026
+            <?= htmlspecialchars($edition) ?> FAG &amp; Festival · 26–29 Agosto 2026
         </div>
         <!-- CTAs -->
         <div class="hero__actions">
