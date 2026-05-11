@@ -10,19 +10,6 @@ $dayMeta = [
     5 => ['num' => '?', 'month' => '', 'weekday' => 'EM BREVE', 'full' => 'A anunciar'],
 ];
 
-// Group by day — only days with artists
-$byDay = [];
-foreach ($artists as $artist) {
-    $day = (int) ($artist['day'] ?? 1);
-    $byDay[$day][] = $artist;
-}
-ksort($byDay);
-
-// Sort each day: headliners first
-foreach ($byDay as $day => &$group) {
-    usort($group, fn($a, $b) => (($b['headliner'] ?? false) ? 1 : 0) - (($a['headliner'] ?? false) ? 1 : 0));
-}
-unset($group);
 ?>
 
 <section class="lineup section" id="lineup">
@@ -33,22 +20,14 @@ unset($group);
         </div>
 
         <div class="lineup__cards">
-            <?php foreach ($byDay as $day => $dayArtists): ?>
+            <?php foreach ($artists as $i => $artist): ?>
                 <?php
-                $meta = $dayMeta[$day] ?? ['num' => $day, 'month' => 'AGO', 'weekday' => '', 'full' => "Dia $day"];
-                $headliner = null;
-                $others = [];
-                foreach ($dayArtists as $a) {
-                    if (($a['headliner'] ?? false) && $headliner === null) {
-                        $headliner = $a;
-                    } else {
-                        $others[] = $a;
-                    }
-                }
-                $img = $headliner['image'] ?? '';
+                $day = (int) ($artist['day'] ?? 1);
+                $meta = $dayMeta[$day] ?? ['num' => '?', 'month' => '', 'weekday' => 'EM BREVE', 'full' => 'A anunciar'];
+                $img = $artist['image'] ?? '';
                 ?>
                 <article class="lineup__card reveal"
-                    style="transition-delay:<?= (array_search($day, array_keys($byDay)) * 0.1) ?>s">
+                    style="transition-delay:<?= $i * 0.1 ?>s">
                     <!-- Background photo -->
                     <?php if ($img): ?>
                         <div class="lineup__card-bg" style="background-image:url('<?= htmlspecialchars($img) ?>')"></div>
@@ -57,22 +36,13 @@ unset($group);
 
                     <!-- Content -->
                     <div class="lineup__card-body">
-                        <!-- Date pill — inside body, no overlap -->
                         <div class="lineup__card-date">
                             <span class="lineup__card-date-num"><?= $meta['num'] ?></span>
-                            <span class="lineup__card-date-info"><?= $meta['month'] ?> · <?= $meta['weekday'] ?></span>
+                            <span class="lineup__card-date-info"><?= $meta['month'] ?><?= $meta['month'] ? ' · ' : '' ?><?= $meta['weekday'] ?></span>
                         </div>
-
-                        <?php if ($headliner): ?>
-
-                            <h3 class="lineup__card-name"><?= htmlspecialchars($headliner['name']) ?></h3>
-                        <?php endif; ?>
-                        <?php if ($others): ?>
-                            <ul class="lineup__card-others">
-                                <?php foreach ($others as $a): ?>
-                                    <li><?= htmlspecialchars($a['name']) ?></li>
-                                <?php endforeach; ?>
-                            </ul>
+                        <h3 class="lineup__card-name"><?= htmlspecialchars($artist['name']) ?></h3>
+                        <?php if (!empty($artist['genre'])): ?>
+                            <p class="lineup__card-genre"><?= htmlspecialchars($artist['genre']) ?></p>
                         <?php endif; ?>
                     </div>
                 </article>

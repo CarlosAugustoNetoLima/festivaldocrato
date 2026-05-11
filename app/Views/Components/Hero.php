@@ -3,7 +3,10 @@ $festival = $festival ?? [];
 $edition = $festival['edition'] ?? '40.ª';
 
 $tickerItems = [
+    '★ Slow J · 26 Agosto 2026',
+    '★ Dub Inc · 26 Agosto 2026',
     '★ Bispo · 26 Agosto 2026',
+    '★ Sara Correia · 28 Agosto 2026',
     '★ Calema · 28 Agosto 2026',
     '★ Buba Espinho · 29 Agosto 2026',
     '★ Inscrições FAG Abertas · Prazo 19 Junho',
@@ -11,7 +14,10 @@ $tickerItems = [
     '★ 40.ª Feira de Artesanato e Gastronomia · Acesso Gratuito',
     '★ Receção ao Campista · 24 Agosto · Palco FAG',
     '★ Bilhetes Disponíveis · Compra Agora',
+    '★ Slow J · 26 Agosto 2026',
+    '★ Dub Inc · 26 Agosto 2026',
     '★ Bispo · 26 Agosto 2026',
+    '★ Sara Correia · 28 Agosto 2026',
     '★ Calema · 28 Agosto 2026',
     '★ Buba Espinho · 29 Agosto 2026',
     '★ Inscrições FAG Abertas · Prazo 19 Junho',

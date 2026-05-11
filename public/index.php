@@ -59,8 +59,11 @@ $festival = [
 ];
 
 $artists = [
+    ['name' => 'Slow J', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Hip-Hop / Afro Fado', 'image' => '/assets/img/WEBSITE_SLOWJ.png', 'confirmed' => true],
+    ['name' => 'Dub Inc', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Reggae', 'image' => '/assets/img/WEBSITE_DUBINC.png', 'confirmed' => true],
     ['name' => 'Bispo', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Rap / Hip-Hop', 'image' => '/assets/img/artists/POST_bispo-_website.webp', 'confirmed' => true],
     ['name' => 'Calema', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'R&B / Pop', 'image' => '/assets/img/artists/POST_calema_website.webp', 'confirmed' => true],
+    ['name' => 'Sara Correia', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Fado', 'image' => '/assets/img/WEBSITE_sara.png', 'confirmed' => true],
     ['name' => 'Buba Espinho', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Música Portuguesa', 'image' => '/assets/img/artists/POST_buba_website.webp', 'confirmed' => true],
     ['name' => 'A Anunciar', 'day' => 5, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => '', 'image' => '/assets/img/artists/WEBSITE_anunciar.webp', 'confirmed' => false, 'announced' => false],
 ];
@@ -110,6 +113,14 @@ $products = [
 
 $news = [
     [
+        'date' => '2026-05-11',
+        'tag' => 'Artistas',
+        'title' => 'Slow J, Sara Correia e Dub Inc confirmados no Festival do Crato 2026',
+        'excerpt' => 'Os novos artistas juntam-se a Buba Espinho & Convidados, Bispo e Calema. O Festival está de regresso à vila alentejana de 26 a 29 de agosto!',
+        'url' => '/noticias/slow-j-sara-correia-dub-inc',
+        'image' => '/assets/img/new artists.jpeg',
+    ],
+    [
         'date' => '2026-04-23',
         'tag' => 'Artistas',
         'title' => 'Bispo e Calema confirmados no Festival do Crato 2026',
@@ -136,6 +147,7 @@ $routes = [
     '/o-que-fazer' => 'todo',
     '/contactos' => 'contacts',
     '/noticias' => 'news',
+    '/noticias/slow-j-sara-correia-dub-inc' => 'news_slow_j',
     '/noticias/bispo-calema' => 'news_bispo_calema',
     '/artistas' => 'artists',
     '/info' => 'info',
@@ -241,6 +253,41 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
         <?php elseif ($activePage === 'news'): ?>
 
             <?= Component::render('News', ['news' => $news]) ?>
+
+        <?php elseif ($activePage === 'news_slow_j'): ?>
+            <article class="news-article">
+                <div class="container">
+                    <div class="news-article__hero">
+                        <img src="/assets/img/new artists.jpeg" alt="Slow J, Sara Correia e Dub Inc confirmados no Festival do Crato 2026"
+                            class="news-article__hero-img">
+                    </div>
+                    <div class="news-article__content">
+                        <div class="news-article__meta">
+                            <span class="news-card__tag">Artistas</span>
+                            <time datetime="2026-05-11">11 Mai 2026</time>
+                        </div>
+                        <h1 class="news-article__title">Slow J, Sara Correia e Dub Inc confirmados no Festival do Crato 2026</h1>
+                        <p class="news-article__lead">Os artistas juntam-se a Buba Espinho &amp; Convidados, Bispo e Calema</p>
+
+                        <p>O <strong>Festival do Crato</strong> continua a revelar o cartaz da edição de 2026 com a confirmação de <strong>Slow J</strong>, <strong>Sara Correia</strong> e <strong>Dub Inc</strong>. Os artistas juntam-se a Buba Espinho &amp; Convidados, Bispo e Calema. O Festival está de regresso à vila alentejana de <strong>26 a 29 de agosto</strong> de 2026.</p>
+
+                        <p><strong>Slow J</strong> é um dos principais nomes da música portuguesa atual, com presença consistente nos tops nacionais e centenas de milhões de streams acumulados. Temas como "Tata", "Teu Eternamente" e "Vida Boa" destacam-se no seu percurso, marcando diferentes fases da sua discografia. O seu álbum "Afro Fado" atingiu o primeiro lugar na tabela de vendas em Portugal.</p>
+
+                        <p><strong>Sara Correia</strong> é uma das vozes mais reconhecidas do fado atual, distinguida com vários prémios (incluindo o de Melhor Artista Feminina nos Prémios Play 2026) e nomeações ao longo do seu percurso. No seu repertório destacam-se temas como "Chelas" ou "Quero é Viver", que têm contribuído para levar o fado a novos públicos. Tem atuado de forma regular em salas de referência e festivais.</p>
+
+                        <p><strong>Dub Inc</strong> são uma das bandas europeias mais relevantes do reggae, com uma carreira consolidada ao longo de mais de duas décadas. Com vários álbuns editados e digressões internacionais, o grupo construiu uma forte base de seguidores, sendo presença habitual em grandes festivais na Europa e outros mercados.</p>
+
+                        <h2>Sobre o Festival do Crato</h2>
+                        <p>O Festival do Crato, situado no Alto Alentejo, é um dos festivais de verão mais relevantes em Portugal, combinando música, território e tradição. Para além do cartaz musical, o evento integra uma feira de artesanato e gastronomia que valoriza produtores e tradições locais, criando uma experiência que vai além dos concertos.</p>
+
+                        <p>Com uma média de cerca de 100 mil visitantes por edição, o Festival do Crato é hoje o principal festival de verão do Alentejo, reunindo diferentes gerações num ambiente marcado pela cultura local, música e gastronomia.</p>
+
+                        <p>A edição de 2026 realiza-se de <strong>26 a 29 de agosto</strong>.</p>
+
+                        <a href="/noticias" class="btn btn-ghost news-article__back">← Voltar às Notícias</a>
+                    </div>
+                </div>
+            </article>
 
         <?php elseif ($activePage === 'news_bispo_calema'): ?>
             <article class="news-article">
