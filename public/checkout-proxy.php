@@ -358,7 +358,10 @@ svg {
 if ($productId !== '') {
     $colorFix .= '
 <style id="proxy-filter-fix">
-table.ticket-box, .ticket-box { display: none !important; }
+/* Esconder todas as linhas de produto até o filtro JS correr */
+table.table-product tr.td-blank,
+table.table-product tr.table-tr-no-hover,
+table.table-product tr.tr-products { display: none !important; }
 </style>';
 }
 
@@ -409,18 +412,60 @@ window.addEventListener("message", function(e) {
     applyProductFilter(pid);
 });
 
+/**
+ * Filtra os produtos na tabela única do LeBillet.
+ *
+ * Estrutura actual (cada produto = 3 TRs):
+ *   <tr class="td-blank">         — separador
+ *   <tr class="table-tr-no-hover"> — contém td.textprodXXXX (nome)
+ *   <tr class="tr-products tiposprodXXXX"> — lote/preço/select
+ *
+ * Quando pid está vazio, mostra tudo. Caso contrário, esconde os
+ * 3 TRs de cada produto que não corresponde ao pid selecionado.
+ */
 function applyProductFilter(pid) {
-    var tables = document.querySelectorAll(".div-table-product table.ticket-box");
-    if (!tables.length) return;
-    tables.forEach(function(t) {
-        if (!pid) {
-            t.style.setProperty("display", "table", "important");
-            return;
+    // Remover o CSS anti-FOUC que esconde tudo
+    var fouc = document.getElementById("proxy-filter-fix");
+    if (fouc) fouc.remove();
+
+    var table = document.querySelector("table.table-product");
+    if (!table) return;
+    var rows = table.querySelectorAll("tbody > tr");
+    if (!rows.length) return;
+
+    if (!pid) {
+        // Sem filtro — mostrar tudo
+        rows.forEach(function(r) { r.style.display = ""; });
+        return;
+    }
+
+    // Agrupar linhas por produto:
+    // Percorrer todas as TRs e associar cada grupo de 3 ao product_id
+    var groups = [];   // [{pid: "11022", rows: [tr, tr, tr]}, ...]
+    var current = null;
+
+    rows.forEach(function(r) {
+        if (r.classList.contains("td-blank")) {
+            // Início de novo grupo — guardar o anterior
+            if (current) groups.push(current);
+            current = { pid: null, rows: [r] };
+        } else if (current) {
+            current.rows.push(r);
+            // Detectar o product_id a partir da classe textprodXXXX ou tiposprodXXXX
+            if (!current.pid) {
+                var cls = r.className || "";
+                var m = cls.match(/(?:textprod|tiposprod)(\d+)/);
+                if (m) current.pid = m[1];
+            }
         }
-        var match = t.querySelector(
-            "#product_" + pid + "_1, [id^=\"product_" + pid + "_\"]"
-        );
-        t.style.setProperty("display", match ? "table" : "none", "important");
+    });
+    if (current) groups.push(current);
+
+    groups.forEach(function(g) {
+        var show = (g.pid === pid);
+        g.rows.forEach(function(r) {
+            r.style.display = show ? "" : "none";
+        });
     });
 }
 </script>';

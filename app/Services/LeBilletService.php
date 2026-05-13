@@ -141,23 +141,32 @@ class LeBilletService
     {
         $tickets = [];
 
-        // Procurar todos os selects de quantidade e capturar o ID do produto
-        $pattern = '/id="product_(\d+)_\d+"/';
+        // A estrutura actual do LeBillet:
+        //   <td class="td-product-name textprodXXXX" …>
+        //     <h6 …>NOME DO BILHETE <small><br>Descrição.</small></h6>
+        //   </td>
+        //   <td …>€ 45,00</td>
+        //   … id="product_XXXX_1" …
+        //
+        // Usamos a classe textprodXXXX como âncora.
+        $pattern = '/class="[^"]*textprod(\d+)[^"]*"/';
         if (!preg_match_all($pattern, $html, $matches, PREG_OFFSET_CAPTURE)) {
             return [];
         }
 
         $offsets    = $matches[0]; // [match_string, offset]
         $productIds = $matches[1]; // [id_string, offset]
+        $total      = count($offsets);
 
-        for ($i = 0; $i < count($offsets); $i++) {
+        for ($i = 0; $i < $total; $i++) {
             $productId = $productIds[$i][0];
-            // Bloco: do início do bloco anterior até o início deste match
-            $start = $i > 0 ? $offsets[$i - 1][1] : 0;
-            $end   = $offsets[$i][1];
+
+            // Bloco: desde este match até ao início do próximo (ou fim do HTML)
+            $start = $offsets[$i][1];
+            $end   = ($i + 1 < $total) ? $offsets[$i + 1][1] : strlen($html);
             $block = substr($html, $start, $end - $start);
 
-            // Limpar o HTML para tornar regex mais fácil
+            // Normalizar espaços para facilitar regex
             $clean = preg_replace('/\s+/', ' ', $block);
 
             $name        = $this->extractName($clean);
@@ -194,7 +203,8 @@ class LeBilletService
 
     private function extractName(string $block): ?string
     {
-        if (preg_match('/<h5[^>]*>\s*(.+?)\s*<small>/i', $block, $m)) {
+        // LeBillet usa <h6> (anteriormente <h5>)
+        if (preg_match('/<h[456][^>]*>\s*(.+?)\s*<small>/i', $block, $m)) {
             $name = trim(strip_tags($m[1]));
             if (strlen($name) > 2) {
                 return $name;
