@@ -9,16 +9,14 @@ $pubDir  = __DIR__ . '/public';
 
 $routes = [
     '/'            => '',
-    '/bilheteira'  => '/bilheteira',
-    '/lineup'      => '/lineup',
-    '/artistas'    => '/artistas',
     '/campismo'    => '/campismo',
-    '/loja'        => '/loja',
     '/noticias'    => '/noticias',
     '/sobre'       => '/sobre',
     '/info'        => '/info',
     '/como-chegar' => '/como-chegar',
     '/contactos'   => '/contactos',
+    '/parceiros'   => '/parceiros',
+    '/guia-do-festival' => '/guia-do-festival',
 ];
 
 foreach ($routes as $uri => $outPath) {
@@ -34,7 +32,7 @@ foreach ($routes as $uri => $outPath) {
     $html = str_replace('href="/assets/',  "href=\"$base/assets/",  $html);
     $html = str_replace('src="/assets/',   "src=\"$base/assets/",   $html);
     $html = str_replace("href=\"/\""    ,  "href=\"$base/\"",       $html);
-    $html = preg_replace('#href="/(bilheteira|lineup|artistas|campismo|loja|noticias|sobre|info|como-chegar|contactos|produto|pesquisa)"#',
+    $html = preg_replace('#href="/(campismo|noticias|sobre|info|como-chegar|contactos|parceiros|guia-do-festival|produto|pesquisa)"#',
         "href=\"$base/$1\"", $html);
 
     $outDir = $distDir . $outPath;

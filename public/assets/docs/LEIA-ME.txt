@@ -1,0 +1,11 @@
+Guia do Festival
+================
+
+Coloca aqui o PDF do guia com este nome exato:
+
+    guia-festival-crato-2026.pdf
+
+Assim que o ficheiro existir, a página /guia-do-festival passa automaticamente
+a mostrar os botões de download (o aviso de "em breve" desaparece sozinho).
+
+O URL da página nunca muda — é seguro gerar o QR Code antes do PDF chegar.

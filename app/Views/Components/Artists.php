@@ -3,13 +3,13 @@ $artists = $artists ?? [];
 $showAll  = $showAll ?? false;
 
 
-$dayLabels = [1 => '26 Ago · Dia 1', 2 => '27 Ago · Dia 2', 3 => '28 Ago · Dia 3', 4 => '29 Ago · Dia 4'];
+$dayLabels = [1 => '25 Ago · Dia 1', 2 => '26 Ago · Dia 2', 3 => '27 Ago · Dia 3', 4 => '28 Ago · Dia 4'];
 ?>
 
 <section class="artists section" id="artistas">
     <div class="container">
         <div style="margin-bottom:var(--s-2xl);">
-            <p class="section-label reveal" style="margin-bottom: var(--s-sm);">Festival Crato 2026</p>
+            <p class="section-label reveal" style="margin-bottom: var(--s-sm);">Festival do Crato</p>
             <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
                 <h2 class="section-title reveal" style="margin:0;">
                     <?= $showAll ? 'Todos os <span>Artistas</span>' : '<span>Artistas</span> em Destaque' ?>

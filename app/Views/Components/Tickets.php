@@ -9,44 +9,20 @@ if (!$showAll) {
 
 // ── Mapeamento bilhete → imagens (desktop / mobile) ─────────────────────────
 // Desktop = imagem grande | Mobile = @1,5x (menor, carrega mais rápido)
-$ticketImages = [
-    // product_id => ['desktop' => '...', 'mobile' => '...']
-    '11022' => [
-        'desktop' => '/assets/img/bilhetes/passe%20geral.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20geral%401%2C5x.jpg.jpeg',
-    ],
-    '11023' => [
-        'desktop' => '/assets/img/bilhetes/passe%20geral%20com%20campismo.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20geral%20com%20campismo%401%2C5x.jpg.jpeg',
-    ],
-    '11024' => [
-        'desktop' => '/assets/img/bilhetes/passe%20di%C3%A1rio%2026%401%2C5x.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2026%401%2C5x.jpg.jpeg',
-    ],
-    '11025' => [
-        'desktop' => '/assets/img/bilhetes/bilhete%20di%C3%A1rio%2027.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2027%401%2C5x.jpg.jpeg',
-    ],
-    '11026' => [
-        'desktop' => '/assets/img/bilhetes/bilhete%20di%C3%A1rio%2028.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2028%401%2C5x.jpg.jpeg',
-    ],
-    '11027' => [
-        'desktop' => '/assets/img/bilhetes/bilhete%20di%C3%A1rio%2029.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2029%401%2C5x.jpg.jpeg',
-    ],
-];
+// Mapa product_id => imagens. Esvaziado após 2026: os ids e as imagens dos
+// bilhetes mudam a cada edição. Repor com os da venda de 2027.
+$ticketImages = [];
 ?>
 
 <section class="tickets section" id="bilhetes">
     <div class="container">
         <div style="text-align:center;margin-bottom:var(--s-2xl);">
-            <p class="section-label reveal">40.ª Edição</p>
+            <p class="section-label reveal">Festival do Crato</p>
             <h2 class="section-title reveal">
                 Garante o teu <span>Lugar</span>
             </h2>
             <p style="color:var(--c-text-muted);margin-top:1rem;max-width:520px;margin-inline:auto;" class="reveal">
-                Não percas a oportunidade de viver a Feira de Artesanato e Gastronomia e o Festival do Crato 2026 — artesanato, gastronomia e música ao vivo no coração do Alto Alentejo.
+                Não percas a oportunidade de viver o Festival do Crato — artesanato, gastronomia e música ao vivo no coração do Alto Alentejo.
             </p>
         </div>
 
@@ -87,7 +63,7 @@ $ticketImages = [
                     <?php endif; ?>
 
                     <div class="ticket-card__body">
-                        <p class="ticket-card__label">40.ª FAG &amp; Festival do Crato</p>
+                        <p class="ticket-card__label">Festival do Crato</p>
                         <h3 class="ticket-card__name"><?= htmlspecialchars($ticket['name'] ?? 'Bilhete') ?></h3>
                         <p class="ticket-card__subtitle"><?= htmlspecialchars($ticket['subtitle'] ?? '') ?></p>
 

@@ -76,7 +76,10 @@
   /* ─── Countdown ─────────────────────────── */
   const countdownEl = document.getElementById('hero-countdown');
   if (countdownEl) {
-    const festivalDate = new Date('2026-08-26T12:00:00');
+    // A data vem do PHP ($festival em index.php) por data-countdown-target.
+    // Tê-la duplicada aqui era o motivo de o contador ficar parado a zeros
+    // depois de cada edição — o fallback serve só se o atributo faltar.
+    const festivalDate = new Date(countdownEl.dataset.countdownTarget || '2027-08-25T12:00:00');
 
     const pad = n => String(n).padStart(2, '0');
 
@@ -110,24 +113,91 @@
   }
 
   /* ─── Scroll Reveal ─────────────────────── */
-  const revealEls = document.querySelectorAll('.reveal');
-  if (revealEls.length) {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
+  // Containers cujos filhos já têm o seu próprio stagger reveal (ver bloco
+  // "Grid stagger reveal" mais abaixo) — excluídos daqui para não serem
+  // observados (e atrasados) duas vezes.
+  const cardGridSelector = '.artists__grid, .tickets__grid, .news__grid, .lineup__cards, .store__grid, .store-collections__grid';
+
+  if (!('IntersectionObserver' in window)) {
+    // Sem suporte a IntersectionObserver: mostra tudo de imediato em vez de
+    // deixar o conteúdo invisível para sempre.
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  } else {
+    try {
+      const revealEls = Array.from(document.querySelectorAll('.reveal'))
+        .filter(el => !el.closest(cardGridSelector));
+
+      if (revealEls.length) {
+        const observer = new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          // threshold 0 → basta 1px visível para disparar (elementos altos
+          // deixavam de revelar-se com o threshold de 12% anterior).
+          // rootMargin negativo (-10% no fundo) → só dispara quando o
+          // elemento já entrou mesmo no ecrã, para a transição (curta, 0.45s)
+          // acontecer à vista em vez de terminar antes de ele aparecer.
+          { threshold: 0, rootMargin: '0px 0px -10% 0px' }
+        );
+
+        revealEls.forEach(el => {
+          // Preserva o transition-delay já definido pelo PHP (stagger local
+          // por card); só atribui um novo se não existir nenhum, baseado na
+          // posição do elemento entre os seus irmãos `.reveal` (não na
+          // página toda) e limitado a um máximo curto.
+          if (!el.style.transitionDelay) {
+            const siblings = el.parentElement
+              ? Array.from(el.parentElement.children).filter(c => c.classList.contains('reveal'))
+              : [el];
+            const localIndex = Math.max(0, siblings.indexOf(el));
+            el.style.transitionDelay = `${Math.min(localIndex, 4) * 0.08}s`;
+          }
+          observer.observe(el);
+        });
+      }
+
+      // Rede de segurança: em vez de um temporizador cego (que revelaria
+      // secções ainda fora do ecrã para quem demore a rolar), verifica pela
+      // posição real de scroll — só força a revelação de elementos que já
+      // estão mesmo dentro do viewport (não uma zona alargada à sua volta,
+      // senão isto antecipa a revelação e "engole" o efeito de fade) mas que,
+      // por algum motivo, o IntersectionObserver não tenha apanhado.
+      let fallbackScheduled = false;
+      const runFallbackCheck = () => {
+        fallbackScheduled = false;
+        const pending = document.querySelectorAll('.reveal:not(.visible)');
+        if (!pending.length) {
+          window.removeEventListener('scroll', scheduleFallbackCheck);
+          window.removeEventListener('resize', scheduleFallbackCheck);
+          return;
+        }
+        // Mesma margem do observer principal (-10% a partir do fundo): só
+        // considera "já visível" quem já entrou de facto no ecrã.
+        const vh = window.innerHeight;
+        const bottomEdge = vh * 0.9;
+        pending.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < bottomEdge && rect.bottom > 0) {
+            el.classList.add('visible');
           }
         });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    );
-
-    revealEls.forEach((el, i) => {
-      el.style.transitionDelay = `${i * 0.07}s`;
-      observer.observe(el);
-    });
+      };
+      const scheduleFallbackCheck = () => {
+        if (fallbackScheduled) return;
+        fallbackScheduled = true;
+        window.requestAnimationFrame(runFallbackCheck);
+      };
+      window.addEventListener('scroll', scheduleFallbackCheck, { passive: true });
+      window.addEventListener('resize', scheduleFallbackCheck, { passive: true });
+      runFallbackCheck();
+    } catch (err) {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
   }
 
   /* ─── Store — Category Tabs ─────────────── */
@@ -169,20 +239,28 @@
   });
 
   /* ─── Grid stagger reveal ────────────────── */
-  const gridObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      Array.from(entry.target.children).forEach((item, i) => {
-        item.style.transitionDelay = `${i * 0.04}s`;
-        item.classList.add('visible');
+  if ('IntersectionObserver' in window) {
+    const gridObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        Array.from(entry.target.children).forEach((item, i) => {
+          // Limita o stagger a 10 itens — grelhas longas (ex: loja, todos os
+          // artistas) não devem acumular vários segundos de atraso.
+          item.style.transitionDelay = `${Math.min(i, 10) * 0.05}s`;
+          item.classList.add('visible');
+        });
+        gridObserver.unobserve(entry.target);
       });
-      gridObserver.unobserve(entry.target);
-    });
-  }, { threshold: 0, rootMargin: '0px 0px 50px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
 
-  document.querySelectorAll('.artists__grid, .tickets__grid, .news__grid').forEach(container => {
-    gridObserver.observe(container);
-  });
+    document.querySelectorAll(cardGridSelector).forEach(container => {
+      gridObserver.observe(container);
+    });
+  } else {
+    document.querySelectorAll(`${cardGridSelector}`).forEach(container => {
+      Array.from(container.children).forEach(item => item.classList.add('visible'));
+    });
+  }
 
   /* ─── Cookie Banner Logic ───────────────── */
   const banner = document.getElementById('cookie-banner');

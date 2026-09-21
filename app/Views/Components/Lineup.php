@@ -3,10 +3,10 @@ $artists = $artists ?? [];
 $showAll = $showAll ?? false;
 
 $dayMeta = [
-    1 => ['num' => '26', 'month' => 'AGO', 'weekday' => 'QUA', 'full' => '26 Ago · Qua'],
-    2 => ['num' => '27', 'month' => 'AGO', 'weekday' => 'QUI', 'full' => '27 Ago · Qui'],
-    3 => ['num' => '28', 'month' => 'AGO', 'weekday' => 'SEX', 'full' => '28 Ago · Sex'],
-    4 => ['num' => '29', 'month' => 'AGO', 'weekday' => 'SÁB', 'full' => '29 Ago · Sáb'],
+    1 => ['num' => '25', 'month' => 'AGO', 'weekday' => 'QUA', 'full' => '25 Ago · Qua'],
+    2 => ['num' => '26', 'month' => 'AGO', 'weekday' => 'QUI', 'full' => '26 Ago · Qui'],
+    3 => ['num' => '27', 'month' => 'AGO', 'weekday' => 'SEX', 'full' => '27 Ago · Sex'],
+    4 => ['num' => '28', 'month' => 'AGO', 'weekday' => 'SÁB', 'full' => '28 Ago · Sáb'],
     5 => ['num' => '?', 'month' => '', 'weekday' => 'EM BREVE', 'full' => 'A anunciar'],
 ];
 

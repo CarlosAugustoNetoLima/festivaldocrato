@@ -498,7 +498,7 @@ body {
 .ticker-track {
   display: inline-flex;
   gap: 0;
-  animation: tickerScroll 30s linear infinite;
+  animation: tickerScroll 60s linear infinite;
 }
 
 .ticker-item {
@@ -1289,11 +1289,24 @@ body {
 }
 
 /* ─── NEWS ───────────────────────────────── */
+.news__empty {
+  text-align: center;
+  max-width: 44ch;
+  margin-inline: auto;
+  color: var(--c-text-muted);
+  line-height: 1.8;
+}
+
 .news__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 400px));
-  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--s-xl);
+}
+
+@media (max-width: 1024px) {
+  .news__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .news-card {
@@ -1388,7 +1401,7 @@ body {
 
 .footer-top {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr;
   gap: var(--s-2xl);
   padding-bottom: var(--s-2xl);
   border-bottom: 1px solid var(--c-border);
@@ -1719,13 +1732,21 @@ body {
 
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(18px);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
 }
 
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ─── Responsive ─────────────────────────── */
@@ -2396,5 +2417,232 @@ body {
   .cookie-banner__actions {
     width: 100%;
     justify-content: flex-end;
+  }
+}
+
+/* ─── PARCEIROS ──────────────────────────── */
+.partners-page {
+  padding: var(--s-2xl) 0 var(--s-3xl);
+  background: var(--c-bg);
+}
+
+.partners-group {
+  margin-bottom: var(--s-3xl);
+}
+
+.partners-group:last-of-type {
+  margin-bottom: var(--s-2xl);
+}
+
+.partners-group__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text);
+  text-align: center;
+  margin: 0 0 var(--s-xl);
+}
+
+.partners-group__title::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  margin: 0.75rem auto 0;
+  border-radius: 2px;
+  background: var(--g-brand);
+}
+
+/* Flexbox (e não grid) para que escalões com um só logótipo fiquem
+   centrados em vez de encostados à esquerda de uma coluna vazia. */
+.partners-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-lg);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Escalão principal (organização): cartões maiores. */
+.partners-grid--featured .partners-item {
+  flex: 0 1 280px;
+}
+
+.partners-item {
+  flex: 1 1 158px;
+  max-width: 230px;
+  margin: 0;
+}
+
+.partners-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 130px;
+  height: 100%;
+  padding: var(--s-lg);
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--r-md);
+  transition: transform var(--t-normal), box-shadow var(--t-normal);
+}
+
+a.partners-card:hover,
+a.partners-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.partners-logo {
+  max-width: 100%;
+  max-height: 66px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.partners-grid--featured .partners-card {
+  min-height: 170px;
+}
+
+.partners-grid--featured .partners-logo {
+  max-height: 96px;
+}
+
+.partners-cta {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--s-2xl) var(--s-lg) 0;
+  text-align: center;
+  border-top: 1px solid var(--c-border);
+}
+
+.partners-cta h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: 0.02em;
+  color: var(--c-text);
+  margin: 0 0 var(--s-sm);
+}
+
+.partners-cta p {
+  color: var(--c-text-muted);
+  line-height: 1.7;
+  margin: 0 0 var(--s-lg);
+}
+
+@media (max-width: 600px) {
+  .partners-grid {
+    gap: var(--s-md);
+  }
+  .partners-item {
+    flex: 1 1 132px;
+    max-width: 170px;
+  }
+  .partners-card {
+    min-height: 104px;
+    padding: var(--s-md);
+  }
+  .partners-logo {
+    max-height: 52px;
+  }
+  .partners-grid--featured .partners-item {
+    flex: 0 1 100%;
+    max-width: 280px;
+  }
+}
+
+/* ─── GUIA DO FESTIVAL ───────────────────── */
+.guide-page {
+  padding: var(--s-2xl) 0 var(--s-3xl);
+  background: var(--c-bg);
+}
+
+.guide-card {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--s-2xl) var(--s-xl);
+  text-align: center;
+  background: var(--c-bg-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+}
+
+.guide-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: var(--s-lg);
+  border-radius: 50%;
+  background: var(--g-brand);
+  color: #fff;
+  font-size: 34px;
+  box-shadow: 0 8px 26px var(--c-accent-glow);
+}
+
+.guide-card__lead {
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--c-text);
+  margin: 0 0 var(--s-md);
+}
+
+.guide-card__text {
+  color: var(--c-text-muted);
+  line-height: 1.75;
+  margin: 0 0 var(--s-xl);
+}
+
+.guide-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-md);
+}
+
+.guide-card__meta {
+  margin: var(--s-md) 0 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-faint);
+}
+
+.guide-card__pending {
+  display: flex;
+  align-items: center;
+  gap: var(--s-md);
+  padding: var(--s-md) var(--s-lg);
+  margin-bottom: var(--s-lg);
+  text-align: left;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed var(--c-border);
+  border-radius: var(--r-md);
+  color: var(--c-text-muted);
+}
+
+.guide-card__pending .material-symbols-outlined {
+  color: var(--c-brand);
+  flex-shrink: 0;
+}
+
+.guide-card__pending p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .guide-card {
+    padding: var(--s-xl) var(--s-lg);
+  }
+  .guide-card__actions .btn {
+    width: 100%;
   }
 }

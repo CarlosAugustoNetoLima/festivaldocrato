@@ -1,7 +1,7 @@
 <?php
 $festival = $festival ?? [];
 $showFull = $showFull ?? false;
-$edition = $festival['edition'] ?? '40.ª';
+$edition = $festival['edition'] ?? '41.ª';
 ?>
 
 <section class="about section" id="info">
@@ -16,7 +16,7 @@ $edition = $festival['edition'] ?? '40.ª';
             <p class="about__description reveal">
                 No coração do Alto Alentejo, o Festival do Crato é um dos maiores eventos de verão em Portugal.
                 Durante quatro noites inesquecíveis, os melhores artistas nacionais sobem ao palco num ambiente
-                único de música, convívio e tradição — integrado na Feira de Artesanato e Gastronomia do Crato.
+                único de música, convívio e tradição, no coração da Vila do Crato.
             </p>
 
             <div class="about__stats reveal">
@@ -68,7 +68,7 @@ $edition = $festival['edition'] ?? '40.ª';
                             style="font-family:var(--font-heading);font-size:1.8rem;margin-bottom:1rem;color:var(--c-brand);">
                             Festival do Crato</h3>
                         <p style="color:var(--c-text-muted);line-height:1.8;">
-                            De 26 a 29 de agosto, o Festival do Crato traz ao palco os melhores artistas
+                            De 25 a 28 de agosto de 2027, o Festival do Crato traz ao palco os melhores artistas
                             nacionais para quatro noites memoráveis de música ao vivo, animação e cultura.
                         </p>
                     </div>
@@ -77,19 +77,8 @@ $edition = $festival['edition'] ?? '40.ª';
                             style="font-family:var(--font-heading);font-size:1.8rem;margin-bottom:1rem;color:var(--c-brand);">
                             Receção ao Campista</h3>
                         <p style="color:var(--c-text-muted);line-height:1.8;">
-                            No dia 24 de agosto, o Palco da FAG acolhe a receção aos campistas
-                            que chegam para vivenciar o evento. Uma noite de acolhimento e convívio
-                            antes do arranque oficial.
-                        </p>
-                    </div>
-                    <div>
-                        <h3
-                            style="font-family:var(--font-heading);font-size:1.8rem;margin-bottom:1rem;color:var(--c-brand);">
-                            Feira de Artesanato e Gastronomia</h3>
-                        <p style="color:var(--c-text-muted);line-height:1.8;">
-                            A 40.ª FAG decorre de 26 a 29 de agosto, com dezenas de expositores de artesanato
-                            e gastronomia regional. Um espaço dedicado à valorização das tradições e sabores
-                            do Alto Alentejo.
+                            Na véspera do arranque oficial, o recinto acolhe a receção aos campistas
+                            que chegam para vivenciar o evento. Uma noite de acolhimento e convívio.
                         </p>
                     </div>
                     <div>
@@ -121,7 +110,7 @@ $edition = $festival['edition'] ?? '40.ª';
                             Praça do Município<br>
                             7430-999 Crato<br><br>
                             Tel: <a href="tel:245990110" style="color:var(--c-accent);">245 990 110</a><br>
-                            E-mail: <a href="mailto:fag@cm-crato.pt" style="color:var(--c-accent);">fag@cm-crato.pt</a>
+                            E-mail: <a href="mailto:festivaldocrato@cm-crato.pt" style="color:var(--c-accent);">festivaldocrato@cm-crato.pt</a>
                         </p>
                     </div>
                 </div>
