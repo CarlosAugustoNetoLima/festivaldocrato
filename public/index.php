@@ -155,8 +155,6 @@ $path = rtrim(parse_url($request, PHP_URL_PATH), '/') ?: '/';
 // Rotas da edição de 2026 que deixaram de fazer sentido depois do festival.
 // 302 (temporário) e não 301: voltam a abrir na edição de 2027, e um 301 fica
 // cacheado no browser de forma difícil de reverter.
-// NOTA: o build estático para GitHub Pages não executa PHP — estas rotas estão
-// também fora do $routes do build.php, por isso não geram página lá.
 $redirects = [
     '/bilheteira' => '/',
     '/bilhetes'   => '/',
