@@ -10,7 +10,6 @@ $navLinks = [
     ['label' => 'Novidades', 'url' => '/noticias'],
     ['label' => 'Campismo', 'url' => '/campismo'],
     ['label' => 'Parceiros', 'url' => '/parceiros'],
-    ['label' => 'Guia do Festival', 'url' => '/guia-do-festival'],
     ['label' => 'Info', 'url' => '/info'],
 ];
 ?>
