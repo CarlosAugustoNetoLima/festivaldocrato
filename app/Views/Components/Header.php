@@ -16,7 +16,8 @@ $navItems = [
     ['id' => 'camping',  'label' => 'CAMPISMO',    'url' => '/campismo'],
     ['id' => 'partners', 'label' => 'PARCEIROS',   'url' => '/parceiros'],
     ['id' => 'info',     'label' => 'INFO',        'url' => '#', 'submenu' => [
-        ['id' => 'guide',    'label' => 'Guia do Festival', 'url' => '/guia-do-festival'],
+        // Oculto: o guia de 2026 saiu e ainda não há o da próxima edição.
+        // ['id' => 'guide',    'label' => 'Guia do Festival', 'url' => '/guia-do-festival'],
         ['id' => 'stay',     'label' => 'Onde Ficar',    'url' => 'https://cm-crato.pt/visitar/onde-ficar/', 'external' => true],
         ['id' => 'eat',      'label' => 'Onde Comer',    'url' => 'https://cm-crato.pt/visitar/onde-comer/', 'external' => true],
         ['id' => 'contacts', 'label' => 'Contactos',     'url' => '/contactos'],
