@@ -2,7 +2,7 @@
 /**
  * Guia do Festival — página de download do PDF.
  *
- * $guidePdf   caminho público do ficheiro (ex.: /assets/docs/guia-festival-crato-2026.pdf)
+ * $guidePdf   caminho público do ficheiro (ex.: /assets/docs/guia-festival-crato.pdf)
  * $guideSize  tamanho legível do ficheiro, ou '' quando ainda não existe
  * $guideReady true quando o PDF já está publicado
  */

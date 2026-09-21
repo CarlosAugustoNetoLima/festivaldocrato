@@ -9,33 +9,9 @@ if (!$showAll) {
 
 // ── Mapeamento bilhete → imagens (desktop / mobile) ─────────────────────────
 // Desktop = imagem grande | Mobile = @1,5x (menor, carrega mais rápido)
-$ticketImages = [
-    // product_id => ['desktop' => '...', 'mobile' => '...']
-    '11022' => [
-        'desktop' => '/assets/img/bilhetes/passe%20geral.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20geral%401%2C5x.jpg.jpeg',
-    ],
-    '11023' => [
-        'desktop' => '/assets/img/bilhetes/passe%20geral%20com%20campismo.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20geral%20com%20campismo%401%2C5x.jpg.jpeg',
-    ],
-    '11024' => [
-        'desktop' => '/assets/img/bilhetes/passe%20di%C3%A1rio%2026%401%2C5x.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2026%401%2C5x.jpg.jpeg',
-    ],
-    '11025' => [
-        'desktop' => '/assets/img/bilhetes/bilhete%20di%C3%A1rio%2027.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2027%401%2C5x.jpg.jpeg',
-    ],
-    '11026' => [
-        'desktop' => '/assets/img/bilhetes/bilhete%20di%C3%A1rio%2028.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2028%401%2C5x.jpg.jpeg',
-    ],
-    '11027' => [
-        'desktop' => '/assets/img/bilhetes/bilhete%20di%C3%A1rio%2029.jpg.jpeg',
-        'mobile'  => '/assets/img/bilhetes/passe%20di%C3%A1rio%2029%401%2C5x.jpg.jpeg',
-    ],
-];
+// Mapa product_id => imagens. Esvaziado após 2026: os ids e as imagens dos
+// bilhetes mudam a cada edição. Repor com os da venda de 2027.
+$ticketImages = [];
 ?>
 
 <section class="tickets section" id="bilhetes">

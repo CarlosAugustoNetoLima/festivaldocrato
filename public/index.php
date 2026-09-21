@@ -26,10 +26,16 @@ $festivalEventId = 1830;
 // ─────────────────────────────────────────────
 //  LeBillet Service — dados via API/checkout
 // ─────────────────────────────────────────────
-$lebillet = new LeBilletService();
-$eventsLimit = $lebillet->getApiEvents($lebilletApiKey, 6);
-$eventsAll = $lebillet->getApiEvents($lebilletApiKey);
-$tickets = $lebillet->getCheckoutTickets($festivalEventId);
+// Desligado após a edição de 2026 — não há bilhetes à venda e estas chamadas
+// traziam os dados do evento 1830 (2026). Repor, com o event id da próxima
+// edição em $festivalEventId, quando abrir a venda para 2027.
+// $lebillet = new LeBilletService();
+// $eventsLimit = $lebillet->getApiEvents($lebilletApiKey, 6);
+// $eventsAll = $lebillet->getApiEvents($lebilletApiKey);
+// $tickets = $lebillet->getCheckoutTickets($festivalEventId);
+$eventsLimit = [];
+$eventsAll = [];
+$tickets = [];
 
 // ─────────────────────────────────────────────
 //  Site data
@@ -58,92 +64,15 @@ $festival = [
     ],
 ];
 
-$artists = [
-    ['name' => 'Slow J', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Hip-Hop', 'image' => '/assets/img/WEBSITE_SLOWJ.png', 'confirmed' => true],
-    ['name' => 'Dub Inc', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Reggae', 'image' => '/assets/img/WEBSITE_DUBINC.png', 'confirmed' => true],
-    ['name' => 'Bispo', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Hip-Hop', 'image' => '/assets/img/artists/POST_bispo-_website.webp', 'confirmed' => true],
-    ['name' => 'Zanova', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'DJ / Electronic', 'image' => '/assets/img/artists/Zanova_Website.webp', 'confirmed' => true],
-    ['name' => 'Veigh', 'day' => 2, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Trap', 'image' => '/assets/img/WEBSITE_VEIGH.png', 'confirmed' => true],
-    ['name' => 'Papillon', 'day' => 2, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Hip-Hop', 'image' => '/assets/img/WEBSITE_PAPILLON.png', 'confirmed' => true],
-    ['name' => 'Soraia Ramos', 'day' => 2, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Kizomba / Afropop', 'image' => '/assets/img/WEBSITE_SORAIA.png', 'confirmed' => true],
-    ['name' => 'Calema', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Afropop / Kizomba', 'image' => '/assets/img/artists/POST_calema_website.webp', 'confirmed' => true],
-    ['name' => 'Sara Correia', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Fado', 'image' => '/assets/img/WEBSITE_sara.png', 'confirmed' => true],
-    ['name' => 'Delfins', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Rock / Pop', 'image' => '/assets/img/artists/WEBSITE_Delfins.webp', 'confirmed' => true],
-    ['name' => 'KURA', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Electro House', 'image' => '/assets/img/artists/KURA_Website.webp', 'confirmed' => true],
-    ['name' => 'Calum Scott', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Pop / Soul', 'image' => '/assets/img/artists/WEBSITE_CalumScott.webp', 'confirmed' => true],
-    ['name' => 'Karetus', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Electronic', 'image' => '/assets/img/artists/WEBSITE_Karetus.webp', 'confirmed' => true],
-    ['name' => 'Buba Espinho', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Fado / Cante Alentejano', 'image' => '/assets/img/artists/POST_buba_website.webp', 'confirmed' => true],
-];
+// Cartaz da próxima edição — a preencher quando os nomes forem anunciados.
+$artists = [];
 
-$products = [
-    [
-        'id' => 'tshirt-crato-2026',
-        'name' => 'T-Shirt Festival Crato 2026',
-        'category' => 'Vestuário',
-        'price' => null, // Preço vem do checkout LeBillet
-        'description' => 'T-Shirt oficial do Festival do Crato 2026. 100% algodão orgânico.',
-        'image' => '/assets/img/logo.png',
-        'highlight' => true,
-        'event_id' => 'crato-store-tshirt',
-    ],
-    [
-        'id' => 'bone-crato-2026',
-        'name' => 'Boné Festival Crato 2026',
-        'category' => 'Acessórios',
-        'price' => null, // Preço vem do checkout LeBillet
-        'description' => 'Boné oficial do Festival do Crato 2026.',
-        'image' => '/assets/img/logo.png',
-        'highlight' => false,
-        'event_id' => 'crato-store-bone',
-    ],
-    [
-        'id' => 'eco-bag-crato-2026',
-        'name' => 'Eco Bag Festival Crato 2026',
-        'category' => 'Acessórios',
-        'price' => null, // Preço vem do checkout LeBillet
-        'description' => 'Saco reutilizável oficial do Festival do Crato 2026.',
-        'image' => '/assets/img/logo.png',
-        'highlight' => false,
-        'event_id' => 'crato-store-ecobag',
-    ],
-    [
-        'id' => 'hoodie-crato-2026',
-        'name' => 'Hoodie Festival Crato 2026',
-        'category' => 'Vestuário',
-        'price' => null, // Preço vem do checkout LeBillet
-        'description' => 'Hoodie oficial do Festival do Crato 2026. Edição limitada.',
-        'image' => '/assets/img/logo.png',
-        'highlight' => false,
-        'event_id' => 'crato-store-hoodie',
-    ],
-];
+// Merchandising — o de 2026 saiu de circulação.
+$products = [];
 
-$news = [
-    [
-        'date' => '2026-05-15',
-        'tag' => 'Artistas',
-        'title' => 'Veigh, Papillon e Soraia Ramos confirmados no Festival do Crato 2026',
-        'excerpt' => 'Os artistas juntam-se aos já anunciados Buba Espinho & Convidados, Bispo, Calema, Slow J, Sara Correia e Dub Inc. O Festival está de regresso à vila alentejana de 26 a 29 de agosto!',
-        'url' => '/noticias/veigh-papillon-soraia-ramos',
-        'image' => '/assets/img/anuncio_veigh_papillon_soraia.png',
-    ],
-    [
-        'date' => '2026-05-11',
-        'tag' => 'Artistas',
-        'title' => 'Slow J, Sara Correia e Dub Inc confirmados no Festival do Crato 2026',
-        'excerpt' => 'Os novos artistas juntam-se a Buba Espinho & Convidados, Bispo e Calema. O Festival está de regresso à vila alentejana de 26 a 29 de agosto!',
-        'url' => '/noticias/slow-j-sara-correia-dub-inc',
-        'image' => '/assets/img/new artists.jpeg',
-    ],
-    [
-        'date' => '2026-04-23',
-        'tag' => 'Artistas',
-        'title' => 'Bispo e Calema confirmados no Festival do Crato 2026',
-        'excerpt' => 'Artistas juntam-se ao já anunciado Buba Espinho & Convidados. O Festival está de regresso à vila alentejana de 26 a 29 de agosto!',
-        'url' => '/noticias/bispo-calema',
-        'image' => '/assets/img/anuncio.jpeg',
-    ],
-];
+// Notícias — as da edição de 2026 foram retiradas. A preencher com os
+// anúncios da próxima edição.
+$news = [];
 
 $partnerGroups = [
     [
@@ -206,7 +135,7 @@ $partnerGroups = [
 //  Basta colocar o ficheiro em public/assets/docs/ para a página passar a
 //  mostrar o botão de download. O URL da página nunca muda (é a base do QR Code).
 // ─────────────────────────────────────────────
-$guidePdf = '/assets/docs/guia-festival-crato-2026.pdf';
+$guidePdf = '/assets/docs/guia-festival-crato.pdf';
 $guideFile = __DIR__ . $guidePdf;
 $guideReady = is_file($guideFile);
 $guideSize = '';
@@ -228,9 +157,21 @@ $path = rtrim(parse_url($request, PHP_URL_PATH), '/') ?: '/';
 // cacheado no browser de forma difícil de reverter.
 // NOTA: o build estático para GitHub Pages não executa PHP — estas rotas estão
 // também fora do $routes do build.php, por isso não geram página lá.
-$redirects = ['/bilheteira', '/bilhetes', '/lineup', '/artistas'];
-if (in_array($path, $redirects, true) && PHP_SAPI !== 'cli') {
-    header('Location: /', true, 302);
+$redirects = [
+    '/bilheteira' => '/',
+    '/bilhetes'   => '/',
+    '/lineup'     => '/',
+    '/artistas'   => '/',
+    '/loja'       => '/',
+    '/produto'    => '/',
+    // Artigos da edição de 2026 — estiveram públicos, podem estar indexados
+    // ou partilhados, por isso aterram no índice de notícias em vez de 404.
+    '/noticias/veigh-papillon-soraia-ramos' => '/noticias',
+    '/noticias/slow-j-sara-correia-dub-inc' => '/noticias',
+    '/noticias/bispo-calema'                => '/noticias',
+];
+if (isset($redirects[$path]) && PHP_SAPI !== 'cli') {
+    header('Location: ' . $redirects[$path], true, 302);
     exit;
 }
 
@@ -248,9 +189,6 @@ $routes = [
     '/o-que-fazer' => 'todo',
     '/contactos' => 'contacts',
     '/noticias' => 'news',
-    '/noticias/veigh-papillon-soraia-ramos' => 'news_veigh_papillon_soraia',
-    '/noticias/slow-j-sara-correia-dub-inc' => 'news_slow_j',
-    '/noticias/bispo-calema' => 'news_bispo_calema',
     '/artistas' => 'artists',
     '/info' => 'info',
     '/loja' => 'store',
@@ -334,7 +272,8 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
             <?= Component::render('Hero', ['festival' => $festival]) ?>
             <?php // Secções ocultas após a edição de 2026 — repor com o cartaz e a venda de 2027:
                   // Component::render('Lineup', ['artists' => $artists]) ?>
-            <?= Component::render('News', ['news' => $news]) ?>
+            <?php // Sem notícias da próxima edição ainda — repor quando houver anúncios:
+                  // Component::render('News', ['news' => $news]) ?>
             <?php // Component::render('Tickets', ['tickets' => $tickets, 'events' => $eventsLimit, 'checkoutUrl' => $checkoutUrl]) ?>
             <?php // Component::render('Store', ['products' => $products]) ?>
             <?= Component::render('About', ['festival' => $festival]) ?>
@@ -359,128 +298,6 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
         <?php elseif ($activePage === 'news'): ?>
 
             <?= Component::render('News', ['news' => $news]) ?>
-
-        <?php elseif ($activePage === 'news_veigh_papillon_soraia'): ?>
-            <article class="news-article">
-                <div class="container">
-                    <div class="news-article__hero">
-                        <img src="/assets/img/anuncio_veigh_papillon_soraia.png" alt="Veigh, Papillon e Soraia Ramos confirmados no Festival do Crato 2026"
-                            class="news-article__hero-img">
-                    </div>
-                    <div class="news-article__content">
-                        <div class="news-article__meta">
-                            <span class="news-card__tag">Artistas</span>
-                            <time datetime="2026-05-15">15 Mai 2026</time>
-                        </div>
-                        <h1 class="news-article__title">Veigh, Papillon e Soraia Ramos confirmados no Festival do Crato 2026</h1>
-                        <p class="news-article__lead">Artistas juntam-se aos já anunciados Buba Espinho &amp; Convidados, Bispo, Calema, Slow J, Sara Correia e Dub Inc</p>
-
-                        <p>O <strong>Festival do Crato</strong> anuncia mais três nomes para a edição de 2026 com a confirmação de <strong>Veigh</strong>, <strong>Papillon</strong> e <strong>Soraia Ramos</strong>. Os artistas juntam-se a Buba Espinho &amp; Convidados, Bispo, Calema, Slow J, Sara Correia e Dub Inc. O Festival está de regresso à vila alentejana de <strong>26 a 29 de agosto</strong> de 2026.</p>
-
-                        <p><strong>Veigh</strong> é um dos principais nomes do trap brasileiro, acumulando centenas de milhões de streams nas plataformas digitais. Temas como "Novo Balanço", "Vida Chique" ou "Movimento" contribuíram para a rápida afirmação do artista dentro e fora do Brasil. O álbum "Dos Prédios Deluxe" consolidou o seu crescimento internacional e presença nos tops digitais.</p>
-
-                        <p><strong>Papillon</strong> tem vindo a afirmar-se como um dos nomes mais respeitados da música urbana portuguesa. Depois do percurso nos GROGNation, lançou-se a solo com projetos como "Deepak Looper" e temas como "Impec", "C'est La Vie" ou "00:00", mantendo uma presença consistente no circuito ao vivo e nos principais festivais nacionais.</p>
-
-                        <p><strong>Soraia Ramos</strong> soma milhões de visualizações e ouvintes nas plataformas digitais, afirmando-se como uma das artistas lusófonas com maior crescimento nos últimos anos. Temas como "Bai", "BKBN" ou "O Nosso Amor" destacam-se no seu percurso, marcado por influências afro-pop, kizomba e R&amp;B. A artista tem atuado regularmente em vários países europeus e africanos, consolidando uma forte ligação junto do público lusófono.</p>
-
-                        <h2>Sobre o Festival do Crato</h2>
-                        <p>O Festival do Crato, situado no Alto Alentejo, é um dos festivais de verão mais relevantes em Portugal, combinando música, território e tradição. Para além do cartaz musical, o evento integra uma feira de artesanato e gastronomia que valoriza produtores e tradições locais, criando uma experiência que vai além dos concertos.</p>
-
-                        <p>O recinto conta ainda com uma zona de campismo para portadores de passe geral com campismo, que permite prolongar a experiência ao longo de toda a programação.</p>
-
-                        <p>Com uma média de cerca de 100 mil visitantes por edição, o <strong>Festival do Crato</strong> é hoje o principal festival de verão do Alentejo, reunindo diferentes gerações num ambiente marcado pela cultura local, música e gastronomia.</p>
-
-                        <p>A edição de 2026 realiza-se de <strong>26 a 29 de agosto</strong>.</p>
-
-                        <a href="/noticias" class="btn btn-ghost news-article__back">← Voltar às Notícias</a>
-                    </div>
-                </div>
-            </article>
-
-        <?php elseif ($activePage === 'news_slow_j'): ?>
-            <article class="news-article">
-                <div class="container">
-                    <div class="news-article__hero">
-                        <img src="/assets/img/new artists.jpeg" alt="Slow J, Sara Correia e Dub Inc confirmados no Festival do Crato 2026"
-                            class="news-article__hero-img">
-                    </div>
-                    <div class="news-article__content">
-                        <div class="news-article__meta">
-                            <span class="news-card__tag">Artistas</span>
-                            <time datetime="2026-05-11">11 Mai 2026</time>
-                        </div>
-                        <h1 class="news-article__title">Slow J, Sara Correia e Dub Inc confirmados no Festival do Crato 2026</h1>
-                        <p class="news-article__lead">Os artistas juntam-se a Buba Espinho &amp; Convidados, Bispo e Calema</p>
-
-                        <p>O <strong>Festival do Crato</strong> continua a revelar o cartaz da edição de 2026 com a confirmação de <strong>Slow J</strong>, <strong>Sara Correia</strong> e <strong>Dub Inc</strong>. Os artistas juntam-se a Buba Espinho &amp; Convidados, Bispo e Calema. O Festival está de regresso à vila alentejana de <strong>26 a 29 de agosto</strong> de 2026.</p>
-
-                        <p><strong>Slow J</strong> é um dos principais nomes da música portuguesa atual, com presença consistente nos tops nacionais e centenas de milhões de streams acumulados. Temas como "Tata", "Teu Eternamente" e "Vida Boa" destacam-se no seu percurso, marcando diferentes fases da sua discografia. O seu álbum "Afro Fado" atingiu o primeiro lugar na tabela de vendas em Portugal.</p>
-
-                        <p><strong>Sara Correia</strong> é uma das vozes mais reconhecidas do fado atual, distinguida com vários prémios (incluindo o de Melhor Artista Feminina nos Prémios Play 2026) e nomeações ao longo do seu percurso. No seu repertório destacam-se temas como "Chelas" ou "Quero é Viver", que têm contribuído para levar o fado a novos públicos. Tem atuado de forma regular em salas de referência e festivais.</p>
-
-                        <p><strong>Dub Inc</strong> são uma das bandas europeias mais relevantes do reggae, com uma carreira consolidada ao longo de mais de duas décadas. Com vários álbuns editados e digressões internacionais, o grupo construiu uma forte base de seguidores, sendo presença habitual em grandes festivais na Europa e outros mercados.</p>
-
-                        <h2>Sobre o Festival do Crato</h2>
-                        <p>O Festival do Crato, situado no Alto Alentejo, é um dos festivais de verão mais relevantes em Portugal, combinando música, território e tradição. Para além do cartaz musical, o evento integra uma feira de artesanato e gastronomia que valoriza produtores e tradições locais, criando uma experiência que vai além dos concertos.</p>
-
-                        <p>Com uma média de cerca de 100 mil visitantes por edição, o Festival do Crato é hoje o principal festival de verão do Alentejo, reunindo diferentes gerações num ambiente marcado pela cultura local, música e gastronomia.</p>
-
-                        <p>A edição de 2026 realiza-se de <strong>26 a 29 de agosto</strong>.</p>
-
-                        <a href="/noticias" class="btn btn-ghost news-article__back">← Voltar às Notícias</a>
-                    </div>
-                </div>
-            </article>
-
-        <?php elseif ($activePage === 'news_bispo_calema'): ?>
-            <article class="news-article">
-                <div class="container">
-                    <div class="news-article__hero">
-                        <img src="/assets/img/anuncio.jpeg" alt="Bispo e Calema confirmados no Festival do Crato 2026"
-                            class="news-article__hero-img">
-                    </div>
-                    <div class="news-article__content">
-                        <div class="news-article__meta">
-                            <span class="news-card__tag">Artistas</span>
-                            <time datetime="2026-04-23">23 Abr 2026</time>
-                        </div>
-                        <h1 class="news-article__title">Bispo e Calema confirmados no Festival do Crato 2026</h1>
-                        <p class="news-article__lead">Artistas juntam-se ao já anunciado Buba Espinho &amp; Convidados</p>
-
-                        <p>O <strong>Festival do Crato</strong> anuncia mais dois nomes para a próxima edição. Bispo e
-                            Calema juntam-se ao já anunciado Buba Espinho &amp; Convidados. O Festival está de regresso à
-                            vila alentejana de 26 a 29 de agosto!</p>
-
-                        <p><strong>Bispo</strong> é um dos artistas mais ouvidos em Portugal, somando centenas de milhões de
-                            streams nas plataformas digitais e presença recorrente nos tops nacionais. Tem vários temas
-                            certificados com galardões de platina e ouro, incluindo "Nós2", "Pormenores" e "Essa Saia", que
-                            marcaram diferentes fases do seu percurso.</p>
-
-                        <p><strong>Calema</strong> são um dos projetos mais bem-sucedidos da música em português, acumulando
-                            centenas de milhões de streams e visualizações nas plataformas digitais. Ao longo da sua
-                            carreira, somam vários temas certificados com galardões de ouro e platina, incluindo "A Nossa
-                            Vez" ou "Te Amo". Em 2024, tornaram-se os primeiros artistas portugueses a realizar um concerto
-                            em nome próprio no Estádio da Luz.</p>
-
-                        <h2>Sobre o Festival do Crato</h2>
-                        <p>O Festival do Crato, situado no Alto Alentejo, é um dos festivais de verão mais relevantes em
-                            Portugal, combinando música, território e tradição. Para além do cartaz musical, o evento
-                            integra uma feira de artesanato e gastronomia que valoriza produtores e tradições locais,
-                            criando uma experiência que vai além dos concertos.</p>
-
-                        <p>O recinto conta ainda com uma zona de campismo para portadores de passe geral com campismo, que
-                            permite prolongar a experiência ao longo de toda a programação.</p>
-
-                        <p>Com uma média de cerca de 100 mil visitantes por edição, o Festival do Crato é hoje o principal
-                            festival de verão do Alentejo, reunindo diferentes gerações num ambiente marcado pela cultura
-                            local, música e gastronomia.</p>
-
-                        <p>A edição de 2026 realiza-se de <strong>26 a 29 de agosto</strong>.</p>
-
-                        <a href="/noticias" class="btn btn-ghost news-article__back">← Voltar às Notícias</a>
-                    </div>
-                </div>
-            </article>
 
         <?php elseif ($activePage === 'about' || $activePage === 'info'): ?>
 
@@ -1085,7 +902,8 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
     <?= Component::render('Footer', ['siteName' => $siteName, 'festival' => $festival]) ?>
 
     <!-- Modais -->
-    <?= Component::render('CheckoutModal', ['checkoutUrl' => $checkoutUrl]) ?>
+    <?php // Checkout desligado com a bilheteira — repor com a venda de 2027:
+          // Component::render('CheckoutModal', ['checkoutUrl' => $checkoutUrl]) ?>
 
     <!-- Cookie Banner -->
     <div id="cookie-banner" class="cookie-banner">

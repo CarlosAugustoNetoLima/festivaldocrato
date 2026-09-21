@@ -11,6 +11,12 @@ $news = $news ?? [];
             </h2>
         </div>
 
+        <?php if (empty($news)): ?>
+            <p class="news__empty reveal">
+                Os anúncios da próxima edição são publicados aqui.
+                Segue-nos nas redes sociais para não perderes nada.
+            </p>
+        <?php else: ?>
         <div class="news__grid">
             <?php foreach ($news as $i => $item): ?>
                 <?php
@@ -47,5 +53,6 @@ $news = $news ?? [];
                 </article>
             <?php endforeach; ?>
         </div>
+        <?php endif; ?>
     </div>
 </section>

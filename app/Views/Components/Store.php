@@ -8,7 +8,7 @@ $featured = array_slice($products, 0, 4);
         <div class="store__header reveal">
             <p class="section-label">Loja Oficial</p>
             <h2 class="section-title">Merch <span>Festival do Crato</span></h2>
-            <p class="store__desc">Leva um bocado do festival contigo. Merchandising oficial do Festival do Crato 2026.</p>
+            <p class="store__desc">Leva um bocado do festival contigo. Merchandising oficial do Festival do Crato.</p>
         </div>
 
         <div class="store__grid">

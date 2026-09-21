@@ -1289,6 +1289,14 @@ body {
 }
 
 /* ─── NEWS ───────────────────────────────── */
+.news__empty {
+  text-align: center;
+  max-width: 44ch;
+  margin-inline: auto;
+  color: var(--c-text-muted);
+  line-height: 1.8;
+}
+
 .news__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
