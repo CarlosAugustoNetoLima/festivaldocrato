@@ -300,7 +300,7 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
         <?php elseif ($activePage === 'news'): ?>
 
-            <?= Component::render('News', ['news' => $news]) ?>
+            <?= Component::render('News', ['news' => $news, 'social' => $festival['social'] ?? []]) ?>
 
         <?php elseif ($activePage === 'about' || $activePage === 'info'): ?>
 

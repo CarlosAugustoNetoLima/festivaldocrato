@@ -1,5 +1,6 @@
 <?php
-$news = $news ?? [];
+$news   = $news ?? [];
+$social = $social ?? [];
 ?>
 
 <section class="news section" id="noticias">
@@ -16,6 +17,9 @@ $news = $news ?? [];
                 Os anúncios da próxima edição são publicados aqui.
                 Segue-nos nas redes sociais para não perderes nada.
             </p>
+            <div class="news__empty-social reveal">
+                <?= App\Helpers\Component::render('SocialLinks', ['social' => $social, 'centered' => true]) ?>
+            </div>
         <?php else: ?>
         <div class="news__grid">
             <?php foreach ($news as $i => $item): ?>
