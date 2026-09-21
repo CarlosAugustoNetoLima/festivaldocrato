@@ -1593,7 +1593,11 @@ body {
 
 .page-404 h1 {
   font-family: var(--font-heading);
-  font-size: clamp(8rem, 20vw, 15rem);
+  /* O tamanho anterior (até 20vw) vinha de quando o título era só "404":
+     com uma frase, "ENCONTRADA" era mais larga que o container e ficava
+     cortada. */
+  font-size: clamp(2.5rem, 10vw, 7rem);
+  overflow-wrap: break-word;
   line-height: 1;
   background: var(--g-brand);
   -webkit-background-clip: text;

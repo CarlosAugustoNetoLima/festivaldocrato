@@ -207,6 +207,12 @@ $routes = [
 
 $activePage = $routes[$path] ?? '404';
 
+// A página de erro renderizava com estado 200, o que faz os motores de busca
+// tratarem cada URL inexistente como página válida.
+if ($activePage === '404' && PHP_SAPI !== 'cli') {
+    http_response_code(404);
+}
+
 $pageTitles = [
     'home' => 'Festival Crato 2027',
     'tickets' => 'Bilheteira',
@@ -227,6 +233,7 @@ $pageTitles = [
     'legal_privacy' => 'Política de Privacidade',
     'legal_cookies' => 'Política de Cookies',
     'legal_terms' => 'Termos e Condições',
+    '404' => 'Página não encontrada',
 ];
 
 $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
