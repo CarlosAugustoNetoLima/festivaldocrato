@@ -9,7 +9,9 @@ $navItems = [
     ['id' => 'festival', 'label' => 'O FESTIVAL',  'url' => '#', 'submenu' => [
         ['id' => 'about',    'label' => 'Sobre o Festival', 'url' => '/sobre'],
         ['id' => 'news',     'label' => 'Novidades',        'url' => '/noticias'],
-        ['id' => 'eco-move', 'label' => 'Eco Move Crato',   'url' => '/eco-move-crato'],
+        // Oculto: os turnos e a validação ainda são de 2026. Repor com a
+        // logística da próxima edição.
+        // ['id' => 'eco-move', 'label' => 'Eco Move Crato',   'url' => '/eco-move-crato'],
     ]],
     ['id' => 'camping',  'label' => 'CAMPISMO',    'url' => '/campismo'],
     ['id' => 'partners', 'label' => 'PARCEIROS',   'url' => '/parceiros'],

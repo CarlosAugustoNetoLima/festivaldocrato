@@ -10,8 +10,6 @@ $pubDir  = __DIR__ . '/public';
 $routes = [
     '/'            => '',
     '/campismo'    => '/campismo',
-    '/eco-move-crato' => '/eco-move-crato',
-    '/loja'        => '/loja',
     '/noticias'    => '/noticias',
     '/sobre'       => '/sobre',
     '/info'        => '/info',
@@ -34,7 +32,7 @@ foreach ($routes as $uri => $outPath) {
     $html = str_replace('href="/assets/',  "href=\"$base/assets/",  $html);
     $html = str_replace('src="/assets/',   "src=\"$base/assets/",   $html);
     $html = str_replace("href=\"/\""    ,  "href=\"$base/\"",       $html);
-    $html = preg_replace('#href="/(campismo|eco-move-crato|loja|noticias|sobre|info|como-chegar|contactos|parceiros|guia-do-festival|produto|pesquisa)"#',
+    $html = preg_replace('#href="/(campismo|noticias|sobre|info|como-chegar|contactos|parceiros|guia-do-festival|produto|pesquisa)"#',
         "href=\"$base/$1\"", $html);
 
     $outDir = $distDir . $outPath;

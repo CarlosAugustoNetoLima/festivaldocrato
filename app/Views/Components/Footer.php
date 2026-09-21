@@ -8,7 +8,6 @@ $year = date('Y');
 $navLinks = [
     ['label' => 'Sobre o Festival', 'url' => '/sobre'],
     ['label' => 'Novidades', 'url' => '/noticias'],
-    ['label' => 'Eco Move Crato', 'url' => '/eco-move-crato'],
     ['label' => 'Campismo', 'url' => '/campismo'],
     ['label' => 'Parceiros', 'url' => '/parceiros'],
     ['label' => 'Guia do Festival', 'url' => '/guia-do-festival'],

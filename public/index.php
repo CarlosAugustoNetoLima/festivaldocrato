@@ -164,6 +164,9 @@ $redirects = [
     '/artistas'   => '/',
     '/loja'       => '/',
     '/produto'    => '/',
+    // Inscrições de voluntários ainda fixadas em 25-29 Agosto 2026, tanto no
+    // formulário como na validação de eco-move-submit.php.
+    '/eco-move-crato' => '/',
     // Artigos da edição de 2026 — estiveram públicos, podem estar indexados
     // ou partilhados, por isso aterram no índice de notícias em vez de 404.
     '/noticias/veigh-papillon-soraia-ramos' => '/noticias',
