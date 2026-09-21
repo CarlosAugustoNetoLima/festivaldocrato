@@ -22,8 +22,8 @@ $navItems = [
 <header class="site-header" id="site-header">
     <div class="header-container">
         <!-- Logo -->
-        <a href="/" class="header-logo" aria-label="Festival do Crato 2026">
-            <img src="/assets/img/logo.png" alt="" class="header-logo-img">
+        <a href="/" class="header-logo" aria-label="Festival do Crato">
+            <img src="/assets/img/logo-sem-ano.png" alt="" class="header-logo-img">
         </a>
 
         <!-- Nav Desktop -->
