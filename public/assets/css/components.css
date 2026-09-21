@@ -1191,6 +1191,7 @@
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form input[type="tel"],
+.contact-form input[type="number"],
 .contact-form textarea {
   width: 100%;
   background: #0C0306;
@@ -1207,6 +1208,7 @@
 .contact-form input[type="text"]:focus,
 .contact-form input[type="email"]:focus,
 .contact-form input[type="tel"]:focus,
+.contact-form input[type="number"]:focus,
 .contact-form textarea:focus {
   outline: none;
   border-color: #C8111F;
@@ -1216,6 +1218,12 @@
 
 .contact-form input:invalid:not(:placeholder-shown) {
   border-color: rgba(200, 17, 31, 0.5);
+}
+
+.contact-form input.is-invalid,
+.contact-form textarea.is-invalid {
+  border-color: #C8111F;
+  box-shadow: 0 0 0 3px rgba(200, 17, 31, 0.15);
 }
 
 .contact-form textarea {
@@ -1515,3 +1523,407 @@
     padding: 2.5rem 0;
   }
 }
+
+/* ── EcoMove Crato ───────────────────────────────────────────────── */
+
+.eco-move-layout {
+  padding: var(--s-2xl) 0 120px;
+}
+
+.eco-move-layout__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-xl);
+}
+
+.eco-move-layout__text {
+  width: 100%;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  font-size: 1.02rem;
+}
+
+.eco-move-layout__text p {
+  margin-bottom: 1.1rem;
+}
+
+.eco-move-intro__cta {
+  font-weight: 700;
+  color: #FFFFFF;
+  font-size: 1.1rem;
+}
+
+.eco-move-intro__quote {
+  font-style: italic;
+  color: #E01828;
+  margin-top: 0.5rem;
+  font-size: 1.15rem;
+}
+
+.eco-move-bottom {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: auto auto 1fr;
+  column-gap: 40px;
+  row-gap: 0;
+  margin-top: 1.5rem;
+}
+
+.eco-move-bottom .eco-move-form-title {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.eco-move-bottom .eco-move-form-subtitle {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.eco-move-bottom__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  grid-column: 1;
+  grid-row: 3;
+  align-self: stretch;
+}
+
+.eco-move-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+  justify-content: center;
+  background: #180508;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  flex: 1;
+}
+
+.eco-move-fact .material-symbols-outlined {
+  color: #C8111F;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.eco-move-fact strong {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 0.25rem;
+}
+
+.eco-move-fact span:last-child {
+  color: #FFFFFF;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.eco-move-bottom .eco-move-form {
+  grid-column: 2;
+  grid-row: 3;
+  min-width: 0;
+}
+
+.eco-move-bottom .contact-form {
+  padding: 1.75rem 1.25rem;
+}
+
+.eco-move-form-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.eco-move-form-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+.eco-move-schedule {
+  margin: 1.75rem 0;
+}
+
+.eco-move-schedule__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 0.4rem;
+}
+
+.eco-move-schedule__hint {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1rem;
+}
+
+.eco-move-schedule__error {
+  color: #FF6B7A;
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+  display: none;
+}
+
+.eco-move-schedule__error.is-visible {
+  display: block;
+}
+
+.eco-move-table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0C0306;
+}
+
+.eco-move-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  min-width: 0;
+  background: #0C0306;
+}
+
+.eco-move-table th,
+.eco-move-table td {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0;
+  text-align: center;
+}
+
+.eco-move-table th:first-child,
+.eco-move-table td:first-child {
+  width: 36%;
+}
+
+.eco-move-table th:not(:first-child),
+.eco-move-table td:not(:first-child) {
+  width: 32%;
+}
+
+.eco-move-table thead th {
+  background: #180508;
+  padding: 0.75rem 0.5rem;
+}
+
+.eco-move-table__shift-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+}
+
+.eco-move-table__shift-time {
+  display: block;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.15rem;
+}
+
+.eco-move-table tbody th {
+  background: #120408;
+  padding: 0.75rem 0.75rem;
+  text-align: left;
+}
+
+.eco-move-table__day-date {
+  display: block;
+  font-weight: 700;
+  color: #FFFFFF;
+  font-size: 0.85rem;
+}
+
+.eco-move-table__day-weekday {
+  display: block;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.eco-move-cell {
+  width: 100%;
+  height: 56px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.eco-move-cell .material-symbols-outlined {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  color: #FFFFFF;
+  font-size: 22px;
+}
+
+.eco-move-cell:hover {
+  background: rgba(200, 17, 31, 0.12);
+}
+
+.eco-move-cell:focus-visible {
+  outline: 2px solid #C8111F;
+  outline-offset: -2px;
+}
+
+.eco-move-cell.is-selected {
+  background: linear-gradient(135deg, #C8111F 0%, #E01828 100%);
+}
+
+.eco-move-cell.is-selected .material-symbols-outlined {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Floating CTA Bar (Mobile) ────────────────────────────── */
+.eco-move-floating-bar {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .eco-move-layout {
+    padding-bottom: 140px;
+  }
+
+  .eco-move-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .eco-move-bottom .eco-move-form-title {
+    order: 2;
+    margin-bottom: 0.5rem;
+  }
+
+  .eco-move-bottom .eco-move-form-subtitle {
+    order: 3;
+    margin-bottom: 1.5rem;
+  }
+
+  .eco-move-bottom__cards {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .eco-move-bottom .eco-move-form {
+    order: 4;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .eco-move-floating-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px;
+    padding-bottom: max(14px, env(safe-area-inset-bottom));
+    background: linear-gradient(to top, rgba(12, 3, 6, 0.98) 70%, rgba(12, 3, 6, 0.88) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.5);
+    z-index: 900;
+    justify-content: center;
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+
+  .eco-move-floating-bar.is-hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .eco-move-floating-bar__btn {
+    width: 100%;
+    max-width: 480px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border-radius: 999px;
+    box-shadow: 0 4px 18px rgba(224, 24, 40, 0.45);
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .eco-move-floating-bar__btn .material-symbols-outlined {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 720px) {
+  .eco-move-bottom .contact-form {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .eco-move-bottom__cards {
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .eco-move-table thead th {
+    padding: 0.6rem 0.25rem;
+  }
+
+  .eco-move-table tbody th {
+    padding: 0.5rem 0.4rem;
+  }
+
+  .eco-move-table__shift-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+  }
+
+  .eco-move-table__shift-time {
+    display: block;
+    font-size: 0.62rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin-top: 0.1rem;
+    white-space: normal;
+  }
+
+  .eco-move-table__day-date {
+    font-size: 0.78rem;
+  }
+
+  .eco-move-table__day-weekday {
+    display: block;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.05rem;
+  }
+
+  .eco-move-cell {
+    height: 44px;
+  }
+
+  .eco-move-cell .material-symbols-outlined {
+    font-size: 18px;
+  }
+}
+

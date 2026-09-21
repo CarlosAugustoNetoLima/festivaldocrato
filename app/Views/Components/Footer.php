@@ -2,13 +2,16 @@
 $siteName = $siteName ?? 'Festival Crato';
 $festival = $festival ?? [];
 $social = $festival['social'] ?? [];
-$edition = $festival['edition'] ?? '40.ª';
+$edition = $festival['edition'] ?? '41.ª';
 $year = date('Y');
 
 $navLinks = [
-    ['label' => 'Programação', 'url' => '/lineup'],
-    ['label' => 'Artistas', 'url' => '/artistas'],
-    ['label' => 'Bilhetes', 'url' => '/bilhetes'],
+    ['label' => 'Sobre o Festival', 'url' => '/sobre'],
+    ['label' => 'Novidades', 'url' => '/noticias'],
+    ['label' => 'Eco Move Crato', 'url' => '/eco-move-crato'],
+    ['label' => 'Campismo', 'url' => '/campismo'],
+    ['label' => 'Parceiros', 'url' => '/parceiros'],
+    ['label' => 'Guia do Festival', 'url' => '/guia-do-festival'],
     ['label' => 'Info', 'url' => '/info'],
 ];
 ?>
@@ -22,8 +25,8 @@ $navLinks = [
                     <img src="/assets/img/logo-sem-ano.png" alt="Festival do Crato" class="footer-logo-img">
                 </a>
                 <p class="footer-tagline">
-                    <?= htmlspecialchars($edition) ?> Feira de Artesanato e Gastronomia<br>
-                    &amp; Festival do Crato · 26–29 Agosto 2026
+                    <?= htmlspecialchars($edition) ?> Edição<br>
+                    Festival do Crato · 25–28 Agosto 2027
                 </p>
                 <div class="footer-social">
                     <?php if (!empty($social['instagram'])): ?>
@@ -69,17 +72,6 @@ $navLinks = [
                             <?= htmlspecialchars($link['label']) ?>
                         </a>
                     <?php endforeach; ?>
-                </nav>
-            </div>
-
-            <!-- Bilhetes -->
-            <div>
-                <p class="footer-col-title">Bilhetes</p>
-                <nav class="footer-links">
-
-                    <a href="/bilhetes" class="footer-link">Bilhete Diário</a>
-                    <a href="/bilhetes" class="footer-link">Passe 4 Dias</a>
-                    <a href="/bilhetes" class="footer-link">Passe 4 Dias + Campismo</a>
                 </nav>
             </div>
 

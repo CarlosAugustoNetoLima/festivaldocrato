@@ -35,15 +35,15 @@ $tickets = $lebillet->getCheckoutTickets($festivalEventId);
 //  Site data
 // ─────────────────────────────────────────────
 $festival = [
-    'edition' => '40.ª',
-    'date_start' => '2026-08-26',
-    'date_end' => '2026-08-29',
-    'date_festival_start' => '2026-08-26',
-    'date_campista' => '2026-08-24',
+    'edition' => '41.ª',
+    'date_start' => '2027-08-25',
+    'date_end' => '2027-08-28',
+    'date_festival_start' => '2027-08-25',
+    'date_campista' => '2027-08-23',
     'location' => 'Crato, Alto Alentejo',
     'venue' => 'Vila do Crato',
     'organizer' => 'Festival do Crato',
-    'description' => 'A 40.ª Feira de Artesanato e Gastronomia e o Festival do Crato regressam de 26 a 29 de agosto de 2026.',
+    'description' => 'O Festival do Crato regressa de 25 a 28 de agosto de 2027.',
     'mission' => 'Promover e preservar o artesanato e a gastronomia enquanto valores culturais.',
     'contact' => [
         'email' => 'festivaldocrato@cm-crato.pt',
@@ -59,13 +59,20 @@ $festival = [
 ];
 
 $artists = [
-    ['name' => 'Slow J', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Hip-Hop / Afro Fado', 'image' => '/assets/img/WEBSITE_SLOWJ.png', 'confirmed' => true],
+    ['name' => 'Slow J', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Hip-Hop', 'image' => '/assets/img/WEBSITE_SLOWJ.png', 'confirmed' => true],
     ['name' => 'Dub Inc', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Reggae', 'image' => '/assets/img/WEBSITE_DUBINC.png', 'confirmed' => true],
-    ['name' => 'Bispo', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Rap / Hip-Hop', 'image' => '/assets/img/artists/POST_bispo-_website.webp', 'confirmed' => true],
-    ['name' => 'Calema', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'R&B / Pop', 'image' => '/assets/img/artists/POST_calema_website.webp', 'confirmed' => true],
+    ['name' => 'Bispo', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Hip-Hop', 'image' => '/assets/img/artists/POST_bispo-_website.webp', 'confirmed' => true],
+    ['name' => 'Zanova', 'day' => 1, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'DJ / Electronic', 'image' => '/assets/img/artists/Zanova_Website.webp', 'confirmed' => true],
+    ['name' => 'Veigh', 'day' => 2, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Trap', 'image' => '/assets/img/WEBSITE_VEIGH.png', 'confirmed' => true],
+    ['name' => 'Papillon', 'day' => 2, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Hip-Hop', 'image' => '/assets/img/WEBSITE_PAPILLON.png', 'confirmed' => true],
+    ['name' => 'Soraia Ramos', 'day' => 2, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Kizomba / Afropop', 'image' => '/assets/img/WEBSITE_SORAIA.png', 'confirmed' => true],
+    ['name' => 'Calema', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Afropop / Kizomba', 'image' => '/assets/img/artists/POST_calema_website.webp', 'confirmed' => true],
     ['name' => 'Sara Correia', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Fado', 'image' => '/assets/img/WEBSITE_sara.png', 'confirmed' => true],
-    ['name' => 'Buba Espinho', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Música Portuguesa', 'image' => '/assets/img/artists/POST_buba_website.webp', 'confirmed' => true],
-    ['name' => 'A Anunciar', 'day' => 5, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => '', 'image' => '/assets/img/artists/WEBSITE_anunciar.webp', 'confirmed' => false, 'announced' => false],
+    ['name' => 'Delfins', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Rock / Pop', 'image' => '/assets/img/artists/WEBSITE_Delfins.webp', 'confirmed' => true],
+    ['name' => 'KURA', 'day' => 3, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Electro House', 'image' => '/assets/img/artists/KURA_Website.webp', 'confirmed' => true],
+    ['name' => 'Calum Scott', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Pop / Soul', 'image' => '/assets/img/artists/WEBSITE_CalumScott.webp', 'confirmed' => true],
+    ['name' => 'Karetus', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Electronic', 'image' => '/assets/img/artists/WEBSITE_Karetus.webp', 'confirmed' => true],
+    ['name' => 'Buba Espinho', 'day' => 4, 'stage' => 'Palco Festival', 'headliner' => true, 'genre' => 'Fado / Cante Alentejano', 'image' => '/assets/img/artists/POST_buba_website.webp', 'confirmed' => true],
 ];
 
 $products = [
@@ -113,6 +120,14 @@ $products = [
 
 $news = [
     [
+        'date' => '2026-05-15',
+        'tag' => 'Artistas',
+        'title' => 'Veigh, Papillon e Soraia Ramos confirmados no Festival do Crato 2026',
+        'excerpt' => 'Os artistas juntam-se aos já anunciados Buba Espinho & Convidados, Bispo, Calema, Slow J, Sara Correia e Dub Inc. O Festival está de regresso à vila alentejana de 26 a 29 de agosto!',
+        'url' => '/noticias/veigh-papillon-soraia-ramos',
+        'image' => '/assets/img/anuncio_veigh_papillon_soraia.png',
+    ],
+    [
         'date' => '2026-05-11',
         'tag' => 'Artistas',
         'title' => 'Slow J, Sara Correia e Dub Inc confirmados no Festival do Crato 2026',
@@ -130,11 +145,94 @@ $news = [
     ],
 ];
 
+$partnerGroups = [
+    [
+        'label' => 'Organização',
+        'featured' => true,
+        'partners' => [
+            ['name' => 'Município do Crato', 'logo' => 'municipio-crato.webp', 'url' => 'https://cm-crato.pt'],
+        ],
+    ],
+    [
+        'label' => 'Patrocínios',
+        'partners' => [
+            ['name' => 'Super Bock', 'logo' => 'super-bock.webp', 'url' => 'https://www.superbock.pt'],
+        ],
+    ],
+    [
+        'label' => 'Televisão Oficial',
+        'partners' => [
+            ['name' => 'RTP', 'logo' => 'rtp.webp', 'url' => 'https://www.rtp.pt'],
+        ],
+    ],
+    [
+        'label' => 'Rádio Oficial',
+        'partners' => [
+            ['name' => 'Rádio Comercial', 'logo' => 'radio-comercial.webp', 'url' => 'https://radiocomercial.pt'],
+        ],
+    ],
+    [
+        'label' => 'Parceiros',
+        'partners' => [
+            ['name' => 'Delta Cafés', 'logo' => 'delta.webp', 'url' => 'https://deltacafes.com'],
+            ['name' => 'Licor Beirão', 'logo' => 'licor-beirao.webp', 'url' => 'https://www.licorbeirao.com'],
+            ['name' => 'Crédito Agrícola', 'logo' => 'credito-agricola.webp', 'url' => 'https://www.creditoagricola.pt'],
+            ['name' => 'A Matos Car — Hyundai', 'logo' => 'a-matos-car.webp', 'url' => 'https://www.amatoscar.pt'],
+            ['name' => 'CP — Comboios de Portugal', 'logo' => 'cp.webp', 'url' => 'https://www.cp.pt'],
+            ['name' => 'Rede Expressos', 'logo' => 'rede-expressos.svg', 'url' => 'https://rede-expressos.pt'],
+            ['name' => 'Rodoviária do Alentejo', 'logo' => 'rodoviaria-alentejo.webp', 'url' => 'https://www.rodalentejo.pt'],
+            ['name' => 'BOL — Bilheteira Online', 'logo' => 'bol.webp', 'url' => 'https://bol.pt'],
+            ['name' => 'LeBillet', 'logo' => 'lebillet.webp', 'url' => 'https://www.lebillet.eu'],
+        ],
+    ],
+    [
+        'label' => 'Produção',
+        'partners' => [
+            ['name' => 'Premium Stage', 'logo' => 'premium-stage.webp'],
+        ],
+    ],
+    [
+        'label' => 'Apoio Institucional',
+        'partners' => [
+            ['name' => 'IPDJ — Instituto Português do Desporto e Juventude', 'logo' => 'ipdj.webp', 'url' => 'https://ipdj.gov.pt'],
+            ['name' => 'Turismo do Alentejo e Ribatejo', 'logo' => 'turismo-alentejo.webp', 'url' => 'https://www.visitalentejo.pt'],
+            ['name' => 'Politécnico de Portalegre', 'logo' => 'politecnico-portalegre.svg', 'url' => 'https://www.ipportalegre.pt'],
+        ],
+    ],
+];
+
+// ─────────────────────────────────────────────
+//  Guia do Festival — PDF descarregável
+//  Basta colocar o ficheiro em public/assets/docs/ para a página passar a
+//  mostrar o botão de download. O URL da página nunca muda (é a base do QR Code).
+// ─────────────────────────────────────────────
+$guidePdf = '/assets/docs/guia-festival-crato-2026.pdf';
+$guideFile = __DIR__ . $guidePdf;
+$guideReady = is_file($guideFile);
+$guideSize = '';
+if ($guideReady) {
+    $bytes = filesize($guideFile);
+    $guideSize = $bytes >= 1048576
+        ? number_format($bytes / 1048576, 1, ',', ' ') . ' MB'
+        : max(1, (int) round($bytes / 1024)) . ' KB';
+}
+
 // ─────────────────────────────────────────────
 //  Routing
 // ─────────────────────────────────────────────
 $request = $_SERVER['REQUEST_URI'];
 $path = rtrim(parse_url($request, PHP_URL_PATH), '/') ?: '/';
+
+// Rotas da edição de 2026 que deixaram de fazer sentido depois do festival.
+// 302 (temporário) e não 301: voltam a abrir na edição de 2027, e um 301 fica
+// cacheado no browser de forma difícil de reverter.
+// NOTA: o build estático para GitHub Pages não executa PHP — estas rotas estão
+// também fora do $routes do build.php, por isso não geram página lá.
+$redirects = ['/bilheteira', '/bilhetes', '/lineup', '/artistas'];
+if (in_array($path, $redirects, true) && PHP_SAPI !== 'cli') {
+    header('Location: /', true, 302);
+    exit;
+}
 
 $routes = [
     '/' => 'home',
@@ -142,11 +240,15 @@ $routes = [
     '/bilhetes' => 'tickets',
     '/lineup' => 'lineup',
     '/sobre' => 'about',
+    '/eco-move-crato' => 'eco-move',
+    '/parceiros' => 'partners',
+    '/guia-do-festival' => 'guide',
     '/como-chegar' => 'directions',
     '/campismo' => 'camping',
     '/o-que-fazer' => 'todo',
     '/contactos' => 'contacts',
     '/noticias' => 'news',
+    '/noticias/veigh-papillon-soraia-ramos' => 'news_veigh_papillon_soraia',
     '/noticias/slow-j-sara-correia-dub-inc' => 'news_slow_j',
     '/noticias/bispo-calema' => 'news_bispo_calema',
     '/artistas' => 'artists',
@@ -162,10 +264,13 @@ $routes = [
 $activePage = $routes[$path] ?? '404';
 
 $pageTitles = [
-    'home' => 'Festival Crato 2026',
+    'home' => 'Festival Crato 2027',
     'tickets' => 'Bilheteira',
     'lineup' => 'Programação',
     'about' => 'Sobre o Festival',
+    'eco-move' => 'Eco Move Crato',
+    'partners' => 'Parceiros',
+    'guide' => 'Guia do Festival',
     'directions' => 'Como Chegar',
     'camping' => 'Campismo',
     'todo' => 'O que Fazer',
@@ -190,10 +295,10 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($siteName) ?> — <?= htmlspecialchars($pageTitle) ?></title>
     <meta name="description"
-        content="40.ª Feira de Artesanato e Gastronomia e Festival do Crato — 26 a 29 de Agosto de 2026">
-    <meta property="og:title" content="40.ª FAG & Festival do Crato 2026">
+        content="Festival do Crato — 25 a 28 de Agosto de 2027, na Vila do Crato, Alto Alentejo">
+    <meta property="og:title" content="Festival do Crato 2027">
     <meta property="og:description"
-        content="Feira de Artesanato e Gastronomia e Festival do Crato — 26 a 29 de Agosto de 2026">
+        content="Festival do Crato — 25 a 28 de Agosto de 2027">
     <meta property="og:type" content="website">
     <link rel="icon" href="/assets/img/favicon.ico" sizes="any">
     <link rel="icon" href="/assets/img/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -227,9 +332,10 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
         <?php if ($activePage === 'home'): ?>
             <?= Component::render('Hero', ['festival' => $festival]) ?>
-            <?= Component::render('Lineup', ['artists' => $artists]) ?>
+            <?php // Secções ocultas após a edição de 2026 — repor com o cartaz e a venda de 2027:
+                  // Component::render('Lineup', ['artists' => $artists]) ?>
             <?= Component::render('News', ['news' => $news]) ?>
-            <?= Component::render('Tickets', ['tickets' => $tickets, 'events' => $eventsLimit, 'checkoutUrl' => $checkoutUrl]) ?>
+            <?php // Component::render('Tickets', ['tickets' => $tickets, 'events' => $eventsLimit, 'checkoutUrl' => $checkoutUrl]) ?>
             <?php // Component::render('Store', ['products' => $products]) ?>
             <?= Component::render('About', ['festival' => $festival]) ?>
 
@@ -253,6 +359,43 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
         <?php elseif ($activePage === 'news'): ?>
 
             <?= Component::render('News', ['news' => $news]) ?>
+
+        <?php elseif ($activePage === 'news_veigh_papillon_soraia'): ?>
+            <article class="news-article">
+                <div class="container">
+                    <div class="news-article__hero">
+                        <img src="/assets/img/anuncio_veigh_papillon_soraia.png" alt="Veigh, Papillon e Soraia Ramos confirmados no Festival do Crato 2026"
+                            class="news-article__hero-img">
+                    </div>
+                    <div class="news-article__content">
+                        <div class="news-article__meta">
+                            <span class="news-card__tag">Artistas</span>
+                            <time datetime="2026-05-15">15 Mai 2026</time>
+                        </div>
+                        <h1 class="news-article__title">Veigh, Papillon e Soraia Ramos confirmados no Festival do Crato 2026</h1>
+                        <p class="news-article__lead">Artistas juntam-se aos já anunciados Buba Espinho &amp; Convidados, Bispo, Calema, Slow J, Sara Correia e Dub Inc</p>
+
+                        <p>O <strong>Festival do Crato</strong> anuncia mais três nomes para a edição de 2026 com a confirmação de <strong>Veigh</strong>, <strong>Papillon</strong> e <strong>Soraia Ramos</strong>. Os artistas juntam-se a Buba Espinho &amp; Convidados, Bispo, Calema, Slow J, Sara Correia e Dub Inc. O Festival está de regresso à vila alentejana de <strong>26 a 29 de agosto</strong> de 2026.</p>
+
+                        <p><strong>Veigh</strong> é um dos principais nomes do trap brasileiro, acumulando centenas de milhões de streams nas plataformas digitais. Temas como "Novo Balanço", "Vida Chique" ou "Movimento" contribuíram para a rápida afirmação do artista dentro e fora do Brasil. O álbum "Dos Prédios Deluxe" consolidou o seu crescimento internacional e presença nos tops digitais.</p>
+
+                        <p><strong>Papillon</strong> tem vindo a afirmar-se como um dos nomes mais respeitados da música urbana portuguesa. Depois do percurso nos GROGNation, lançou-se a solo com projetos como "Deepak Looper" e temas como "Impec", "C'est La Vie" ou "00:00", mantendo uma presença consistente no circuito ao vivo e nos principais festivais nacionais.</p>
+
+                        <p><strong>Soraia Ramos</strong> soma milhões de visualizações e ouvintes nas plataformas digitais, afirmando-se como uma das artistas lusófonas com maior crescimento nos últimos anos. Temas como "Bai", "BKBN" ou "O Nosso Amor" destacam-se no seu percurso, marcado por influências afro-pop, kizomba e R&amp;B. A artista tem atuado regularmente em vários países europeus e africanos, consolidando uma forte ligação junto do público lusófono.</p>
+
+                        <h2>Sobre o Festival do Crato</h2>
+                        <p>O Festival do Crato, situado no Alto Alentejo, é um dos festivais de verão mais relevantes em Portugal, combinando música, território e tradição. Para além do cartaz musical, o evento integra uma feira de artesanato e gastronomia que valoriza produtores e tradições locais, criando uma experiência que vai além dos concertos.</p>
+
+                        <p>O recinto conta ainda com uma zona de campismo para portadores de passe geral com campismo, que permite prolongar a experiência ao longo de toda a programação.</p>
+
+                        <p>Com uma média de cerca de 100 mil visitantes por edição, o <strong>Festival do Crato</strong> é hoje o principal festival de verão do Alentejo, reunindo diferentes gerações num ambiente marcado pela cultura local, música e gastronomia.</p>
+
+                        <p>A edição de 2026 realiza-se de <strong>26 a 29 de agosto</strong>.</p>
+
+                        <a href="/noticias" class="btn btn-ghost news-article__back">← Voltar às Notícias</a>
+                    </div>
+                </div>
+            </article>
 
         <?php elseif ($activePage === 'news_slow_j'): ?>
             <article class="news-article">
@@ -343,9 +486,188 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
             <?= Component::render('About', ['festival' => $festival, 'showFull' => true]) ?>
 
+        <?php elseif ($activePage === 'eco-move'): ?>
+            <?= Component::render('PageHeader', [
+                'label' => 'Festival Crato 2027',
+                'title' => 'Eco Move',
+                'accent' => 'Crato',
+                'subtitle' => 'Recolha seletiva de proximidade — sê uma EcoTeam voluntária no Festival do Crato.',
+            ]) ?>
+            <?= Component::render('EcoMoveCrato', []) ?>
+
+            <script>
+                (function () {
+                    const form = document.getElementById('eco-move-form');
+                    if (!form) return;
+
+                    // ── Seleção de turnos ───────────────────────────────────────
+                    const shiftsInput = document.getElementById('eco-move-shifts');
+                    const scheduleError = document.getElementById('eco-move-schedule-error');
+                    const cells = form.querySelectorAll('.eco-move-cell');
+                    const selected = new Set();
+
+                    function syncShiftsInput() {
+                        shiftsInput.value = Array.from(selected).join(',');
+                    }
+
+                    cells.forEach(cell => {
+                        cell.addEventListener('click', function () {
+                            const key = cell.dataset.date + '|' + cell.dataset.shift;
+                            const isSelected = selected.has(key);
+                            if (isSelected) {
+                                selected.delete(key);
+                            } else {
+                                selected.add(key);
+                            }
+                            cell.classList.toggle('is-selected', !isSelected);
+                            cell.setAttribute('aria-pressed', String(!isSelected));
+                            syncShiftsInput();
+                            if (selected.size > 0) {
+                                scheduleError.classList.remove('is-visible');
+                            }
+                        });
+                    });
+
+                    // ── CTA Fixo Mobile (Scroll + Foco no primeiro campo) ───────
+                    const floatingCta = document.getElementById('eco-move-floating-cta');
+                    const floatingBar = document.getElementById('eco-move-floating-bar');
+                    const nameInput = document.getElementById('eco-move-name');
+
+                    if (floatingCta && nameInput) {
+                        floatingCta.addEventListener('click', function () {
+                            nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            setTimeout(() => {
+                                nameInput.focus({ preventScroll: true });
+                            }, 450);
+                        });
+
+                        // Ocultar suavemente o botão fixo quando o formulário estiver visível no ecrã
+                        if ('IntersectionObserver' in window && floatingBar) {
+                            const observer = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        floatingBar.classList.add('is-hidden');
+                                    } else {
+                                        floatingBar.classList.remove('is-hidden');
+                                    }
+                                });
+                            }, { threshold: 0.1 });
+
+                            observer.observe(form);
+                        }
+                    }
+
+                    // ── Submissão do formulário ─────────────────────────────────
+                    form.addEventListener('submit', async function (e) {
+                        e.preventDefault();
+
+                        if (!form.checkValidity()) {
+                            form.reportValidity();
+                            return;
+                        }
+
+                        if (selected.size === 0) {
+                            scheduleError.textContent = 'Seleciona pelo menos um dia e turno.';
+                            scheduleError.classList.add('is-visible');
+                            scheduleError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            return;
+                        }
+
+                        const submit = form.querySelector('.contact-form__submit');
+                        const feedback = form.querySelector('.contact-form__feedback');
+                        const data = Object.fromEntries(new FormData(form).entries());
+
+                        const fieldLabels = {
+                            name: 'Nome', email: 'Email', phone: 'Telefone', nif: 'NIF',
+                            age: 'Idade', address: 'Morada completa', rgpd: 'Autorização RGPD',
+                            shifts: 'Dia(s) e turno(s)',
+                        };
+                        form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+
+                        feedback.textContent = '';
+                        feedback.className = 'contact-form__feedback';
+                        submit.disabled = true;
+                        submit.classList.add('is-loading');
+
+                        try {
+                            const res = await fetch('/eco-move-submit.php', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(data),
+                            });
+                            const json = await res.json().catch(() => ({}));
+
+                            if (res.ok && json.ok) {
+                                feedback.textContent = 'Obrigado! A tua inscrição foi enviada com sucesso.';
+                                feedback.classList.add('is-success');
+                                form.reset();
+                                selected.clear();
+                                cells.forEach(c => { c.classList.remove('is-selected'); c.setAttribute('aria-pressed', 'false'); });
+                                syncShiftsInput();
+                            } else if (res.status === 429) {
+                                feedback.textContent = 'Demasiadas submissões. Tenta novamente mais tarde.';
+                                feedback.classList.add('is-error');
+                            } else if (json.error === 'validation') {
+                                const invalidFields = Array.isArray(json.fields) ? json.fields : [];
+                                let firstInvalidEl = null;
+                                invalidFields.forEach(fieldName => {
+                                    const el = form.querySelector(`[name="${fieldName}"]`);
+                                    if (el) {
+                                        el.classList.add('is-invalid');
+                                        firstInvalidEl = firstInvalidEl || el;
+                                    }
+                                });
+                                const names = invalidFields.map(f => fieldLabels[f] || f).join(', ');
+                                feedback.textContent = names
+                                    ? `Verifica os campos: ${names}.`
+                                    : 'Verifica os campos marcados e tenta novamente.';
+                                feedback.classList.add('is-error');
+                                if (firstInvalidEl) {
+                                    firstInvalidEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                } else if (invalidFields.includes('shifts')) {
+                                    scheduleError.textContent = 'Seleciona pelo menos um dia e turno.';
+                                    scheduleError.classList.add('is-visible');
+                                }
+                            } else {
+                                feedback.textContent = 'Não foi possível enviar. Tenta novamente em instantes.';
+                                feedback.classList.add('is-error');
+                            }
+                        } catch (err) {
+                            feedback.textContent = 'Erro de rede. Verifica a ligação e tenta novamente.';
+                            feedback.classList.add('is-error');
+                        } finally {
+                            submit.disabled = false;
+                            submit.classList.remove('is-loading');
+                        }
+                    });
+                })();
+            </script>
+
+        <?php elseif ($activePage === 'partners'): ?>
+            <?= Component::render('PageHeader', [
+                'label' => 'Festival Crato 2027',
+                'title' => 'Os nossos',
+                'accent' => 'Parceiros',
+                'subtitle' => 'As marcas e instituições que tornam o Festival do Crato possível.',
+            ]) ?>
+            <?= Component::render('Partners', ['partnerGroups' => $partnerGroups]) ?>
+
+        <?php elseif ($activePage === 'guide'): ?>
+            <?= Component::render('PageHeader', [
+                'label' => 'Festival Crato 2027',
+                'title' => 'Guia do',
+                'accent' => 'Festival',
+                'subtitle' => 'O guia oficial da 40.ª edição, para levares contigo.',
+            ]) ?>
+            <?= Component::render('FestivalGuide', [
+                'guidePdf' => $guidePdf,
+                'guideSize' => $guideSize,
+                'guideReady' => $guideReady,
+            ]) ?>
+
         <?php elseif ($activePage === 'directions'): ?>
             <?= Component::render('PageHeader', [
-                'label' => 'Festival Crato 2026',
+                'label' => 'Festival Crato 2027',
                 'title' => 'Como',
                 'accent' => 'Chegar',
                 'subtitle' => 'Informações sobre acessos e transportes para o Crato.',
@@ -362,7 +684,7 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
         <?php elseif ($activePage === 'camping'): ?>
             <?= Component::render('PageHeader', [
-                'label' => 'Festival Crato 2026',
+                'label' => 'Festival Crato 2027',
                 'title' => 'Parque de',
                 'accent' => 'Campismo',
                 'subtitle' => 'Vive o Festival do Crato até ao último momento.',
@@ -386,17 +708,8 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
                         </div>
                     </div>
 
-                    <div class="camping-checkin">
-                        <div class="camping-checkin__item">
-                            <span class="camping-checkin__label">Check-in</span>
-                            <span class="camping-checkin__value">23 de agosto, a partir das 10h00</span>
-                            <small>Acesso reservado a portadores do Passe 4 Dias com Camping Ocasional</small>
-                        </div>
-                        <div class="camping-checkin__item">
-                            <span class="camping-checkin__label">Check-out</span>
-                            <span class="camping-checkin__value">30 de agosto, até às 18h00</span>
-                        </div>
-                    </div>
+                    <?php /* Datas de check-in/check-out retiradas — eram as de 2026.
+                             Repor quando a logística da próxima edição estiver fechada. */ ?>
 
                     <div class="camping-accordion">
                         <details class="camping-details" name="camping-faq">
@@ -509,15 +822,15 @@ $pageTitle = $pageTitles[$activePage] ?? 'Festival Crato';
 
         <?php elseif ($activePage === 'todo'): ?>
             <?= Component::render('PageHeader', [
-                'label' => 'Festival Crato 2026',
+                'label' => 'Festival Crato 2027',
                 'title' => 'O que',
                 'accent' => 'Fazer',
                 'subtitle' => 'Artesanato, gastronomia, música e muito mais.',
             ]) ?>
             <section class="generic-page">
                 <div class="container">
-                    <p>Além dos espetáculos musicais, a FAG oferece exposição de artesanato, degustação de produtos
-                        gastronómicos regionais e atividades culturais.</p>
+                    <p>Além dos espetáculos musicais, o Festival oferece exposição de artesanato, degustação de
+                        produtos gastronómicos regionais e atividades culturais.</p>
                 </div>
             </section>
 

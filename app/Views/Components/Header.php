@@ -3,14 +3,18 @@ $activePage = $activePage ?? 'home';
 $siteName   = $siteName ?? 'Festival Crato';
 
 $navItems = [
-    ['id' => 'tickets',  'label' => 'BILHETEIRA',  'url' => '/bilheteira'],
-    ['id' => 'lineup',   'label' => 'LINE UP',     'url' => '/lineup'],
+    // Ocultos após a edição de 2026 — repor quando abrir a venda para 2027:
+    // ['id' => 'tickets',  'label' => 'BILHETEIRA',  'url' => '/bilheteira'],
+    // ['id' => 'lineup',   'label' => 'LINE UP',     'url' => '/lineup'],
     ['id' => 'festival', 'label' => 'O FESTIVAL',  'url' => '#', 'submenu' => [
         ['id' => 'about',    'label' => 'Sobre o Festival', 'url' => '/sobre'],
         ['id' => 'news',     'label' => 'Novidades',        'url' => '/noticias'],
+        ['id' => 'eco-move', 'label' => 'Eco Move Crato',   'url' => '/eco-move-crato'],
     ]],
     ['id' => 'camping',  'label' => 'CAMPISMO',    'url' => '/campismo'],
+    ['id' => 'partners', 'label' => 'PARCEIROS',   'url' => '/parceiros'],
     ['id' => 'info',     'label' => 'INFO',        'url' => '#', 'submenu' => [
+        ['id' => 'guide',    'label' => 'Guia do Festival', 'url' => '/guia-do-festival'],
         ['id' => 'stay',     'label' => 'Onde Ficar',    'url' => 'https://cm-crato.pt/visitar/onde-ficar/', 'external' => true],
         ['id' => 'eat',      'label' => 'Onde Comer',    'url' => 'https://cm-crato.pt/visitar/onde-comer/', 'external' => true],
         ['id' => 'contacts', 'label' => 'Contactos',     'url' => '/contactos'],
@@ -60,6 +64,8 @@ $navItems = [
 
         <!-- Actions -->
         <div class="header-actions">
+            <?php /* Carrinho oculto — bilheteira fechada após a edição de 2026.
+                     Repor quando abrir a venda para 2027.
             <button
                 class="cart-toggle"
                 id="cart-toggle-btn"
@@ -69,6 +75,7 @@ $navItems = [
                 <span class="material-symbols-outlined">shopping_bag</span>
                 <span class="cart-badge" id="cart-badge" aria-hidden="true" style="display:none"></span>
             </button>
+            */ ?>
 
             <button class="menu-toggle" id="menu-toggle" data-mobile-menu-toggle aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
                 <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>

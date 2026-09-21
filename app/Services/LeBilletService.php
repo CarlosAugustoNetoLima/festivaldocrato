@@ -177,12 +177,13 @@ class LeBilletService
                 continue;
             }
 
-            // Ignorar entradas de código promocional / voucher
+            // Ignorar entradas de código promocional / voucher / solidário
             $nameLower = strtolower($name);
             if (str_contains($nameLower, 'promocional') ||
                 str_contains($nameLower, 'voucher') ||
                 str_contains($nameLower, 'coupon') ||
-                str_contains($nameLower, 'código')) {
+                str_contains($nameLower, 'código') ||
+                str_contains($nameLower, 'solid')) {
                 continue;
             }
 
